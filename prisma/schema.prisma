@@ -1,0 +1,504 @@
+// Schema do banco de dados para Sistema Orçamentário
+// Modelagem baseada no catálogo técnico (FORMULÁRIO.rtf) e planilha Excel
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// CATÁLOGO DE PRODUTOS
+// ============================================
+
+model ProdutoTipo {
+  id          String          @id @default(cuid())
+  codigo      String          @unique // Ex: "SACO", "SACOLA", "CAIXA"
+  nome        String
+  descricao   String?
+  ativo       Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  modelos     ProdutoModelo[]
+  solicitacoes SolicitacaoItem[]
+
+  @@map("produto_tipo")
+}
+
+model ProdutoModelo {
+  id            String          @id @default(cuid())
+  produtoTipoId String
+  codigo        String          // Ex: "ELEGANCE", "FUNDO_V", "TAMPA_FUNDO"
+  nome          String
+  descricao     String?
+  ativo         Boolean         @default(true)
+  permiteAlca   Boolean         @default(true) // Se false, desabilita toda seção de alça
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  produtoTipo   ProdutoTipo     @relation(fields: [produtoTipoId], references: [id], onDelete: Cascade)
+  
+  // Relações de permissões
+  substratosPermitidos    ModeloSubstratoPermitido[]
+  impressoesPermitidas    ModeloImpressaoPermitida[]
+  enobrecimentosPermitidos ModeloEnobrecimentoPermitido[]
+  acondicionamentosPermitidos ModeloAcondicionamentoPermitido[]
+  formatosPermitidos      ModeloFormatoPermitido[]
+  
+  solicitacoes            SolicitacaoItem[]
+
+  @@unique([produtoTipoId, codigo])
+  @@map("produto_modelo")
+}
+
+// ============================================
+// FORMATOS E DIMENSÕES
+// ============================================
+
+model FormatoPadrao {
+  id              String          @id @default(cuid())
+  codigo          String          @unique // Ex: "A4", "PERSONALIZADO"
+  nome            String
+  largura         Float?          // em cm
+  altura          Float?          // em cm
+  lateral         Float?          // em cm (se aplicável)
+  aceitaDesenvolvimento Boolean   @default(false) // Se true, permite campos customizados
+  ativo           Boolean         @default(true)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  modelosPermitidos ModeloFormatoPermitido[]
+  solicitacoes     SolicitacaoItem[]
+
+  @@map("formato_padrao")
+}
+
+// ============================================
+// SUBSTRATOS E PAPÉIS
+// ============================================
+
+model Substrato {
+  id          String          @id @default(cuid())
+  codigo      String          @unique // Ex: "OFFSET", "DUPLEX", "KRAFT"
+  nome        String
+  descricao   String?
+  gramagens   String[]        // Array de gramagens permitidas: ["180", "250", "300"]
+  exigeLaminacao Boolean      @default(false) // Se true, laminação é obrigatória
+  ativo       Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  modelosPermitidos ModeloSubstratoPermitido[]
+  solicitacoes     SolicitacaoItem[]
+
+  @@map("substrato")
+}
+
+// ============================================
+// IMPRESSÃO
+// ============================================
+
+model ImpressaoModo {
+  id          String          @id @default(cuid())
+  codigo      String          @unique // Ex: "SEM", "PB", "CMYK", "PANTONE", "CMYK_PANTONE"
+  nome        String
+  descricao   String?
+  ativo       Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  combinacoes ImpressaoCombinacao[]
+  modelosPermitidos ModeloImpressaoPermitida[]
+  solicitacoes     SolicitacaoItem[]
+
+  @@map("impressao_modo")
+}
+
+model ImpressaoCombinacao {
+  id              String          @id @default(cuid())
+  impressaoModoId String
+  codigo          String          // Ex: "1x0", "2x0", "4x4", "6x6"
+  nome            String
+  descricao       String?
+  camadas         String[]        // ["externa", "interna", "apara", "saco", "sacola", "etiqueta"]
+  ativo           Boolean         @default(true)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  impressaoModo   ImpressaoModo   @relation(fields: [impressaoModoId], references: [id], onDelete: Cascade)
+  solicitacoes    SolicitacaoItem[]
+
+  @@unique([impressaoModoId, codigo])
+  @@map("impressao_combinacao")
+}
+
+// ============================================
+// ENOBRECIMENTOS
+// ============================================
+
+model EnobrecimentoTipo {
+  id          String          @id @default(cuid())
+  codigo      String          @unique // Ex: "HOT_STAMPING", "RELEVO", "GOFRAGEM", "LAMINACAO", "VERNIZ_UV"
+  nome        String
+  descricao   String?
+  ativo       Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  modelosPermitidos ModeloEnobrecimentoPermitido[]
+  solicitacoes     SolicitacaoEnobrecimento[]
+
+  @@map("enobrecimento_tipo")
+}
+
+// ============================================
+// ALÇA
+// ============================================
+
+model AlcaTipo {
+  id          String          @id @default(cuid())
+  codigo      String          @unique // Ex: "DALVA_GORGURAO", "SINTETICA"
+  nome        String
+  descricao   String?
+  ativo       Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  solicitacoes SolicitacaoItem[]
+
+  @@map("alca_tipo")
+}
+
+// ============================================
+// ACONDICIONAMENTO
+// ============================================
+
+model Acondicionamento {
+  id          String          @id @default(cuid())
+  codigo      String          @unique // Ex: "PACOTE", "SHRINK", "CAIXA", "ROLO", "CARTELA"
+  nome        String
+  descricao   String?
+  ativo       Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  modelosPermitidos ModeloAcondicionamentoPermitido[]
+  solicitacoes     SolicitacaoItem[]
+
+  @@map("acondicionamento")
+}
+
+model Modulo {
+  id          String          @id @default(cuid())
+  codigo      String          @unique // Ex: "25", "50", "100", "500", "2000", "INFORMAR"
+  nome        String
+  quantidade  Int?            // null se for "Informar"
+  ativo       Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  solicitacoes SolicitacaoItem[]
+
+  @@map("modulo")
+}
+
+// ============================================
+// RELAÇÕES DE PERMISSÃO (O que é permitido para cada modelo)
+// ============================================
+
+model ModeloSubstratoPermitido {
+  id            String          @id @default(cuid())
+  produtoModeloId String
+  substratoId   String
+  createdAt     DateTime        @default(now())
+
+  produtoModelo ProdutoModelo   @relation(fields: [produtoModeloId], references: [id], onDelete: Cascade)
+  substrato     Substrato       @relation(fields: [substratoId], references: [id], onDelete: Cascade)
+
+  @@unique([produtoModeloId, substratoId])
+  @@map("modelo_substrato_permitido")
+}
+
+model ModeloImpressaoPermitida {
+  id            String          @id @default(cuid())
+  produtoModeloId String
+  impressaoModoId String
+  createdAt     DateTime        @default(now())
+
+  produtoModelo ProdutoModelo   @relation(fields: [produtoModeloId], references: [id], onDelete: Cascade)
+  impressaoModo ImpressaoModo   @relation(fields: [impressaoModoId], references: [id], onDelete: Cascade)
+
+  @@unique([produtoModeloId, impressaoModoId])
+  @@map("modelo_impressao_permitida")
+}
+
+model ModeloEnobrecimentoPermitido {
+  id                String          @id @default(cuid())
+  produtoModeloId   String
+  enobrecimentoTipoId String
+  obrigatorio       Boolean         @default(false) // Se true, deve ser selecionado
+  createdAt         DateTime        @default(now())
+
+  produtoModelo     ProdutoModelo   @relation(fields: [produtoModeloId], references: [id], onDelete: Cascade)
+  enobrecimentoTipo EnobrecimentoTipo @relation(fields: [enobrecimentoTipoId], references: [id], onDelete: Cascade)
+
+  @@unique([produtoModeloId, enobrecimentoTipoId])
+  @@map("modelo_enobrecimento_permitido")
+}
+
+model ModeloAcondicionamentoPermitido {
+  id            String          @id @default(cuid())
+  produtoModeloId String
+  acondicionamentoId String
+  createdAt     DateTime        @default(now())
+
+  produtoModelo ProdutoModelo   @relation(fields: [produtoModeloId], references: [id], onDelete: Cascade)
+  acondicionamento Acondicionamento @relation(fields: [acondicionamentoId], references: [id], onDelete: Cascade)
+
+  @@unique([produtoModeloId, acondicionamentoId])
+  @@map("modelo_acondicionamento_permitido")
+}
+
+model ModeloFormatoPermitido {
+  id            String          @id @default(cuid())
+  produtoModeloId String
+  formatoPadraoId String
+  createdAt     DateTime        @default(now())
+
+  produtoModelo ProdutoModelo   @relation(fields: [produtoModeloId], references: [id], onDelete: Cascade)
+  formatoPadrao FormatoPadrao   @relation(fields: [formatoPadraoId], references: [id], onDelete: Cascade)
+
+  @@unique([produtoModeloId, formatoPadraoId])
+  @@map("modelo_formato_permitido")
+}
+
+// ============================================
+// FORMULÁRIO CONFIGURÁVEL (PAINEL DA ENGENHARIA)
+// ============================================
+
+model FormularioEtapa {
+  id          String          @id @default(cuid())
+  codigo      String          @unique // Ex: "dados_pedido", "produto", "tamanho"
+  nome        String          // Nome exibido: "Dados do pedido", "Produto", etc.
+  descricao   String?
+  ordem       Int             // Ordem de exibição (1, 2, 3...)
+  ativo       Boolean         @default(true)
+  isSystem    Boolean         @default(false) // Se true, é etapa base do sistema
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  perguntas   FormularioPergunta[]
+
+  @@map("formulario_etapa")
+}
+
+model FormularioPergunta {
+  id                String          @id @default(cuid())
+  formularioEtapaId String
+  titulo            String          // Nome da pergunta (editável)
+  ajuda             String?         // Texto de ajuda/tooltip
+  tipo              String          // "texto_curto", "texto_longo", "numero", "data", "lista_opcoes", "lista_produtos", "lista_modelos"
+  obrigatorio       Boolean         @default(false)
+  ativo             Boolean         @default(true) // Ligado/Desligado
+  ordem             Int             // Ordem dentro da etapa
+  opcoes            String[]        // Array de opções (para tipo lista_opcoes)
+  configuracao      Json?           // Configurações extras (ex: validações, dependências)
+  
+  // Campos para perguntas do sistema
+  isSystem          Boolean         @default(false) // Se true, é pergunta base do sistema
+  systemKey         String?         @unique // Chave única do sistema (ex: "empresa", "produto", "modelo", "quantidade")
+  campoMapeado      String?         // Campo no schema de solicitação (ex: "dadosGerais.empresa")
+  
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  formularioEtapa   FormularioEtapa @relation(fields: [formularioEtapaId], references: [id], onDelete: Cascade)
+
+  @@map("formulario_pergunta")
+}
+
+// ============================================
+// SOLICITAÇÕES
+// ============================================
+
+model Solicitacao {
+  id                String          @id @default(cuid())
+  
+  // Novos campos principais
+  vendedor          String
+  marca             String
+  contato           String
+  codigoMetrics     String?
+  
+  // Campos legados (opcionais para compatibilidade)
+  empresa           String?
+  unidade           String?
+  nomeSolicitante   String?
+  emailSolicitante  String?
+  telefoneSolicitante String?
+  prazoDesejado     DateTime?
+  observacoesGerais String?
+  
+  // Condições de venda
+  tipoContrato      String?
+  imposto           String?
+  condicaoPagamento String?
+  condicaoPagamentoOutra String?
+  royalties         String?
+  bvAgencia         String?
+  
+  // Entregas
+  localUnico        Boolean         @default(true)
+  cidadeUF          String?
+  quantidadeLocalUnico Int?
+  pedidoMinimoCIF   String?
+  cidadesUFMultiplas String?
+  anexarListaLojas  Boolean         @default(false)
+  quantidadeMultiplos String?
+  numeroEntregas    String?
+  frequenciaUnica   Boolean         @default(true)
+  quantidadeUnica   Int?
+  frequencia        String?
+  frequenciaOutra   String?
+  quantidadeMultiplasEntregas Int?
+  frete             String?
+  freteQuantidade   Int?
+  freteQuantidades  Int[]           @default([])
+  
+  // Webhook
+  statusWebhook     String          @default("pendente") // "pendente", "sucesso", "erro"
+  responseWebhook   String?         // Resposta do webhook (JSON ou texto)
+  webhookEnviadoEm  DateTime?
+  
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  itens             SolicitacaoItem[]
+
+  @@map("solicitacao")
+}
+
+model SolicitacaoItem {
+  id                String          @id @default(cuid())
+  solicitacaoId     String
+  
+  // Produto
+  produtoTipoId     String
+  produtoModeloId   String
+  variacaoEnvelope  String? // Para ENVELOPE: com_alca_sem_trava, com_alca_com_trava, sem_alca_sem_trava, sem_alca_com_trava
+  
+  // Formato
+  formatoPadraoId   String?
+  formatoCustomLargura Float?
+  formatoCustomAltura  Float?
+  formatoCustomLateral Float?
+  formatoCustomObservacoes String?
+  // Campos específicos para SACO FUNDO V
+  larguraPadrao     Float? // Largura padrão selecionada
+  alturaPadrao      Float? // Altura padrão selecionada
+  sanfona           Float? // Sanfona (para SACO FUNDO V)
+  // Campos específicos para ENVELOPE
+  aba               Float? // Altura da aba (para envelopes)
+  // Campos específicos para CAIXA TAMPA E FUNDO
+  alturaTampa       Float? // Altura da tampa
+  modeloEspecial    String? // Modelo especial (Aramis, Milon, Schutz)
+  colagem           String? // Tipo de colagem
+  
+  // Substrato
+  substratoId       String
+  substratoGramagem String? // Gramagem específica selecionada
+  
+  // Alça (se permitido)
+  alcaTipoId        String?
+  alcaLargura       String? // Ex: "1.0", "1.5", "2.0"
+  alcaCor           String? // Ex: "Branca", "Preta", "Outro (Desenvolvimento)"
+  alcaCorCustom     String? // Se alcaCor for "Outro"
+  alcaAplicacao     String? // Ex: "Solta no pacote", "Colada", "Com ponteira"
+  alcaComprimento   Float? // Comprimento da alça
+  
+  // Acabamentos
+  reforcoFundo      Boolean         @default(false)
+  reforcoFundoModelo String? // Ex: "Solto no pacote", "Colado", etc.
+  bocaPalhaco       Boolean         @default(false)
+  furoFita          Boolean         @default(false)
+  furoFitaModelo    String? // Ex: "Opção 01", "Padrão Evolution 8x8"
+  duplaFace         Boolean         @default(false) // Para envelopes
+  velcro            Boolean         @default(false) // Para envelopes
+  velcroCor         String? // Cor do velcro
+  velcroTamanho     Float? // Tamanho do velcro (16mm, 21mm)
+  
+  // Impressão
+  impressaoModoId   String?
+  impressaoCombinacaoId String?
+  impressaoCamadas  Json? // Detalhamento de camadas: { externa: true, interna: false, etc }
+  impressaoObservacoes String?
+  percentualImpressaoExterna Float? // % de impressão externa
+  percentualImpressaoInterna Float? // % de impressão interna
+  // Impressão Apara (para sacolas e sacos)
+  impressaoApara    Boolean         @default(false)
+  impressaoAparaModoId String? // Modo de impressão da apara
+  impressaoAparaCombinacaoId String? // Combinação de cores da apara
+  percentualImpressaoApara Float? // % de impressão apara
+  impressaoAparaObservacoes String?
+  // Impressão Saco/Sacola/Envelope (separada da apara)
+  impressaoSaco     Boolean         @default(false)
+  impressaoSacoModoId String?
+  impressaoSacoCombinacaoId String?
+  impressaoEnvelope Boolean        @default(false)
+  impressaoEnvelopeModoId String?
+  impressaoEnvelopeCombinacaoId String?
+  // Cor da Fita (para FITA)
+  corFita           String? // Cor da fita
+  // Corte Registrado (para SEDA)
+  corteRegistrado   Boolean         @default(false)
+  corteRegistradoTerceirizado Boolean @default(false)
+  
+  // Acondicionamento
+  acondicionamentoId String?
+  moduloId          String?
+  quantidade        Int
+  
+  // Desenvolvimento
+  desenvolvimentoObservacoes String? // Para todos os campos "Outro (Desenvolvimento)"
+  
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  solicitacao       Solicitacao     @relation(fields: [solicitacaoId], references: [id], onDelete: Cascade)
+  produtoTipo       ProdutoTipo     @relation(fields: [produtoTipoId], references: [id])
+  produtoModelo     ProdutoModelo   @relation(fields: [produtoModeloId], references: [id])
+  formatoPadrao     FormatoPadrao?  @relation(fields: [formatoPadraoId], references: [id])
+  substrato         Substrato       @relation(fields: [substratoId], references: [id])
+  alcaTipo          AlcaTipo?       @relation(fields: [alcaTipoId], references: [id])
+  impressaoModo     ImpressaoModo?  @relation(fields: [impressaoModoId], references: [id])
+  impressaoCombinacao ImpressaoCombinacao? @relation(fields: [impressaoCombinacaoId], references: [id])
+  acondicionamento  Acondicionamento? @relation(fields: [acondicionamentoId], references: [id])
+  modulo            Modulo?         @relation(fields: [moduloId], references: [id])
+  
+  enobrecimentos    SolicitacaoEnobrecimento[]
+
+  @@map("solicitacao_item")
+}
+
+model SolicitacaoEnobrecimento {
+  id                String          @id @default(cuid())
+  solicitacaoItemId String
+  enobrecimentoTipoId String
+  
+  // Dados específicos por tipo (JSON flexível)
+  dados             Json? // Ex: { cor: "ouro", tamanho: "10x10", tipo: "alto relevo", etc }
+  observacoes       String?
+  
+  createdAt         DateTime        @default(now())
+
+  solicitacaoItem   SolicitacaoItem @relation(fields: [solicitacaoItemId], references: [id], onDelete: Cascade)
+  enobrecimentoTipo EnobrecimentoTipo @relation(fields: [enobrecimentoTipoId], references: [id])
+
+  @@map("solicitacao_enobrecimento")
+}
+
+

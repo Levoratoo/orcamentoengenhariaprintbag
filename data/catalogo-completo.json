@@ -1,0 +1,5882 @@
+{
+  "produtoTipos": [
+    {
+      "id": "tipo_saco",
+      "codigo": "SACO",
+      "nome": "Saco",
+      "descricao": "Sacos em geral",
+      "modelos": [
+        {
+          "id": "modelo_fundo_v",
+          "codigo": "FUNDO_V",
+          "nome": "Fundo V",
+          "descricao": "Saco com fundo em formato V",
+          "permiteAlca": false,
+          "permiteAcabamentos": false,
+          "permiteEnobrecimentos": false,
+          "substratosPermitidos": [
+            "sub_fine_branco",
+            "sub_fine_kraft"
+          ],
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "impressoesPermitidasSaco": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [],
+          "acondicionamentosPermitidos": [
+            "acond_shrink",
+            "acond_caixa"
+          ],
+          "formatosPermitidos": [
+            "fmt_personalizado"
+          ],
+          "largurasPadrao": [
+            80,
+            105,
+            120,
+            135,
+            160,
+            200
+          ],
+          "alturasPadrao": [
+            100,
+            115,
+            140,
+            160,
+            165,
+            175,
+            190,
+            210,
+            240,
+            290,
+            330,
+            340,
+            360,
+            390,
+            430,
+            490
+          ],
+          "sanfonasPadrao": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            100,
+            110,
+            120
+          ],
+          "acabamentosPermitidos": [],
+          "modelosReforcoFundo": [],
+          "moduloPadraoShrink": 500,
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ]
+          }
+        },
+        {
+          "id": "modelo_fundo_quadrado",
+          "codigo": "FUNDO_QUADRADO",
+          "nome": "Fundo Quadrado",
+          "descricao": "Saco com fundo quadrado",
+          "permiteAlca": false,
+          "permiteAcabamentos": true,
+          "permiteEnobrecimentos": false,
+          "substratosPermitidos": [
+            "sub_offset",
+            "sub_kraft",
+            "sub_greenbag",
+            "sub_lin"
+          ],
+          "gramagensPorSubstrato": {
+            "sub_offset": [
+              "120"
+            ],
+            "sub_kraft": [
+              "70",
+              "80",
+              "90",
+              "100",
+              "120",
+              "140"
+            ],
+            "sub_greenbag": [
+              "90"
+            ],
+            "sub_lin": [
+              "90",
+              "115",
+              "130"
+            ]
+          },
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "impressoesPermitidasApara": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_outro"
+          ],
+          "impressoesPermitidasSaco": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [],
+          "acondicionamentosPermitidos": [
+            "acond_shrink",
+            "acond_caixa"
+          ],
+          "formatosPermitidos": [
+            "fmt_150x220x70",
+            "fmt_180x260x100",
+            "fmt_180x300x100",
+            "fmt_220x260x100",
+            "fmt_220x350x140",
+            "fmt_230x320x100",
+            "fmt_240x295x115",
+            "fmt_260x260x120",
+            "fmt_260x350x120",
+            "fmt_310x355x125",
+            "fmt_310x360x170",
+            "fmt_320x340x140",
+            "fmt_320x340x130",
+            "fmt_320x400x130",
+            "fmt_330x370x190",
+            "fmt_400x315x110",
+            "fmt_400x350x150",
+            "fmt_400x460x150",
+            "fmt_460x485x160"
+          ],
+          "permiteImpressaoApara": true,
+          "permiteImpressaoSaco": true,
+          "papelImpressaoApara": "Cartão Duplex 225g",
+          "acabamentosPermitidos": [
+            "reforco_fundo"
+          ],
+          "modelosReforcoFundo": [
+            "solto_pacote"
+          ],
+          "moduloPadraoShrink": 100,
+          "combinacoesImpressaoSaco": {
+            "imp_pb": [
+              "1x0",
+              "2x0",
+              "0x2",
+              "2x2",
+              "2x1",
+              "1x2",
+              "1x1",
+              "0x1"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "1x1",
+              "0x1"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "6x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "6x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "6x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "6x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "6x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5",
+              "6x5",
+              "1x6",
+              "2x6",
+              "3x6",
+              "4x6",
+              "5x6",
+              "6x6"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "6x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "6x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "6x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "6x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "6x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5",
+              "6x5",
+              "1x6",
+              "2x6",
+              "3x6",
+              "4x6",
+              "5x6",
+              "6x6"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "6x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "6x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "6x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "6x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "6x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5",
+              "6x5",
+              "1x6",
+              "2x6",
+              "3x6",
+              "4x6",
+              "5x6",
+              "6x6"
+            ]
+          },
+          "combinacoesImpressaoApara": {
+            "imp_pb": [
+              "1x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "tipo_caixa",
+      "codigo": "CAIXA",
+      "nome": "Caixa",
+      "descricao": "Caixas em geral",
+      "modelos": [
+        {
+          "id": "modelo_tampa_fundo",
+          "codigo": "TAMPA_FUNDO",
+          "nome": "Tampa e Fundo",
+          "descricao": "Caixa com tampa e fundo separados",
+          "permiteAlca": true,
+          "permiteAcabamentos": false,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_duplex",
+            "sub_triplex"
+          ],
+          "gramagensPorSubstrato": {
+            "sub_duplex": [
+              "190",
+              "200",
+              "210",
+              "250",
+              "275",
+              "300",
+              "325"
+            ],
+            "sub_triplex": [
+              "200",
+              "225",
+              "240",
+              "250",
+              "275",
+              "300",
+              "325",
+              "350"
+            ]
+          },
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_relevo",
+            "enob_gofragem",
+            "enob_laminacao"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote",
+            "acond_caixa"
+          ],
+          "formatosPermitidos": [
+            "fmt_195x150x50",
+            "fmt_210x230x90",
+            "fmt_300x240x100",
+            "fmt_390x270x55",
+            "fmt_450x345x100",
+            "fmt_personalizado"
+          ],
+          "formatosEspeciais": [
+            {
+              "formato": "195x150x50",
+              "tampa": 30,
+              "modelo": "Aramis",
+              "colagem": false
+            },
+            {
+              "formato": "210x230x90",
+              "tampa": 50,
+              "modelo": "Milon",
+              "colagem": true
+            },
+            {
+              "formato": "300x240x100",
+              "tampa": 60,
+              "modelo": "Schutz",
+              "colagem": true
+            },
+            {
+              "formato": "390x270x55",
+              "tampa": 30,
+              "modelo": "Aramis",
+              "colagem": false
+            },
+            {
+              "formato": "450x345x100",
+              "tampa": 50,
+              "modelo": "Aramis",
+              "colagem": "tampa_sem_fundo_colado"
+            }
+          ],
+          "tiposAlcaPermitidos": [
+            "alca_dalva",
+            "alca_sintetica_sf"
+          ],
+          "aplicacoesAlcaPermitidas": [
+            "com_ponteira",
+            "solta_pacote"
+          ],
+          "largurasAlcaPermitidas": [
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+          ],
+          "coresAlcaPermitidas": [
+            "branca",
+            "preta",
+            "colorida_catalogo",
+            "outro"
+          ],
+          "moduloPadraoPacote": 50,
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "preto",
+            "outro"
+          ],
+          "relevotipos": [
+            "alto",
+            "baixo"
+          ],
+          "gofragemModelos": [
+            "padrao",
+            "personalizada"
+          ],
+          "laminacaoTipos": [
+            "brilho",
+            "fosco"
+          ],
+          "exigeLaminacaoTriplex": true,
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0",
+              "0x2",
+              "2x2",
+              "2x1",
+              "1x2",
+              "1x1",
+              "0x1"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "1x1",
+              "0x1"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5"
+            ]
+          }
+        },
+        {
+          "id": "modelo_articulada",
+          "codigo": "ARTICULADA",
+          "nome": "Articulada",
+          "descricao": "Caixa articulada (Desenvolvimento)",
+          "permiteAlca": true,
+          "permiteAcabamentos": false,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_duplex",
+            "sub_triplex"
+          ],
+          "gramagensPorSubstrato": {
+            "sub_duplex": [
+              "190",
+              "200",
+              "210",
+              "250",
+              "275",
+              "300",
+              "325"
+            ],
+            "sub_triplex": [
+              "200",
+              "225",
+              "240",
+              "250",
+              "275",
+              "300",
+              "325",
+              "350"
+            ]
+          },
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_relevo",
+            "enob_gofragem",
+            "enob_laminacao"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote",
+            "acond_caixa"
+          ],
+          "formatosPermitidos": [
+            "fmt_personalizado"
+          ],
+          "tiposAlcaPermitidos": [
+            "alca_dalva",
+            "alca_sintetica_sf"
+          ],
+          "aplicacoesAlcaPermitidas": [
+            "com_ponteira",
+            "solta_pacote"
+          ],
+          "largurasAlcaPermitidas": [
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+          ],
+          "coresAlcaPermitidas": [
+            "branca",
+            "preta",
+            "colorida_catalogo",
+            "outro"
+          ],
+          "moduloPadraoPacote": 50,
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "preto",
+            "outro"
+          ],
+          "relevotipos": [
+            "alto",
+            "baixo"
+          ],
+          "gofragemModelos": [
+            "padrao",
+            "personalizada"
+          ],
+          "laminacaoTipos": [
+            "brilho",
+            "fosco"
+          ],
+          "exigeLaminacaoTriplex": true,
+          "desenvolvimento": true,
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0",
+              "0x2",
+              "2x2",
+              "2x1",
+              "1x2",
+              "1x1",
+              "0x1"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "1x1",
+              "0x1"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5"
+            ]
+          }
+        },
+        {
+          "id": "modelo_fundo_automatico",
+          "codigo": "FUNDO_AUTOMATICO",
+          "nome": "Fundo Automático / Cartucho",
+          "descricao": "Fundo automático ou cartucho (Desenvolvimento)",
+          "permiteAlca": true,
+          "permiteAcabamentos": false,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_duplex",
+            "sub_triplex"
+          ],
+          "gramagensPorSubstrato": {
+            "sub_duplex": [
+              "190",
+              "200",
+              "210",
+              "250",
+              "275",
+              "300",
+              "325"
+            ],
+            "sub_triplex": [
+              "200",
+              "225",
+              "240",
+              "250",
+              "275",
+              "300",
+              "325",
+              "350"
+            ]
+          },
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_relevo",
+            "enob_gofragem",
+            "enob_laminacao"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote",
+            "acond_caixa"
+          ],
+          "formatosPermitidos": [
+            "fmt_personalizado"
+          ],
+          "tiposAlcaPermitidos": [
+            "alca_dalva",
+            "alca_sintetica_sf"
+          ],
+          "aplicacoesAlcaPermitidas": [
+            "com_ponteira",
+            "solta_pacote"
+          ],
+          "largurasAlcaPermitidas": [
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+          ],
+          "coresAlcaPermitidas": [
+            "branca",
+            "preta",
+            "colorida_catalogo",
+            "outro"
+          ],
+          "moduloPadraoPacote": 50,
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "preto",
+            "outro"
+          ],
+          "relevotipos": [
+            "alto",
+            "baixo"
+          ],
+          "gofragemModelos": [
+            "padrao",
+            "personalizada"
+          ],
+          "laminacaoTipos": [
+            "brilho",
+            "fosco"
+          ],
+          "exigeLaminacaoTriplex": true,
+          "desenvolvimento": true,
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0",
+              "0x2",
+              "2x2",
+              "2x1",
+              "1x2",
+              "1x1",
+              "0x1"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "1x1",
+              "0x1"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "tipo_guardanapo",
+      "codigo": "GUARDANAPO",
+      "nome": "Guardanapo",
+      "descricao": "Guardanapos",
+      "modelos": [
+        {
+          "id": "modelo_sachet",
+          "codigo": "SACHET",
+          "nome": "Sachet",
+          "descricao": "Guardanapo sachet",
+          "permiteAlca": false,
+          "permiteAcabamentos": false,
+          "permiteEnobrecimentos": false,
+          "substratosPermitidos": [
+            "sub_sachet"
+          ],
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [],
+          "acondicionamentosPermitidos": [
+            "acond_caixa"
+          ],
+          "formatosPermitidos": [
+            "fmt_50x185",
+            "fmt_50x150"
+          ],
+          "moduloPadraoCaixa": 2000,
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "tipo_etiqueta",
+      "codigo": "ETIQUETA",
+      "nome": "Etiqueta",
+      "descricao": "Etiquetas",
+      "modelos": [
+        {
+          "id": "modelo_redonda",
+          "codigo": "REDONDA",
+          "nome": "Redonda",
+          "descricao": "Etiqueta redonda",
+          "permiteAlca": false,
+          "permiteAcabamentos": false,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_bopp",
+            "sub_couche_brilho",
+            "sub_couche_fosco"
+          ],
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_laminacao",
+            "enob_verniz_uv"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote",
+            "acond_rolo",
+            "acond_cartela"
+          ],
+          "formatosPermitidos": [
+            "fmt_personalizado"
+          ],
+          "modulosPacoteRolo": [
+            500,
+            1000
+          ],
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "outro"
+          ],
+          "laminacaoTipos": [
+            "brilho",
+            "fosco"
+          ],
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ]
+          }
+        },
+        {
+          "id": "modelo_cantos_retos",
+          "codigo": "CANTOS_RETOS",
+          "nome": "Cantos Retos",
+          "descricao": "Etiqueta com cantos retos",
+          "permiteAlca": false,
+          "permiteAcabamentos": false,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_bopp",
+            "sub_couche_brilho",
+            "sub_couche_fosco"
+          ],
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_laminacao",
+            "enob_verniz_uv"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote",
+            "acond_rolo",
+            "acond_cartela"
+          ],
+          "formatosPermitidos": [
+            "fmt_personalizado"
+          ],
+          "modulosPacoteRolo": [
+            500,
+            1000
+          ],
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "outro"
+          ],
+          "laminacaoTipos": [
+            "brilho",
+            "fosco"
+          ],
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ]
+          }
+        },
+        {
+          "id": "modelo_cantos_arredondados",
+          "codigo": "CANTOS_ARREDONDADOS",
+          "nome": "Cantos Arredondados",
+          "descricao": "Etiqueta com cantos arredondados",
+          "permiteAlca": false,
+          "permiteAcabamentos": false,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_bopp",
+            "sub_couche_brilho",
+            "sub_couche_fosco"
+          ],
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_laminacao",
+            "enob_verniz_uv"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote",
+            "acond_rolo",
+            "acond_cartela"
+          ],
+          "formatosPermitidos": [
+            "fmt_personalizado"
+          ],
+          "modulosPacoteRolo": [
+            500,
+            1000
+          ],
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "outro"
+          ],
+          "laminacaoTipos": [
+            "brilho",
+            "fosco"
+          ],
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ]
+          }
+        },
+        {
+          "id": "modelo_faca_especial_etiqueta",
+          "codigo": "FACA_ESPECIAL_ETIQUETA",
+          "nome": "Faca Especial",
+          "descricao": "Etiqueta com faca especial",
+          "permiteAlca": false,
+          "permiteAcabamentos": false,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_bopp",
+            "sub_couche_brilho",
+            "sub_couche_fosco"
+          ],
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_laminacao",
+            "enob_verniz_uv"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote",
+            "acond_rolo",
+            "acond_cartela"
+          ],
+          "formatosPermitidos": [
+            "fmt_personalizado"
+          ],
+          "modulosPacoteRolo": [
+            500,
+            1000
+          ],
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "outro"
+          ],
+          "laminacaoTipos": [
+            "brilho",
+            "fosco"
+          ],
+          "desenvolvimento": true,
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "tipo_seda",
+      "codigo": "SEDA",
+      "nome": "Seda",
+      "descricao": "Produtos em seda",
+      "modelos": [
+        {
+          "id": "modelo_corte_louco",
+          "codigo": "CORTE_LOUCO",
+          "nome": "Corte Louco",
+          "descricao": "Seda com corte louco",
+          "permiteAlca": false,
+          "permiteAcabamentos": false,
+          "permiteEnobrecimentos": false,
+          "substratosPermitidos": [
+            "sub_seda"
+          ],
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [],
+          "acondicionamentosPermitidos": [
+            "acond_shrink",
+            "acond_caixa"
+          ],
+          "formatosPermitidos": [
+            "fmt_470x400",
+            "fmt_700x500",
+            "fmt_250x700",
+            "fmt_500x600",
+            "fmt_470x700",
+            "fmt_500x500",
+            "fmt_250x500"
+          ],
+          "moduloPadraoShrink": 500,
+          "moduloPadraoCaixa": 500,
+          "tiragemMinimaInterna": 30000,
+          "permiteCorteRegistrado": true,
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_outro": []
+          }
+        },
+        {
+          "id": "modelo_corte_registrado",
+          "codigo": "CORTE_REGISTRADO",
+          "nome": "Corte Registrado",
+          "descricao": "Seda com corte registrado (Terceirizado)",
+          "permiteAlca": false,
+          "permiteAcabamentos": false,
+          "permiteEnobrecimentos": false,
+          "substratosPermitidos": [
+            "sub_seda"
+          ],
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [],
+          "acondicionamentosPermitidos": [
+            "acond_shrink",
+            "acond_caixa"
+          ],
+          "formatosPermitidos": [
+            "fmt_personalizado"
+          ],
+          "terceirizada": true,
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_outro": []
+          },
+          "moduloPadraoShrink": 500,
+          "tiragemMinimaInterna": 30000
+        }
+      ]
+    },
+    {
+      "id": "tipo_fita",
+      "codigo": "FITA",
+      "nome": "Fita",
+      "descricao": "Fitas",
+      "modelos": [
+        {
+          "id": "modelo_rolo",
+          "codigo": "ROLO",
+          "nome": "Rolo",
+          "descricao": "Fita em rolo - Formato: Largura (cm) x Comprimento (m)",
+          "permiteAlca": false,
+          "permiteAcabamentos": false,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_cetim",
+            "sub_gorgurao"
+          ],
+          "impressoesPermitidas": [
+            "imp_serigrafia",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote"
+          ],
+          "formatosPermitidos": [
+            "fmt_personalizado"
+          ],
+          "requerCorFita": true,
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "outro"
+          ],
+          "moduloPacote": "1_rolo_por_pacote",
+          "combinacoesImpressao": {
+            "imp_serigrafia": [
+              "1x0"
+            ],
+            "imp_outro": []
+          }
+        },
+        {
+          "id": "modelo_pedacos_cortados",
+          "codigo": "PEDACOS_CORTADOS",
+          "nome": "Pedaços Cortados",
+          "descricao": "Fita em pedaços cortados - Formato: Largura (cm) x Comprimento (cm)",
+          "permiteAlca": false,
+          "permiteAcabamentos": false,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_cetim",
+            "sub_gorgurao"
+          ],
+          "impressoesPermitidas": [
+            "imp_serigrafia",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote"
+          ],
+          "formatosPermitidos": [
+            "fmt_personalizado"
+          ],
+          "requerCorFita": true,
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "outro"
+          ],
+          "modulosPacote": [
+            100,
+            500
+          ],
+          "combinacoesImpressao": {
+            "imp_serigrafia": [
+              "1x0"
+            ],
+            "imp_outro": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "tipo_solapa",
+      "codigo": "SOLAPA",
+      "nome": "Solapa",
+      "descricao": "Solapas",
+      "modelos": [
+        {
+          "id": "modelo_malwee",
+          "codigo": "MALWEE",
+          "nome": "Malwee",
+          "descricao": "Solapa modelo Malwee",
+          "permiteAlca": false,
+          "permiteAcabamentos": true,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_offset",
+            "sub_kraft",
+            "sub_duplex",
+            "sub_triplex"
+          ],
+          "gramagensPorSubstrato": {
+            "sub_offset": [
+              "180",
+              "240"
+            ],
+            "sub_kraft": [
+              "186",
+              "240",
+              "300"
+            ],
+            "sub_duplex": [
+              "190",
+              "200",
+              "210",
+              "250",
+              "275",
+              "300",
+              "325"
+            ],
+            "sub_triplex": [
+              "200",
+              "225",
+              "240",
+              "250",
+              "275",
+              "300",
+              "325",
+              "350"
+            ]
+          },
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_relevo",
+            "enob_gofragem",
+            "enob_laminacao",
+            "enob_verniz_uv"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote"
+          ],
+          "formatosPermitidos": [
+            "fmt_40x175_fechado",
+            "fmt_69x175_fechado"
+          ],
+          "acabamentosPermitidos": [
+            "furo_fita"
+          ],
+          "modulosPacote": [
+            500,
+            1000
+          ],
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "outro"
+          ],
+          "relevotipos": [
+            "alto",
+            "baixo"
+          ],
+          "gofragemModelos": [
+            "padrao",
+            "personalizada"
+          ],
+          "laminacaoTipos": [
+            "brilho",
+            "fosco"
+          ],
+          "permiteDuplaFace": true,
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_outro": []
+          }
+        },
+        {
+          "id": "modelo_riachuelo",
+          "codigo": "RIACHUELO",
+          "nome": "Riachuelo",
+          "descricao": "Solapa modelo Riachuelo (Travas na Sanfona)",
+          "permiteAlca": false,
+          "permiteAcabamentos": true,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_offset",
+            "sub_kraft",
+            "sub_duplex",
+            "sub_triplex"
+          ],
+          "gramagensPorSubstrato": {
+            "sub_offset": [
+              "180",
+              "240"
+            ],
+            "sub_kraft": [
+              "186",
+              "240",
+              "300"
+            ],
+            "sub_duplex": [
+              "190",
+              "200",
+              "210",
+              "250",
+              "275",
+              "300",
+              "325"
+            ],
+            "sub_triplex": [
+              "200",
+              "225",
+              "240",
+              "250",
+              "275",
+              "300",
+              "325",
+              "350"
+            ]
+          },
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_relevo",
+            "enob_gofragem",
+            "enob_laminacao",
+            "enob_verniz_uv"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote"
+          ],
+          "formatosPermitidos": [
+            "fmt_400x80_fechado",
+            "fmt_320x80_fechado",
+            "fmt_220x60_fechado"
+          ],
+          "acabamentosPermitidos": [
+            "furo_fita"
+          ],
+          "modulosPacote": [
+            500,
+            1000
+          ],
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "outro"
+          ],
+          "relevotipos": [
+            "alto",
+            "baixo"
+          ],
+          "gofragemModelos": [
+            "padrao",
+            "personalizada"
+          ],
+          "laminacaoTipos": [
+            "brilho",
+            "fosco"
+          ],
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_outro": []
+          },
+          "permiteDuplaFace": true
+        },
+        {
+          "id": "modelo_faca_especial_solapa",
+          "codigo": "FACA_ESPECIAL_SOLAPA",
+          "nome": "Faca Especial",
+          "descricao": "Solapa com faca especial (Terceirizada)",
+          "permiteAlca": false,
+          "permiteAcabamentos": true,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_offset",
+            "sub_kraft",
+            "sub_duplex",
+            "sub_triplex"
+          ],
+          "gramagensPorSubstrato": {
+            "sub_offset": [
+              "180",
+              "240"
+            ],
+            "sub_kraft": [
+              "186",
+              "240",
+              "300"
+            ],
+            "sub_duplex": [
+              "190",
+              "200",
+              "210",
+              "250",
+              "275",
+              "300",
+              "325"
+            ],
+            "sub_triplex": [
+              "200",
+              "225",
+              "240",
+              "250",
+              "275",
+              "300",
+              "325",
+              "350"
+            ]
+          },
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_relevo",
+            "enob_gofragem",
+            "enob_laminacao",
+            "enob_verniz_uv"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote"
+          ],
+          "formatosPermitidos": [
+            "fmt_personalizado"
+          ],
+          "acabamentosPermitidos": [
+            "furo_fita"
+          ],
+          "modulosPacote": [
+            500,
+            1000
+          ],
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "outro"
+          ],
+          "relevotipos": [
+            "alto",
+            "baixo"
+          ],
+          "gofragemModelos": [
+            "padrao",
+            "personalizada"
+          ],
+          "laminacaoTipos": [
+            "brilho",
+            "fosco"
+          ],
+          "desenvolvimento": true,
+          "terceirizada": true,
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_outro": []
+          },
+          "permiteDuplaFace": true
+        }
+      ]
+    },
+    {
+      "id": "tipo_tag",
+      "codigo": "TAG",
+      "nome": "Tag",
+      "descricao": "Tags (Terceirização)",
+      "modelos": [
+        {
+          "id": "modelo_quadrada",
+          "codigo": "QUADRADA",
+          "nome": "Quadrada",
+          "descricao": "Tag quadrada - Formato Aberto: Largura (mm) x Comprimento (mm)",
+          "permiteAlca": false,
+          "permiteAcabamentos": true,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_offset",
+            "sub_kraft",
+            "sub_duplex",
+            "sub_couche",
+            "sub_triplex"
+          ],
+          "gramagensPorSubstrato": {
+            "sub_offset": [
+              "240"
+            ],
+            "sub_kraft": [
+              "240",
+              "300"
+            ],
+            "sub_duplex": [
+              "190",
+              "200",
+              "210",
+              "250",
+              "275",
+              "300",
+              "325"
+            ],
+            "sub_couche": [
+              "210",
+              "250",
+              "300",
+              "350"
+            ],
+            "sub_triplex": [
+              "200",
+              "225",
+              "240",
+              "250",
+              "275",
+              "300",
+              "325",
+              "350"
+            ]
+          },
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_relevo",
+            "enob_gofragem",
+            "enob_laminacao",
+            "enob_verniz_uv"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote"
+          ],
+          "formatosPermitidos": [
+            "fmt_personalizado"
+          ],
+          "acabamentosPermitidos": [
+            "furo_fita"
+          ],
+          "modulosPacote": [
+            500,
+            1000
+          ],
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "outro"
+          ],
+          "relevotipos": [
+            "alto",
+            "baixo"
+          ],
+          "gofragemModelos": [
+            "padrao",
+            "personalizada"
+          ],
+          "laminacaoTipos": [
+            "brilho",
+            "fosco"
+          ],
+          "terceirizada": true,
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0",
+              "0x2",
+              "2x2",
+              "2x1",
+              "1x2",
+              "1x1"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_outro": []
+          }
+        },
+        {
+          "id": "modelo_cantos_arredondados_tag",
+          "codigo": "CANTOS_ARREDONDADOS_TAG",
+          "nome": "Cantos Arredondados",
+          "descricao": "Tag com cantos arredondados",
+          "permiteAlca": false,
+          "permiteAcabamentos": true,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_offset",
+            "sub_kraft",
+            "sub_duplex",
+            "sub_couche",
+            "sub_triplex"
+          ],
+          "gramagensPorSubstrato": {
+            "sub_offset": [
+              "240"
+            ],
+            "sub_kraft": [
+              "240",
+              "300"
+            ],
+            "sub_duplex": [
+              "190",
+              "200",
+              "210",
+              "250",
+              "275",
+              "300",
+              "325"
+            ],
+            "sub_couche": [
+              "210",
+              "250",
+              "300",
+              "350"
+            ],
+            "sub_triplex": [
+              "200",
+              "225",
+              "240",
+              "250",
+              "275",
+              "300",
+              "325",
+              "350"
+            ]
+          },
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_relevo",
+            "enob_gofragem",
+            "enob_laminacao",
+            "enob_verniz_uv"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote"
+          ],
+          "formatosPermitidos": [
+            "fmt_personalizado"
+          ],
+          "acabamentosPermitidos": [
+            "furo_fita"
+          ],
+          "modulosPacote": [
+            500,
+            1000
+          ],
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "outro"
+          ],
+          "relevotipos": [
+            "alto",
+            "baixo"
+          ],
+          "gofragemModelos": [
+            "padrao",
+            "personalizada"
+          ],
+          "laminacaoTipos": [
+            "brilho",
+            "fosco"
+          ],
+          "terceirizada": true,
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0",
+              "0x2",
+              "2x2",
+              "2x1",
+              "1x2",
+              "1x1"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_outro": []
+          }
+        },
+        {
+          "id": "modelo_faca_especial_tag",
+          "codigo": "FACA_ESPECIAL_TAG",
+          "nome": "Faca Especial",
+          "descricao": "Tag com faca especial",
+          "permiteAlca": false,
+          "permiteAcabamentos": true,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_offset",
+            "sub_kraft",
+            "sub_duplex",
+            "sub_couche",
+            "sub_triplex"
+          ],
+          "gramagensPorSubstrato": {
+            "sub_offset": [
+              "240"
+            ],
+            "sub_kraft": [
+              "240",
+              "300"
+            ],
+            "sub_duplex": [
+              "190",
+              "200",
+              "210",
+              "250",
+              "275",
+              "300",
+              "325"
+            ],
+            "sub_couche": [
+              "210",
+              "250",
+              "300",
+              "350"
+            ],
+            "sub_triplex": [
+              "200",
+              "225",
+              "240",
+              "250",
+              "275",
+              "300",
+              "325",
+              "350"
+            ]
+          },
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_relevo",
+            "enob_gofragem",
+            "enob_laminacao",
+            "enob_verniz_uv"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote"
+          ],
+          "formatosPermitidos": [
+            "fmt_personalizado"
+          ],
+          "acabamentosPermitidos": [
+            "furo_fita"
+          ],
+          "modulosPacote": [
+            500,
+            1000
+          ],
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "outro"
+          ],
+          "relevotipos": [
+            "alto",
+            "baixo"
+          ],
+          "gofragemModelos": [
+            "padrao",
+            "personalizada"
+          ],
+          "laminacaoTipos": [
+            "brilho",
+            "fosco"
+          ],
+          "desenvolvimento": true,
+          "terceirizada": true,
+          "combinacoesImpressao": {
+            "imp_pb": [
+              "1x0",
+              "2x0",
+              "0x2",
+              "2x2",
+              "2x1",
+              "1x2",
+              "1x1"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_outro": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "tipo_sacola",
+      "codigo": "SACOLA",
+      "nome": "Sacola",
+      "descricao": "Sacolas em geral",
+      "modelos": [
+        {
+          "id": "modelo_elegance",
+          "codigo": "ELEGANCE",
+          "nome": "Elegance",
+          "descricao": "Dobra de boca, alça com ponteira ou colada",
+          "permiteAlca": true,
+          "permiteAcabamentos": true,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_offset",
+            "sub_kraft",
+            "sub_duplex",
+            "sub_triplex"
+          ],
+          "gramagensPorSubstrato": {
+            "sub_offset": [
+              "150",
+              "180",
+              "240"
+            ],
+            "sub_kraft": [
+              "150",
+              "186",
+              "240",
+              "300"
+            ],
+            "sub_duplex": [
+              "190",
+              "200",
+              "210",
+              "250",
+              "275",
+              "300",
+              "325"
+            ],
+            "sub_triplex": [
+              "200",
+              "225",
+              "240",
+              "250",
+              "275",
+              "300",
+              "325",
+              "350"
+            ]
+          },
+          "enobrecimentosPorGramatura": {
+            "150": [
+              "enob_hot_stamping",
+              "enob_relevo"
+            ],
+            "180": [
+              "enob_hot_stamping",
+              "enob_relevo",
+              "enob_gofragem",
+              "enob_laminacao"
+            ],
+            "default": [
+              "enob_hot_stamping",
+              "enob_relevo",
+              "enob_gofragem",
+              "enob_laminacao"
+            ]
+          },
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "impressoesPermitidasApara": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_outro"
+          ],
+          "impressoesPermitidasSacola": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_relevo",
+            "enob_gofragem",
+            "enob_laminacao"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote",
+            "acond_caixa"
+          ],
+          "formatosPermitidos": [
+            "fmt_130x400x100",
+            "fmt_160x160x65",
+            "fmt_180x178x70",
+            "fmt_260x200x120",
+            "fmt_260x260x120",
+            "fmt_260x350x120",
+            "fmt_350x250x140",
+            "fmt_350x300x140",
+            "fmt_350x350x140",
+            "fmt_350x420x140",
+            "fmt_410x360x140",
+            "fmt_500x360x127",
+            "fmt_500x390x150",
+            "fmt_500x480x140",
+            "fmt_540x392x120",
+            "fmt_550x450x150"
+          ],
+          "formatosPequenos": [
+            "fmt_130x400x100",
+            "fmt_160x160x65",
+            "fmt_180x178x70",
+            "fmt_260x200x120",
+            "fmt_260x260x120",
+            "fmt_260x350x120",
+            "fmt_350x250x140",
+            "fmt_350x300x140",
+            "fmt_350x350x140",
+            "fmt_350x420x140"
+          ],
+          "formatosGrandes": [
+            "fmt_410x360x140",
+            "fmt_500x360x127",
+            "fmt_500x390x150",
+            "fmt_500x480x140",
+            "fmt_540x392x120",
+            "fmt_550x450x150"
+          ],
+          "moduloPadraoPacotePequeno": 50,
+          "moduloPadraoPacoteGrande": 25,
+          "permiteImpressaoApara": true,
+          "permiteImpressaoSacola": true,
+          "papelImpressaoApara": "Cartão Duplex 225g",
+          "tiposAlcaPermitidos": [
+            "alca_dalva",
+            "alca_sintetica_sf"
+          ],
+          "aplicacoesAlcaPermitidas": [
+            "com_ponteira",
+            "colada"
+          ],
+          "largurasAlcaPermitidas": [
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+          ],
+          "coresAlcaPermitidas": [
+            "branca",
+            "preta",
+            "colorida_catalogo",
+            "outro"
+          ],
+          "acabamentosPermitidos": [
+            "reforco_fundo",
+            "furo_fita",
+            "boca_palhaco"
+          ],
+          "modelosReforcoFundo": [
+            "solto_pacote",
+            "solto_sacola_pe",
+            "solto_fundo",
+            "colado_fundo"
+          ],
+          "modelosFuroFita": [
+            "opcao_01",
+            "opcao_02",
+            "opcao_03",
+            "opcao_04",
+            "opcao_05",
+            "opcao_06",
+            "padrao_evolution_8x8"
+          ],
+          "moduloPadraoPacote": 50,
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "preto",
+            "outro"
+          ],
+          "relevotipos": [
+            "alto",
+            "baixo"
+          ],
+          "gofragemModelos": [
+            "padrao",
+            "personalizada"
+          ],
+          "laminacaoTipos": [
+            "brilho",
+            "fosco"
+          ],
+          "exigeLaminacaoTriplex": true,
+          "combinacoesImpressaoSacola": {
+            "imp_pb": [
+              "1x0",
+              "2x0",
+              "0x2",
+              "2x2",
+              "2x1",
+              "1x2",
+              "1x1",
+              "0x1"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "1x1",
+              "0x1"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5",
+              "1x6",
+              "2x6",
+              "3x6",
+              "4x6",
+              "5x6"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5",
+              "1x6",
+              "2x6",
+              "3x6",
+              "4x6",
+              "5x6"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5",
+              "1x6",
+              "2x6",
+              "3x6",
+              "4x6",
+              "5x6"
+            ]
+          },
+          "combinacoesImpressaoApara": {
+            "imp_pb": [
+              "1x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0"
+            ]
+          }
+        },
+        {
+          "id": "modelo_evolution",
+          "codigo": "EVOLUTION",
+          "nome": "Evolution",
+          "descricao": "Dobra de boca, alça torcida ou com ponteira",
+          "permiteAlca": true,
+          "permiteAcabamentos": true,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_offset",
+            "sub_kraft",
+            "sub_lin"
+          ],
+          "gramagensPorSubstrato": {
+            "sub_offset": [
+              "120",
+              "150",
+              "180"
+            ],
+            "sub_kraft": [
+              "90",
+              "100",
+              "120",
+              "140",
+              "150"
+            ],
+            "sub_lin": [
+              "90",
+              "115",
+              "130"
+            ]
+          },
+          "enobrecimentosPorGramatura": {
+            "120": [
+              "enob_hot_stamping"
+            ],
+            "150": [
+              "enob_hot_stamping",
+              "enob_relevo"
+            ],
+            "180": [
+              "enob_hot_stamping",
+              "enob_relevo",
+              "enob_gofragem"
+            ],
+            "default": [
+              "enob_hot_stamping"
+            ]
+          },
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "impressoesPermitidasApara": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_outro"
+          ],
+          "impressoesPermitidasSacola": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_relevo",
+            "enob_gofragem"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote",
+            "acond_caixa"
+          ],
+          "formatosPermitidos": [
+            "fmt_260x200x120",
+            "fmt_260x260x120",
+            "fmt_260x350x120",
+            "fmt_350x250x140",
+            "fmt_350x300x140",
+            "fmt_350x350x140",
+            "fmt_350x420x140"
+          ],
+          "permiteImpressaoApara": true,
+          "permiteImpressaoSacola": true,
+          "papelImpressaoApara": "Cartão Duplex 225g",
+          "tiposAlcaPermitidos": [
+            "alca_dalva",
+            "alca_sintetica_sf",
+            "alca_papel_torcido"
+          ],
+          "aplicacoesAlcaPermitidas": [
+            "com_ponteira",
+            "torcida",
+            "colada"
+          ],
+          "largurasAlcaPermitidas": [
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+          ],
+          "coresAlcaPermitidas": [
+            "branca",
+            "preta",
+            "parda",
+            "colorida_catalogo",
+            "outro"
+          ],
+          "acabamentosPermitidos": [
+            "reforco_fundo",
+            "furo_fita"
+          ],
+          "modelosReforcoFundo": [
+            "solto_pacote",
+            "solto_sacola_pe",
+            "encaixado_fundo"
+          ],
+          "modelosFuroFita": [
+            "opcao_01",
+            "opcao_02",
+            "opcao_03",
+            "opcao_04",
+            "opcao_05",
+            "opcao_06",
+            "padrao_evolution_8x8"
+          ],
+          "moduloPadraoPacote": 50,
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "preto",
+            "outro"
+          ],
+          "relevotipos": [
+            "alto",
+            "baixo"
+          ],
+          "gofragemModelos": [
+            "padrao",
+            "exclusiva"
+          ],
+          "tiragemMinimaAlcaColorida": 10000,
+          "combinacoesImpressaoSacola": {
+            "imp_pb": [
+              "1x0",
+              "2x0",
+              "0x2",
+              "2x2",
+              "2x1",
+              "1x2",
+              "1x1",
+              "0x1"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "1x1",
+              "0x1"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "6x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "6x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "6x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "6x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "6x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5",
+              "6x5",
+              "1x6",
+              "2x6",
+              "3x6",
+              "4x6",
+              "5x6",
+              "6x6"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "6x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "6x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "6x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "6x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "6x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5",
+              "6x5",
+              "1x6",
+              "2x6",
+              "3x6",
+              "4x6",
+              "5x6",
+              "6x6"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "6x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "6x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "6x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "6x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "6x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5",
+              "6x5",
+              "1x6",
+              "2x6",
+              "3x6",
+              "4x6",
+              "5x6",
+              "6x6"
+            ]
+          },
+          "combinacoesImpressaoApara": {
+            "imp_pb": [
+              "1x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0"
+            ]
+          }
+        },
+        {
+          "id": "modelo_automatica",
+          "codigo": "AUTOMATICA",
+          "nome": "Automática",
+          "descricao": "Sem dobra de boca, alça torcida colada",
+          "permiteAlca": true,
+          "permiteAcabamentos": true,
+          "permiteEnobrecimentos": false,
+          "substratosPermitidos": [
+            "sub_offset",
+            "sub_kraft",
+            "sub_lin"
+          ],
+          "gramagensPorSubstrato": {
+            "sub_offset": [
+              "120"
+            ],
+            "sub_kraft": [
+              "70",
+              "80",
+              "90",
+              "100",
+              "120",
+              "140"
+            ],
+            "sub_lin": [
+              "90",
+              "115",
+              "130"
+            ]
+          },
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "impressoesPermitidasApara": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_outro"
+          ],
+          "impressoesPermitidasSacola": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [],
+          "acondicionamentosPermitidos": [
+            "acond_shrink",
+            "acond_caixa"
+          ],
+          "formatosPequenos": [
+            "fmt_150x220x70",
+            "fmt_180x260x100",
+            "fmt_220x260x100",
+            "fmt_230x320x100",
+            "fmt_260x260x120",
+            "fmt_260x350x120",
+            "fmt_310x360x170",
+            "fmt_320x340x130",
+            "fmt_320x400x130",
+            "fmt_330x370x190"
+          ],
+          "formatosGrandes": [
+            "fmt_400x315x110",
+            "fmt_400x350x150",
+            "fmt_400x460x150",
+            "fmt_460x485x160"
+          ],
+          "formatosPermitidos": [
+            "fmt_150x220x70",
+            "fmt_180x260x100",
+            "fmt_220x260x100",
+            "fmt_230x320x100",
+            "fmt_260x260x120",
+            "fmt_260x350x120",
+            "fmt_310x360x170",
+            "fmt_320x340x130",
+            "fmt_320x400x130",
+            "fmt_330x370x190",
+            "fmt_400x315x110",
+            "fmt_400x350x150",
+            "fmt_400x460x150",
+            "fmt_460x485x160"
+          ],
+          "permiteImpressaoApara": true,
+          "permiteImpressaoSacola": true,
+          "papelImpressaoApara": "Cartão Duplex 225g",
+          "tiposAlcaPermitidos": [
+            "alca_papel_torcido"
+          ],
+          "aplicacoesAlcaPermitidas": [
+            "colada"
+          ],
+          "coresAlcaPermitidas": [
+            "preta",
+            "branca",
+            "parda",
+            "colorida_catalogo",
+            "outro"
+          ],
+          "acabamentosPermitidos": [
+            "reforco_fundo"
+          ],
+          "modelosReforcoFundo": [
+            "solto_pacote"
+          ],
+          "moduloPadraoPequeno": 100,
+          "moduloPadraoGrande": 50,
+          "tiragemMinimaAlcaColorida": 10000,
+          "combinacoesImpressaoSacola": {
+            "imp_pb": [
+              "1x0",
+              "2x0",
+              "0x2",
+              "2x2",
+              "2x1",
+              "1x2",
+              "1x1",
+              "0x1"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "1x1",
+              "0x1"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "6x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "6x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "6x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "6x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "6x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5",
+              "6x5",
+              "1x6",
+              "2x6",
+              "3x6",
+              "4x6",
+              "5x6",
+              "6x6"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "6x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "6x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "6x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "6x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "6x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5",
+              "6x5",
+              "1x6",
+              "2x6",
+              "3x6",
+              "4x6",
+              "5x6",
+              "6x6"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "6x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "6x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "6x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "6x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "6x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5",
+              "6x5",
+              "1x6",
+              "2x6",
+              "3x6",
+              "4x6",
+              "5x6",
+              "6x6"
+            ]
+          },
+          "combinacoesImpressaoApara": {
+            "imp_pb": [
+              "1x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "tipo_envelope",
+      "codigo": "ENVELOPE",
+      "nome": "Envelope",
+      "descricao": "Envelopes",
+      "modelos": [
+        {
+          "id": "modelo_envelope",
+          "codigo": "ENVELOPE",
+          "nome": "Envelope",
+          "descricao": "Envelopes com ou sem alça, com ou sem trava lateral",
+          "permiteAlca": true,
+          "permiteAcabamentos": true,
+          "permiteEnobrecimentos": true,
+          "substratosPermitidos": [
+            "sub_offset",
+            "sub_kraft",
+            "sub_duplex",
+            "sub_triplex",
+            "sub_lin"
+          ],
+          "gramagensPorSubstrato": {
+            "sub_offset": [
+              "120",
+              "150",
+              "180",
+              "240"
+            ],
+            "sub_kraft": [
+              "80",
+              "90",
+              "100",
+              "120",
+              "140",
+              "150",
+              "186",
+              "240",
+              "300"
+            ],
+            "sub_duplex": [
+              "190",
+              "200",
+              "210",
+              "250",
+              "275",
+              "300",
+              "325"
+            ],
+            "sub_triplex": [
+              "200",
+              "225",
+              "240",
+              "250",
+              "275",
+              "300",
+              "325",
+              "350"
+            ],
+            "sub_lin": [
+              "90",
+              "115",
+              "130"
+            ]
+          },
+          "enobrecimentosPorGramatura": {
+            "120": [
+              "enob_hot_stamping"
+            ],
+            "150": [
+              "enob_hot_stamping",
+              "enob_relevo"
+            ],
+            "default": [
+              "enob_hot_stamping",
+              "enob_relevo",
+              "enob_gofragem",
+              "enob_laminacao"
+            ]
+          },
+          "impressoesPermitidas": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "impressoesPermitidasApara": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_outro"
+          ],
+          "impressoesPermitidasEnvelope": [
+            "imp_pb",
+            "imp_cmyk",
+            "imp_pantone",
+            "imp_cmyk_pantone",
+            "imp_sem",
+            "imp_outro"
+          ],
+          "enobrecimentosPermitidos": [
+            "enob_hot_stamping",
+            "enob_relevo",
+            "enob_gofragem",
+            "enob_laminacao"
+          ],
+          "acondicionamentosPermitidos": [
+            "acond_pacote",
+            "acond_caixa"
+          ],
+          "formatosPequenos": [
+            "fmt_170x200x70_aba45",
+            "fmt_220x245x120_aba60",
+            "fmt_350x250x120_aba60",
+            "fmt_350x400x140_aba90",
+            "fmt_380x430x150_aba90"
+          ],
+          "formatosGrandes": [
+            "fmt_450x310x90_aba80",
+            "fmt_500x400x200_aba100"
+          ],
+          "formatosPermitidos": [
+            "fmt_170x200x70_aba45",
+            "fmt_220x245x120_aba60",
+            "fmt_350x250x120_aba60",
+            "fmt_350x400x140_aba90",
+            "fmt_380x430x150_aba90",
+            "fmt_450x310x90_aba80",
+            "fmt_500x400x200_aba100"
+          ],
+          "permiteImpressaoApara": true,
+          "permiteImpressaoEnvelope": true,
+          "papelImpressaoApara": "Cartão Duplex 225g",
+          "variacoes": [
+            {
+              "tipo": "com_alca_sem_trava",
+              "nome": "Com Alça SEM Trava Lateral",
+              "formatos": [
+                "fmt_170x200x70_aba45",
+                "fmt_220x245x120_aba60",
+                "fmt_350x250x120_aba60",
+                "fmt_350x400x140_aba90",
+                "fmt_380x430x150_aba90"
+              ],
+              "permiteAlca": true
+            },
+            {
+              "tipo": "com_alca_com_trava",
+              "nome": "Com Alça COM Trava Lateral",
+              "formatos": [
+                "fmt_170x200x70_aba45",
+                "fmt_220x245x120_aba60",
+                "fmt_350x250x120_aba60",
+                "fmt_350x400x140_aba90",
+                "fmt_380x430x150_aba90"
+              ],
+              "permiteAlca": true
+            },
+            {
+              "tipo": "sem_alca_sem_trava",
+              "nome": "Sem Alça SEM Trava Lateral",
+              "formatos": [
+                "fmt_170x200x70_aba45",
+                "fmt_220x245x120_aba60",
+                "fmt_350x250x120_aba60",
+                "fmt_350x400x140_aba90",
+                "fmt_380x430x150_aba90",
+                "fmt_450x310x90_aba80",
+                "fmt_500x400x200_aba100"
+              ],
+              "permiteAlca": false
+            },
+            {
+              "tipo": "sem_alca_com_trava",
+              "nome": "Sem Alça COM Trava Lateral",
+              "formatos": [
+                "fmt_170x200x70_aba45",
+                "fmt_220x245x120_aba60",
+                "fmt_350x250x120_aba60",
+                "fmt_350x400x140_aba90",
+                "fmt_380x430x150_aba90",
+                "fmt_450x310x90_aba80",
+                "fmt_500x400x200_aba100"
+              ],
+              "permiteAlca": false
+            }
+          ],
+          "regrasPorFormato": {
+            "fmt_170x200x70_aba45": {
+              "substratosPermitidos": [
+                "sub_offset",
+                "sub_kraft",
+                "sub_duplex",
+                "sub_triplex",
+                "sub_lin"
+              ],
+              "enobrecimentosPermitidos": [
+                "enob_hot_stamping",
+                "enob_relevo",
+                "enob_gofragem",
+                "enob_laminacao"
+              ],
+              "moduloPadrao": 50
+            },
+            "fmt_220x245x120_aba60": {
+              "substratosPermitidos": [
+                "sub_offset",
+                "sub_kraft",
+                "sub_duplex",
+                "sub_triplex",
+                "sub_lin"
+              ],
+              "enobrecimentosPermitidos": [
+                "enob_hot_stamping",
+                "enob_relevo",
+                "enob_gofragem",
+                "enob_laminacao"
+              ],
+              "moduloPadrao": 50
+            },
+            "fmt_350x250x120_aba60": {
+              "substratosPermitidos": [
+                "sub_offset",
+                "sub_kraft",
+                "sub_duplex",
+                "sub_triplex",
+                "sub_lin"
+              ],
+              "enobrecimentosPermitidos": [
+                "enob_hot_stamping",
+                "enob_relevo",
+                "enob_gofragem",
+                "enob_laminacao"
+              ],
+              "moduloPadrao": 50
+            },
+            "fmt_350x400x140_aba90": {
+              "substratosPermitidos": [
+                "sub_offset",
+                "sub_kraft",
+                "sub_duplex",
+                "sub_triplex",
+                "sub_lin"
+              ],
+              "enobrecimentosPermitidos": [
+                "enob_hot_stamping",
+                "enob_relevo",
+                "enob_gofragem",
+                "enob_laminacao"
+              ],
+              "moduloPadrao": 50
+            },
+            "fmt_380x430x150_aba90": {
+              "substratosPermitidos": [
+                "sub_offset",
+                "sub_kraft",
+                "sub_duplex",
+                "sub_triplex",
+                "sub_lin"
+              ],
+              "enobrecimentosPermitidos": [
+                "enob_hot_stamping",
+                "enob_relevo",
+                "enob_gofragem",
+                "enob_laminacao"
+              ],
+              "moduloPadrao": 50
+            },
+            "fmt_450x310x90_aba80": {
+              "substratosPermitidos": [
+                "sub_offset",
+                "sub_kraft",
+                "sub_duplex",
+                "sub_triplex",
+                "sub_lin"
+              ],
+              "enobrecimentosPermitidos": [
+                "enob_hot_stamping",
+                "enob_relevo",
+                "enob_gofragem",
+                "enob_laminacao"
+              ],
+              "moduloPadrao": 25
+            },
+            "fmt_500x400x200_aba100": {
+              "substratosPermitidos": [
+                "sub_offset",
+                "sub_kraft",
+                "sub_duplex",
+                "sub_triplex",
+                "sub_lin"
+              ],
+              "enobrecimentosPermitidos": [
+                "enob_hot_stamping",
+                "enob_relevo",
+                "enob_gofragem",
+                "enob_laminacao"
+              ],
+              "moduloPadrao": 25
+            }
+          },
+          "tiposAlcaPermitidos": [
+            "alca_dalva",
+            "alca_sintetica_sf"
+          ],
+          "aplicacoesAlcaPermitidas": [
+            "com_ponteira"
+          ],
+          "largurasAlcaPermitidas": [
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+          ],
+          "coresAlcaPermitidas": [
+            "branca",
+            "preta",
+            "colorida_catalogo",
+            "outro"
+          ],
+          "acabamentosPermitidos": [
+            "reforco_fundo",
+            "furo_fita",
+            "boca_palhaco",
+            "dupla_face",
+            "velcro"
+          ],
+          "modelosReforcoFundo": [
+            "solto_pacote",
+            "solto_sacola_pe",
+            "solto_fundo"
+          ],
+          "modelosFuroFita": [
+            "opcao_01",
+            "opcao_02",
+            "opcao_03",
+            "opcao_04",
+            "opcao_05",
+            "opcao_06",
+            "padrao_evolution_8x8"
+          ],
+          "tamanhosVelcro": [
+            16,
+            21
+          ],
+          "hotStampingCores": [
+            "ouro",
+            "prata",
+            "preto",
+            "outro"
+          ],
+          "relevotipos": [
+            "alto",
+            "baixo"
+          ],
+          "gofragemModelos": [
+            "padrao",
+            "personalizada"
+          ],
+          "laminacaoTipos": [
+            "brilho",
+            "fosco"
+          ],
+          "exigeLaminacaoTriplex": true,
+          "combinacoesImpressaoEnvelope": {
+            "imp_pb": [
+              "1x0",
+              "2x0",
+              "0x2",
+              "2x2",
+              "2x1",
+              "1x2",
+              "1x1",
+              "0x1"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "1x1",
+              "0x1"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "6x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "6x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "6x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "6x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "6x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5",
+              "6x5",
+              "1x6",
+              "2x6",
+              "3x6",
+              "4x6",
+              "5x6",
+              "6x6"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "6x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "6x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "6x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "6x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "6x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5",
+              "6x5",
+              "1x6",
+              "2x6",
+              "3x6",
+              "4x6",
+              "5x6",
+              "6x6"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0",
+              "6x0",
+              "1x1",
+              "2x1",
+              "3x1",
+              "4x1",
+              "5x1",
+              "6x1",
+              "1x2",
+              "2x2",
+              "3x2",
+              "4x2",
+              "5x2",
+              "6x2",
+              "1x3",
+              "2x3",
+              "3x3",
+              "4x3",
+              "5x3",
+              "6x3",
+              "1x4",
+              "2x4",
+              "3x4",
+              "4x4",
+              "5x4",
+              "6x4",
+              "1x5",
+              "2x5",
+              "3x5",
+              "4x5",
+              "5x5",
+              "6x5",
+              "1x6",
+              "2x6",
+              "3x6",
+              "4x6",
+              "5x6",
+              "6x6"
+            ]
+          },
+          "combinacoesImpressaoApara": {
+            "imp_pb": [
+              "1x0"
+            ],
+            "imp_cmyk": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0"
+            ],
+            "imp_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0"
+            ],
+            "imp_cmyk_pantone": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0"
+            ],
+            "imp_outro": [
+              "1x0",
+              "2x0",
+              "3x0",
+              "4x0",
+              "5x0"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "formatosPadrao": [
+    {
+      "id": "fmt_personalizado",
+      "codigo": "PERSONALIZADO",
+      "nome": "Outro (Desenvolvimento)",
+      "aceitaDesenvolvimento": true
+    },
+    {
+      "id": "fmt_50x185",
+      "codigo": "50X185",
+      "nome": "50 x 185",
+      "largura": 50,
+      "altura": 185,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_50x150",
+      "codigo": "50X150",
+      "nome": "50 x 150",
+      "largura": 50,
+      "altura": 150,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_150x220x70",
+      "codigo": "150X220X70",
+      "nome": "150 x 220 x 70",
+      "largura": 150,
+      "altura": 220,
+      "lateral": 70,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_180x260x100",
+      "codigo": "180X260X100",
+      "nome": "180 x 260 x 100",
+      "largura": 180,
+      "altura": 260,
+      "lateral": 100,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_180x300x100",
+      "codigo": "180X300X100",
+      "nome": "180 x 300 x 100",
+      "largura": 180,
+      "altura": 300,
+      "lateral": 100,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_220x260x100",
+      "codigo": "220X260X100",
+      "nome": "220 x 260 x 100",
+      "largura": 220,
+      "altura": 260,
+      "lateral": 100,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_220x350x140",
+      "codigo": "220X350X140",
+      "nome": "220 x 350 x 140",
+      "largura": 220,
+      "altura": 350,
+      "lateral": 140,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_230x320x100",
+      "codigo": "230X320X100",
+      "nome": "230 x 320 x 100",
+      "largura": 230,
+      "altura": 320,
+      "lateral": 100,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_240x295x115",
+      "codigo": "240X295X115",
+      "nome": "240 x 295 x 115",
+      "largura": 240,
+      "altura": 295,
+      "lateral": 115,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_260x260x120",
+      "codigo": "260X260X120",
+      "nome": "260 x 260 x 120",
+      "largura": 260,
+      "altura": 260,
+      "lateral": 120,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_260x350x120",
+      "codigo": "260X350X120",
+      "nome": "260 x 350 x 120",
+      "largura": 260,
+      "altura": 350,
+      "lateral": 120,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_310x355x125",
+      "codigo": "310X355X125",
+      "nome": "310 x 355 x 125",
+      "largura": 310,
+      "altura": 355,
+      "lateral": 125,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_310x360x170",
+      "codigo": "310X360X170",
+      "nome": "310 x 360 x 170",
+      "largura": 310,
+      "altura": 360,
+      "lateral": 170,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_320x340x140",
+      "codigo": "320X340X140",
+      "nome": "320 x 340 x 140",
+      "largura": 320,
+      "altura": 340,
+      "lateral": 140,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_320x340x130",
+      "codigo": "320X340X130",
+      "nome": "320 x 340 x 130",
+      "largura": 320,
+      "altura": 340,
+      "lateral": 130,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_320x400x130",
+      "codigo": "320X400X130",
+      "nome": "320 x 400 x 130",
+      "largura": 320,
+      "altura": 400,
+      "lateral": 130,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_330x370x190",
+      "codigo": "330X370X190",
+      "nome": "330 x 370 x 190",
+      "largura": 330,
+      "altura": 370,
+      "lateral": 190,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_400x315x110",
+      "codigo": "400X315X110",
+      "nome": "400 x 315 x 110",
+      "largura": 400,
+      "altura": 315,
+      "lateral": 110,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_400x350x150",
+      "codigo": "400X350X150",
+      "nome": "400 x 350 x 150",
+      "largura": 400,
+      "altura": 350,
+      "lateral": 150,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_400x460x150",
+      "codigo": "400X460X150",
+      "nome": "400 x 460 x 150",
+      "largura": 400,
+      "altura": 460,
+      "lateral": 150,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_410x360x140",
+      "codigo": "410X360X140",
+      "nome": "410 x 360 x 140",
+      "largura": 410,
+      "altura": 360,
+      "lateral": 140,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_460x485x160",
+      "codigo": "460X485X160",
+      "nome": "460 x 485 x 160",
+      "largura": 460,
+      "altura": 485,
+      "lateral": 160,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_470x400",
+      "codigo": "470X400",
+      "nome": "470 x 400",
+      "largura": 470,
+      "altura": 400,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_470x700",
+      "codigo": "470X700",
+      "nome": "470 x 700",
+      "largura": 470,
+      "altura": 700,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_500x500",
+      "codigo": "500X500",
+      "nome": "500 x 500",
+      "largura": 500,
+      "altura": 500,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_500x600",
+      "codigo": "500X600",
+      "nome": "500 x 600",
+      "largura": 500,
+      "altura": 600,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_500x360x127",
+      "codigo": "500X360X127",
+      "nome": "500 x 360 x 127",
+      "largura": 500,
+      "altura": 360,
+      "lateral": 127,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_500x390x150",
+      "codigo": "500X390X150",
+      "nome": "500 x 390 x 150",
+      "largura": 500,
+      "altura": 390,
+      "lateral": 150,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_500x480x140",
+      "codigo": "500X480X140",
+      "nome": "500 x 480 x 140",
+      "largura": 500,
+      "altura": 480,
+      "lateral": 140,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_540x392x120",
+      "codigo": "540X392X120",
+      "nome": "540 x 392 x 120",
+      "largura": 540,
+      "altura": 392,
+      "lateral": 120,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_550x450x150",
+      "codigo": "550X450X150",
+      "nome": "550 x 450 x 150",
+      "largura": 550,
+      "altura": 450,
+      "lateral": 150,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_700x500",
+      "codigo": "700X500",
+      "nome": "700 x 500",
+      "largura": 700,
+      "altura": 500,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_250x500",
+      "codigo": "250X500",
+      "nome": "250 x 500",
+      "largura": 250,
+      "altura": 500,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_250x700",
+      "codigo": "250X700",
+      "nome": "250 x 700",
+      "largura": 250,
+      "altura": 700,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_130x400x100",
+      "codigo": "130X400X100",
+      "nome": "130 x 400 x 100 (Sacola Garrafa)",
+      "largura": 130,
+      "altura": 400,
+      "lateral": 100,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_160x160x65",
+      "codigo": "160X160X65",
+      "nome": "160 x 160 x 65",
+      "largura": 160,
+      "altura": 160,
+      "lateral": 65,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_180x178x70",
+      "codigo": "180X178X70",
+      "nome": "180 x 178 x 70",
+      "largura": 180,
+      "altura": 178,
+      "lateral": 70,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_260x200x120",
+      "codigo": "260X200X120",
+      "nome": "260 x 200 x 120",
+      "largura": 260,
+      "altura": 200,
+      "lateral": 120,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_350x250x140",
+      "codigo": "350X250X140",
+      "nome": "350 x 250 x 140",
+      "largura": 350,
+      "altura": 250,
+      "lateral": 140,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_350x300x140",
+      "codigo": "350X300X140",
+      "nome": "350 x 300 x 140",
+      "largura": 350,
+      "altura": 300,
+      "lateral": 140,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_350x350x140",
+      "codigo": "350X350X140",
+      "nome": "350 x 350 x 140",
+      "largura": 350,
+      "altura": 350,
+      "lateral": 140,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_350x420x140",
+      "codigo": "350X420X140",
+      "nome": "350 x 420 x 140",
+      "largura": 350,
+      "altura": 420,
+      "lateral": 140,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_195x150x50",
+      "codigo": "195X150X50",
+      "nome": "195 x 150 x 50 - Tampa: 30mm (Modelo Aramis - Sem Colagem)",
+      "largura": 195,
+      "altura": 150,
+      "lateral": 50,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_210x230x90",
+      "codigo": "210X230X90",
+      "nome": "210 x 230 x 90 - Tampa: 50mm (Modelo Milon - Com colagem)",
+      "largura": 210,
+      "altura": 230,
+      "lateral": 90,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_300x240x100",
+      "codigo": "300X240X100",
+      "nome": "300 x 240 x 100 - Tampa: 60mm (Modelo Schutz - Com colagem)",
+      "largura": 300,
+      "altura": 240,
+      "lateral": 100,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_390x270x55",
+      "codigo": "390X270X55",
+      "nome": "390 x 270 x 55 - Tampa: 30mm (Modelo Aramis - Sem Colagem)",
+      "largura": 390,
+      "altura": 270,
+      "lateral": 55,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_450x345x100",
+      "codigo": "450X345X100",
+      "nome": "450 x 345 x 100 - Tampa: 50mm (Modelo Aramis - Tampa s/ colagem, Fundo colado)",
+      "largura": 450,
+      "altura": 345,
+      "lateral": 100,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_40x175_fechado",
+      "codigo": "40X175_FECHADO",
+      "nome": "40 x 175 (fechado)",
+      "largura": 40,
+      "altura": 175,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_69x175_fechado",
+      "codigo": "69X175_FECHADO",
+      "nome": "69 x 175 (fechado)",
+      "largura": 69,
+      "altura": 175,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_400x80_fechado",
+      "codigo": "400X80_FECHADO",
+      "nome": "400 x 80 (fechado)",
+      "largura": 400,
+      "altura": 80,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_320x80_fechado",
+      "codigo": "320X80_FECHADO",
+      "nome": "320 x 80 (fechado)",
+      "largura": 320,
+      "altura": 80,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_220x60_fechado",
+      "codigo": "220X60_FECHADO",
+      "nome": "220 x 60 (fechado)",
+      "largura": 220,
+      "altura": 60,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_170x200x70_aba45",
+      "codigo": "170X200X70_ABA45",
+      "nome": "170 x 200 x 70 - Aba: 45",
+      "largura": 170,
+      "altura": 200,
+      "lateral": 70,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_220x245x120_aba60",
+      "codigo": "220X245X120_ABA60",
+      "nome": "220 x 245 x 120 - Aba: 60",
+      "largura": 220,
+      "altura": 245,
+      "lateral": 120,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_350x250x120_aba60",
+      "codigo": "350X250X120_ABA60",
+      "nome": "350 x 250 x 120 - Aba: 60",
+      "largura": 350,
+      "altura": 250,
+      "lateral": 120,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_350x400x140_aba90",
+      "codigo": "350X400X140_ABA90",
+      "nome": "350 x 400 x 140 - Aba: 90",
+      "largura": 350,
+      "altura": 400,
+      "lateral": 140,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_380x430x150_aba90",
+      "codigo": "380X430X150_ABA90",
+      "nome": "380 x 430 x 150 - Aba: 90",
+      "largura": 380,
+      "altura": 430,
+      "lateral": 150,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_450x310x90_aba80",
+      "codigo": "450X310X90_ABA80",
+      "nome": "450 x 310 x 90 - Aba: 80",
+      "largura": 450,
+      "altura": 310,
+      "lateral": 90,
+      "aceitaDesenvolvimento": false
+    },
+    {
+      "id": "fmt_500x400x200_aba100",
+      "codigo": "500X400X200_ABA100",
+      "nome": "500 x 400 x 200 - Aba: 100",
+      "largura": 500,
+      "altura": 400,
+      "lateral": 200,
+      "aceitaDesenvolvimento": false
+    }
+  ],
+  "substratos": [
+    {
+      "id": "sub_fine_branco",
+      "codigo": "FINE_BRANCO",
+      "nome": "Fine Branco",
+      "gramagens": [
+        "35",
+        "40",
+        "50",
+        "60"
+      ],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_fine_kraft",
+      "codigo": "FINE_KRAFT",
+      "nome": "Fine Kraft Pardo",
+      "gramagens": [
+        "35",
+        "40",
+        "50",
+        "60"
+      ],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_offset",
+      "codigo": "OFFSET",
+      "nome": "Offset",
+      "gramagens": [
+        "120",
+        "150",
+        "180",
+        "240"
+      ],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_kraft",
+      "codigo": "KRAFT",
+      "nome": "Kraft",
+      "gramagens": [
+        "70",
+        "80",
+        "90",
+        "100",
+        "120",
+        "140",
+        "150",
+        "186",
+        "240",
+        "300"
+      ],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_greenbag",
+      "codigo": "GREENBAG",
+      "nome": "Greenbag",
+      "gramagens": [
+        "90"
+      ],
+      "exigeLaminacao": true
+    },
+    {
+      "id": "sub_lin",
+      "codigo": "LIN",
+      "nome": "Lin",
+      "gramagens": [
+        "90",
+        "115",
+        "130"
+      ],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_duplex",
+      "codigo": "DUPLEX",
+      "nome": "Duplex",
+      "gramagens": [
+        "190",
+        "200",
+        "210",
+        "250",
+        "275",
+        "300",
+        "325"
+      ],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_triplex",
+      "codigo": "TRIPLEX",
+      "nome": "Triplex",
+      "gramagens": [
+        "200",
+        "225",
+        "240",
+        "250",
+        "275",
+        "300",
+        "325",
+        "350"
+      ],
+      "exigeLaminacao": false,
+      "obrigatorioLaminacao": true
+    },
+    {
+      "id": "sub_seda",
+      "codigo": "SEDA",
+      "nome": "Papel Seda",
+      "gramagens": [
+        "20"
+      ],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_sachet",
+      "codigo": "SACHET",
+      "nome": "Sachet Branco 20gr + Guardanapo Crepado 19gr",
+      "gramagens": [],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_bopp",
+      "codigo": "BOPP",
+      "nome": "BOPP Transparente",
+      "gramagens": [],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_couche",
+      "codigo": "COUCHE",
+      "nome": "Couche",
+      "gramagens": [
+        "210",
+        "250",
+        "300",
+        "350"
+      ],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_couche_brilho",
+      "codigo": "COUCHE_BRILHO",
+      "nome": "Couche Brilho",
+      "gramagens": [
+        "210",
+        "250",
+        "300",
+        "350"
+      ],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_couche_fosco",
+      "codigo": "COUCHE_FOSCO",
+      "nome": "Couche Fosco",
+      "gramagens": [
+        "210",
+        "250",
+        "300",
+        "350"
+      ],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_cetim",
+      "codigo": "CETIM",
+      "nome": "Cetim",
+      "gramagens": [],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_gorgurao",
+      "codigo": "GORGURAO",
+      "nome": "Gorgurão",
+      "gramagens": [],
+      "exigeLaminacao": false
+    }
+  ],
+  "impressaoModos": [
+    {
+      "id": "imp_sem",
+      "codigo": "SEM",
+      "nome": "Sem Impressão",
+      "combinacoes": []
+    },
+    {
+      "id": "imp_pb",
+      "codigo": "PB",
+      "nome": "Preto e Branco",
+      "combinacoes": [
+        {
+          "id": "comb_pb_1x0",
+          "codigo": "1x0",
+          "nome": "1x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_pb_2x0",
+          "codigo": "2x0",
+          "nome": "2x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_pb_0x2",
+          "codigo": "0x2",
+          "nome": "0x2",
+          "camadas": [
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pb_2x2",
+          "codigo": "2x2",
+          "nome": "2x2",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pb_2x1",
+          "codigo": "2x1",
+          "nome": "2x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pb_1x2",
+          "codigo": "1x2",
+          "nome": "1x2",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pb_1x1",
+          "codigo": "1x1",
+          "nome": "1x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pb_0x1",
+          "codigo": "0x1",
+          "nome": "0x1",
+          "camadas": [
+            "interna"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "imp_cmyk",
+      "codigo": "CMYK",
+      "nome": "CMYK",
+      "combinacoes": [
+        {
+          "id": "comb_cmyk_1x0",
+          "codigo": "1x0",
+          "nome": "1x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_cmyk_2x0",
+          "codigo": "2x0",
+          "nome": "2x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_cmyk_3x0",
+          "codigo": "3x0",
+          "nome": "3x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_cmyk_4x0",
+          "codigo": "4x0",
+          "nome": "4x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_cmyk_4x1",
+          "codigo": "4x1",
+          "nome": "4x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_4x4",
+          "codigo": "4x4",
+          "nome": "4x4",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_1x1",
+          "codigo": "1x1",
+          "nome": "1x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_0x1",
+          "codigo": "0x1",
+          "nome": "0x1",
+          "camadas": [
+            "interna"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "imp_pantone",
+      "codigo": "PANTONE",
+      "nome": "Pantone",
+      "combinacoes": [
+        {
+          "id": "comb_pantone_1x0",
+          "codigo": "1x0",
+          "nome": "1x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_pantone_2x0",
+          "codigo": "2x0",
+          "nome": "2x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_pantone_3x0",
+          "codigo": "3x0",
+          "nome": "3x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_pantone_4x0",
+          "codigo": "4x0",
+          "nome": "4x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_pantone_5x0",
+          "codigo": "5x0",
+          "nome": "5x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_pantone_6x0",
+          "codigo": "6x0",
+          "nome": "6x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_pantone_1x1",
+          "codigo": "1x1",
+          "nome": "1x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_2x1",
+          "codigo": "2x1",
+          "nome": "2x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_3x1",
+          "codigo": "3x1",
+          "nome": "3x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_4x1",
+          "codigo": "4x1",
+          "nome": "4x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_5x1",
+          "codigo": "5x1",
+          "nome": "5x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_6x1",
+          "codigo": "6x1",
+          "nome": "6x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_1x2",
+          "codigo": "1x2",
+          "nome": "1x2",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_2x2",
+          "codigo": "2x2",
+          "nome": "2x2",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_3x2",
+          "codigo": "3x2",
+          "nome": "3x2",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_4x2",
+          "codigo": "4x2",
+          "nome": "4x2",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_5x2",
+          "codigo": "5x2",
+          "nome": "5x2",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_6x2",
+          "codigo": "6x2",
+          "nome": "6x2",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_1x3",
+          "codigo": "1x3",
+          "nome": "1x3",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_2x3",
+          "codigo": "2x3",
+          "nome": "2x3",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_3x3",
+          "codigo": "3x3",
+          "nome": "3x3",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_4x3",
+          "codigo": "4x3",
+          "nome": "4x3",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_5x3",
+          "codigo": "5x3",
+          "nome": "5x3",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_6x3",
+          "codigo": "6x3",
+          "nome": "6x3",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_1x4",
+          "codigo": "1x4",
+          "nome": "1x4",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_2x4",
+          "codigo": "2x4",
+          "nome": "2x4",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_3x4",
+          "codigo": "3x4",
+          "nome": "3x4",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_4x4",
+          "codigo": "4x4",
+          "nome": "4x4",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_5x4",
+          "codigo": "5x4",
+          "nome": "5x4",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_6x4",
+          "codigo": "6x4",
+          "nome": "6x4",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_1x5",
+          "codigo": "1x5",
+          "nome": "1x5",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_2x5",
+          "codigo": "2x5",
+          "nome": "2x5",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_3x5",
+          "codigo": "3x5",
+          "nome": "3x5",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_4x5",
+          "codigo": "4x5",
+          "nome": "4x5",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_5x5",
+          "codigo": "5x5",
+          "nome": "5x5",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_6x5",
+          "codigo": "6x5",
+          "nome": "6x5",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_1x6",
+          "codigo": "1x6",
+          "nome": "1x6",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_2x6",
+          "codigo": "2x6",
+          "nome": "2x6",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_3x6",
+          "codigo": "3x6",
+          "nome": "3x6",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_4x6",
+          "codigo": "4x6",
+          "nome": "4x6",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_5x6",
+          "codigo": "5x6",
+          "nome": "5x6",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_pantone_6x6",
+          "codigo": "6x6",
+          "nome": "6x6",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "imp_cmyk_pantone",
+      "codigo": "CMYK_PANTONE",
+      "nome": "CMYK + Pantone",
+      "combinacoes": [
+        {
+          "id": "comb_cmyk_pantone_1x0",
+          "codigo": "1x0",
+          "nome": "1x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_2x0",
+          "codigo": "2x0",
+          "nome": "2x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_3x0",
+          "codigo": "3x0",
+          "nome": "3x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_4x0",
+          "codigo": "4x0",
+          "nome": "4x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_5x0",
+          "codigo": "5x0",
+          "nome": "5x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_6x0",
+          "codigo": "6x0",
+          "nome": "6x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_1x1",
+          "codigo": "1x1",
+          "nome": "1x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_2x1",
+          "codigo": "2x1",
+          "nome": "2x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_3x1",
+          "codigo": "3x1",
+          "nome": "3x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_4x1",
+          "codigo": "4x1",
+          "nome": "4x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_5x1",
+          "codigo": "5x1",
+          "nome": "5x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_6x1",
+          "codigo": "6x1",
+          "nome": "6x1",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_1x2",
+          "codigo": "1x2",
+          "nome": "1x2",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_2x2",
+          "codigo": "2x2",
+          "nome": "2x2",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_3x2",
+          "codigo": "3x2",
+          "nome": "3x2",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_4x2",
+          "codigo": "4x2",
+          "nome": "4x2",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_5x2",
+          "codigo": "5x2",
+          "nome": "5x2",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_6x2",
+          "codigo": "6x2",
+          "nome": "6x2",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_1x3",
+          "codigo": "1x3",
+          "nome": "1x3",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_2x3",
+          "codigo": "2x3",
+          "nome": "2x3",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_3x3",
+          "codigo": "3x3",
+          "nome": "3x3",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_4x3",
+          "codigo": "4x3",
+          "nome": "4x3",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_5x3",
+          "codigo": "5x3",
+          "nome": "5x3",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_6x3",
+          "codigo": "6x3",
+          "nome": "6x3",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_1x4",
+          "codigo": "1x4",
+          "nome": "1x4",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_2x4",
+          "codigo": "2x4",
+          "nome": "2x4",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_3x4",
+          "codigo": "3x4",
+          "nome": "3x4",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_4x4",
+          "codigo": "4x4",
+          "nome": "4x4",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_5x4",
+          "codigo": "5x4",
+          "nome": "5x4",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_6x4",
+          "codigo": "6x4",
+          "nome": "6x4",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_1x5",
+          "codigo": "1x5",
+          "nome": "1x5",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_2x5",
+          "codigo": "2x5",
+          "nome": "2x5",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_3x5",
+          "codigo": "3x5",
+          "nome": "3x5",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_4x5",
+          "codigo": "4x5",
+          "nome": "4x5",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_5x5",
+          "codigo": "5x5",
+          "nome": "5x5",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_6x5",
+          "codigo": "6x5",
+          "nome": "6x5",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_1x6",
+          "codigo": "1x6",
+          "nome": "1x6",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_2x6",
+          "codigo": "2x6",
+          "nome": "2x6",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_3x6",
+          "codigo": "3x6",
+          "nome": "3x6",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_4x6",
+          "codigo": "4x6",
+          "nome": "4x6",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_5x6",
+          "codigo": "5x6",
+          "nome": "5x6",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        },
+        {
+          "id": "comb_cmyk_pantone_6x6",
+          "codigo": "6x6",
+          "nome": "6x6",
+          "camadas": [
+            "externa",
+            "interna"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "imp_serigrafia",
+      "codigo": "SERIGRAFIA",
+      "nome": "Serigrafia",
+      "combinacoes": [
+        {
+          "id": "comb_serigrafia_1x0",
+          "codigo": "1x0",
+          "nome": "1x0",
+          "camadas": [
+            "externa"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "imp_outro",
+      "codigo": "OUTRO",
+      "nome": "Outro (Desenvolvimento)",
+      "combinacoes": [
+        {
+          "id": "comb_outro_1x0",
+          "codigo": "1x0",
+          "nome": "1x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_outro_2x0",
+          "codigo": "2x0",
+          "nome": "2x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_outro_3x0",
+          "codigo": "3x0",
+          "nome": "3x0",
+          "camadas": [
+            "externa"
+          ]
+        },
+        {
+          "id": "comb_outro_4x0",
+          "codigo": "4x0",
+          "nome": "4x0",
+          "camadas": [
+            "externa"
+          ]
+        }
+      ]
+    }
+  ],
+  "enobrecimentoTipos": [
+    {
+      "id": "enob_hot_stamping",
+      "codigo": "HOT_STAMPING",
+      "nome": "Hot Stamping",
+      "descricao": "Hot stamping com cores padrão (ouro, prata, preto) ou desenvolvimento",
+      "coresPadrao": [
+        "ouro",
+        "prata",
+        "preto"
+      ],
+      "permiteOutro": true
+    },
+    {
+      "id": "enob_relevo",
+      "codigo": "RELEVO",
+      "nome": "Relevo",
+      "descricao": "Alto ou baixo relevo",
+      "tipos": [
+        "alto",
+        "baixo"
+      ]
+    },
+    {
+      "id": "enob_gofragem",
+      "codigo": "GOFRAGEM",
+      "nome": "Gofragem",
+      "descricao": "Gofragem padrão, personalizada ou exclusiva",
+      "modelos": [
+        "padrao",
+        "personalizada",
+        "exclusiva"
+      ]
+    },
+    {
+      "id": "enob_laminacao",
+      "codigo": "LAMINACAO",
+      "nome": "Laminação",
+      "descricao": "Laminação brilho, fosco ou outro",
+      "tipos": [
+        "brilho",
+        "fosco",
+        "outro"
+      ]
+    },
+    {
+      "id": "enob_verniz_uv",
+      "codigo": "VERNIZ_UV",
+      "nome": "Verniz UV",
+      "descricao": "Verniz UV total ou parcial",
+      "tipos": [
+        "total",
+        "parcial"
+      ]
+    }
+  ],
+  "alcaTipos": [
+    {
+      "id": "alca_dalva",
+      "codigo": "DALVA_GORGURAO",
+      "nome": "Dalva Gorgurão",
+      "descricao": "Alça tipo Dalva Gorgurão"
+    },
+    {
+      "id": "alca_sintetica_sf",
+      "codigo": "SINTETICA_SF",
+      "nome": "Sintética 6/1 São Francisco",
+      "descricao": "Alça sintética São Francisco"
+    },
+    {
+      "id": "alca_papel_torcido",
+      "codigo": "PAPEL_TORCIDO",
+      "nome": "Papel Torcido",
+      "descricao": "Alça de papel torcido colada"
+    }
+  ],
+  "acondicionamentos": [
+    {
+      "id": "acond_pacote",
+      "codigo": "PACOTE",
+      "nome": "Pacote"
+    },
+    {
+      "id": "acond_shrink",
+      "codigo": "SHRINK",
+      "nome": "Pacote Shrink"
+    },
+    {
+      "id": "acond_caixa",
+      "codigo": "CAIXA",
+      "nome": "Caixa de Papelão"
+    },
+    {
+      "id": "acond_rolo",
+      "codigo": "ROLO",
+      "nome": "Rolo"
+    },
+    {
+      "id": "acond_cartela",
+      "codigo": "CARTELA",
+      "nome": "Cartela"
+    }
+  ],
+  "modulos": [
+    {
+      "id": "mod_25",
+      "codigo": "25",
+      "nome": "25 unidades",
+      "quantidade": 25
+    },
+    {
+      "id": "mod_50",
+      "codigo": "50",
+      "nome": "50 unidades",
+      "quantidade": 50
+    },
+    {
+      "id": "mod_100",
+      "codigo": "100",
+      "nome": "100 unidades",
+      "quantidade": 100
+    },
+    {
+      "id": "mod_500",
+      "codigo": "500",
+      "nome": "500 unidades",
+      "quantidade": 500
+    },
+    {
+      "id": "mod_1000",
+      "codigo": "1000",
+      "nome": "1000 unidades",
+      "quantidade": 1000
+    },
+    {
+      "id": "mod_2000",
+      "codigo": "2000",
+      "nome": "2000 unidades",
+      "quantidade": 2000
+    },
+    {
+      "id": "mod_informar",
+      "codigo": "INFORMAR",
+      "nome": "Informar",
+      "quantidade": null
+    },
+    {
+      "id": "mod_1_rolo",
+      "codigo": "1_ROLOPORPACOTE",
+      "nome": "1 rolo por pacote",
+      "quantidade": null
+    },
+    {
+      "id": "mod_definir_aproveitamento",
+      "codigo": "DEFINIR_APROVEITAMENTO",
+      "nome": "Definir melhor aproveitamento",
+      "quantidade": null
+    }
+  ],
+  "regras": {
+    "tiragemMinima": {
+      "SEDA": 30000,
+      "GUARDANAPO": 10000
+    },
+    "modelosSemEnobrecimento": [
+      "modelo_fundo_v",
+      "modelo_fundo_quadrado",
+      "modelo_sachet",
+      "modelo_corte_louco",
+      "modelo_automatica"
+    ],
+    "modelosSemImpressao": [],
+    "modelosSemAcabamentos": [
+      "modelo_fundo_v",
+      "modelo_sachet",
+      "modelo_corte_louco",
+      "modelo_rolo",
+      "modelo_pedacos_cortados"
+    ],
+    "modelosSemAlca": [
+      "modelo_fundo_v",
+      "modelo_tampa_fundo",
+      "modelo_articulada",
+      "modelo_fundo_automatico",
+      "modelo_sachet",
+      "modelo_redonda",
+      "modelo_cantos_retos",
+      "modelo_cantos_arredondados",
+      "modelo_faca_especial_etiqueta",
+      "modelo_corte_louco",
+      "modelo_rolo",
+      "modelo_pedacos_cortados",
+      "modelo_malwee",
+      "modelo_riachuelo",
+      "modelo_faca_especial_solapa",
+      "modelo_quadrada",
+      "modelo_cantos_arredondados_tag",
+      "modelo_faca_especial_tag"
+    ],
+    "substratosExigemLaminacao": [
+      "sub_greenbag",
+      "sub_triplex"
+    ],
+    "tiragemMinimaAlcaColorida": 10000,
+    "papelImpressaoApara": "Cartão Duplex 225g",
+    "modelosPermitemImpressaoApara": [
+      "modelo_fundo_quadrado",
+      "modelo_elegance",
+      "modelo_evolution",
+      "modelo_automatica",
+      "modelo_envelope"
+    ]
+  }
+}

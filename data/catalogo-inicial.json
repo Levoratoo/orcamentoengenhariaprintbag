@@ -1,0 +1,418 @@
+{
+  "produtoTipos": [
+    {
+      "id": "tipo_saco",
+      "codigo": "SACO",
+      "nome": "Saco",
+      "descricao": "Sacos em geral",
+      "modelos": [
+        {
+          "id": "modelo_fundo_v",
+          "codigo": "FUNDO_V",
+          "nome": "Fundo V",
+          "descricao": "Saco com fundo em formato V",
+          "permiteAlca": true,
+          "substratosPermitidos": ["sub_offset", "sub_duplex", "sub_kraft"],
+          "impressoesPermitidas": ["imp_pb", "imp_cmyk", "imp_pantone"],
+          "enobrecimentosPermitidos": ["enob_hot_stamping", "enob_relevo", "enob_laminacao"],
+          "acondicionamentosPermitidos": ["acond_pacote", "acond_shrink"],
+          "formatosPermitidos": ["fmt_personalizado"]
+        }
+      ]
+    },
+    {
+      "id": "tipo_sacola",
+      "codigo": "SACOLA",
+      "nome": "Sacola",
+      "descricao": "Sacolas em geral",
+      "modelos": [
+        {
+          "id": "modelo_elegance",
+          "codigo": "ELEGANCE",
+          "nome": "Elegance",
+          "descricao": "Modelo Elegance",
+          "permiteAlca": true,
+          "substratosPermitidos": ["sub_offset", "sub_duplex", "sub_greenbag"],
+          "impressoesPermitidas": ["imp_pb", "imp_cmyk", "imp_pantone", "imp_cmyk_pantone"],
+          "enobrecimentosPermitidos": ["enob_hot_stamping", "enob_relevo", "enob_laminacao", "enob_verniz_uv"],
+          "acondicionamentosPermitidos": ["acond_pacote", "acond_shrink", "acond_caixa"],
+          "formatosPermitidos": ["fmt_personalizado"]
+        },
+        {
+          "id": "modelo_padrao",
+          "codigo": "PADRAO",
+          "nome": "Padrão",
+          "descricao": "Modelo padrão de sacola",
+          "permiteAlca": true,
+          "substratosPermitidos": ["sub_offset", "sub_duplex", "sub_kraft"],
+          "impressoesPermitidas": ["imp_pb", "imp_cmyk"],
+          "enobrecimentosPermitidos": ["enob_laminacao"],
+          "acondicionamentosPermitidos": ["acond_pacote", "acond_shrink"],
+          "formatosPermitidos": ["fmt_personalizado"]
+        }
+      ]
+    },
+    {
+      "id": "tipo_caixa",
+      "codigo": "CAIXA",
+      "nome": "Caixa",
+      "descricao": "Caixas em geral",
+      "modelos": [
+        {
+          "id": "modelo_tampa_fundo",
+          "codigo": "TAMPA_FUNDO",
+          "nome": "Tampa e Fundo",
+          "descricao": "Caixa com tampa e fundo separados",
+          "permiteAlca": false,
+          "substratosPermitidos": ["sub_offset", "sub_duplex", "sub_triplex"],
+          "impressoesPermitidas": ["imp_pb", "imp_cmyk", "imp_pantone"],
+          "enobrecimentosPermitidos": ["enob_hot_stamping", "enob_relevo", "enob_laminacao"],
+          "acondicionamentosPermitidos": ["acond_caixa", "acond_pacote"],
+          "formatosPermitidos": ["fmt_personalizado"]
+        },
+        {
+          "id": "modelo_articulada",
+          "codigo": "ARTICULADA",
+          "nome": "Articulada",
+          "descricao": "Caixa articulada",
+          "permiteAlca": false,
+          "substratosPermitidos": ["sub_offset", "sub_duplex"],
+          "impressoesPermitidas": ["imp_cmyk", "imp_pantone"],
+          "enobrecimentosPermitidos": ["enob_hot_stamping", "enob_laminacao"],
+          "acondicionamentosPermitidos": ["acond_caixa"],
+          "formatosPermitidos": ["fmt_personalizado"]
+        }
+      ]
+    },
+    {
+      "id": "tipo_guardanapo",
+      "codigo": "GUARDANAPO",
+      "nome": "Guardanapo",
+      "descricao": "Guardanapos",
+      "modelos": [
+        {
+          "id": "modelo_guardanapo_padrao",
+          "codigo": "PADRAO",
+          "nome": "Padrão",
+          "descricao": "Guardanapo padrão",
+          "permiteAlca": false,
+          "substratosPermitidos": ["sub_seda"],
+          "impressoesPermitidas": ["imp_sem"],
+          "enobrecimentosPermitidos": [],
+          "acondicionamentosPermitidos": ["acond_pacote", "acond_rolo"],
+          "formatosPermitidos": ["fmt_personalizado"]
+        }
+      ]
+    },
+    {
+      "id": "tipo_seda",
+      "codigo": "SEDA",
+      "nome": "Seda",
+      "descricao": "Produtos em seda",
+      "modelos": [
+        {
+          "id": "modelo_seda_padrao",
+          "codigo": "PADRAO",
+          "nome": "Padrão",
+          "descricao": "Seda padrão",
+          "permiteAlca": false,
+          "substratosPermitidos": ["sub_seda"],
+          "impressoesPermitidas": ["imp_sem"],
+          "enobrecimentosPermitidos": [],
+          "acondicionamentosPermitidos": ["acond_pacote", "acond_rolo"],
+          "formatosPermitidos": ["fmt_personalizado"]
+        }
+      ]
+    }
+  ],
+  "formatosPadrao": [
+    {
+      "id": "fmt_personalizado",
+      "codigo": "PERSONALIZADO",
+      "nome": "Outro (Desenvolvimento)",
+      "aceitaDesenvolvimento": true
+    }
+  ],
+  "substratos": [
+    {
+      "id": "sub_offset",
+      "codigo": "OFFSET",
+      "nome": "Offset",
+      "gramagens": ["180", "250", "300", "350"],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_duplex",
+      "codigo": "DUPLEX",
+      "nome": "Duplex",
+      "gramagens": ["250", "300", "350", "400"],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_triplex",
+      "codigo": "TRIPLEX",
+      "nome": "Triplex",
+      "gramagens": ["350", "400", "500"],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_kraft",
+      "codigo": "KRAFT",
+      "nome": "Kraft",
+      "gramagens": ["180", "250", "300"],
+      "exigeLaminacao": false
+    },
+    {
+      "id": "sub_greenbag",
+      "codigo": "GREENBAG",
+      "nome": "Greenbag",
+      "gramagens": ["250", "300"],
+      "exigeLaminacao": true
+    },
+    {
+      "id": "sub_seda",
+      "codigo": "SEDA",
+      "nome": "Seda",
+      "gramagens": ["30", "40", "50"],
+      "exigeLaminacao": false
+    }
+  ],
+  "impressaoModos": [
+    {
+      "id": "imp_sem",
+      "codigo": "SEM",
+      "nome": "Sem impressão",
+      "combinacoes": []
+    },
+    {
+      "id": "imp_pb",
+      "codigo": "PB",
+      "nome": "Preto e Branco",
+      "combinacoes": [
+        {
+          "id": "comb_pb_1x0",
+          "codigo": "1x0",
+          "nome": "1x0",
+          "camadas": ["externa"]
+        },
+        {
+          "id": "comb_pb_2x0",
+          "codigo": "2x0",
+          "nome": "2x0",
+          "camadas": ["externa"]
+        }
+      ]
+    },
+    {
+      "id": "imp_cmyk",
+      "codigo": "CMYK",
+      "nome": "CMYK",
+      "combinacoes": [
+        {
+          "id": "comb_cmyk_1x0",
+          "codigo": "1x0",
+          "nome": "1x0",
+          "camadas": ["externa"]
+        },
+        {
+          "id": "comb_cmyk_2x0",
+          "codigo": "2x0",
+          "nome": "2x0",
+          "camadas": ["externa"]
+        },
+        {
+          "id": "comb_cmyk_4x0",
+          "codigo": "4x0",
+          "nome": "4x0",
+          "camadas": ["externa"]
+        },
+        {
+          "id": "comb_cmyk_4x1",
+          "codigo": "4x1",
+          "nome": "4x1",
+          "camadas": ["externa", "interna"]
+        },
+        {
+          "id": "comb_cmyk_4x4",
+          "codigo": "4x4",
+          "nome": "4x4",
+          "camadas": ["externa", "interna"]
+        }
+      ]
+    },
+    {
+      "id": "imp_pantone",
+      "codigo": "PANTONE",
+      "nome": "Pantone",
+      "combinacoes": [
+        {
+          "id": "comb_pantone_1x0",
+          "codigo": "1x0",
+          "nome": "1x0",
+          "camadas": ["externa"]
+        },
+        {
+          "id": "comb_pantone_2x0",
+          "codigo": "2x0",
+          "nome": "2x0",
+          "camadas": ["externa"]
+        },
+        {
+          "id": "comb_pantone_4x4",
+          "codigo": "4x4",
+          "nome": "4x4",
+          "camadas": ["externa", "interna"]
+        },
+        {
+          "id": "comb_pantone_6x6",
+          "codigo": "6x6",
+          "nome": "6x6",
+          "camadas": ["externa", "interna"]
+        }
+      ]
+    },
+    {
+      "id": "imp_cmyk_pantone",
+      "codigo": "CMYK_PANTONE",
+      "nome": "CMYK + Pantone",
+      "combinacoes": [
+        {
+          "id": "comb_cmyk_pantone_4x1",
+          "codigo": "4x1",
+          "nome": "4x1",
+          "camadas": ["externa", "interna"]
+        },
+        {
+          "id": "comb_cmyk_pantone_4x4",
+          "codigo": "4x4",
+          "nome": "4x4",
+          "camadas": ["externa", "interna"]
+        }
+      ]
+    }
+  ],
+  "enobrecimentoTipos": [
+    {
+      "id": "enob_hot_stamping",
+      "codigo": "HOT_STAMPING",
+      "nome": "Hot Stamping",
+      "descricao": "Hot stamping com cores padrão (ouro, prata, preto) ou desenvolvimento"
+    },
+    {
+      "id": "enob_relevo",
+      "codigo": "RELEVO",
+      "nome": "Relevo",
+      "descricao": "Alto ou baixo relevo"
+    },
+    {
+      "id": "enob_gofragem",
+      "codigo": "GOFRAGEM",
+      "nome": "Gofragem",
+      "descricao": "Gofragem padrão ou personalizada"
+    },
+    {
+      "id": "enob_laminacao",
+      "codigo": "LAMINACAO",
+      "nome": "Laminação",
+      "descricao": "Laminação brilho, fosco ou outro"
+    },
+    {
+      "id": "enob_verniz_uv",
+      "codigo": "VERNIZ_UV",
+      "nome": "Verniz UV",
+      "descricao": "Verniz UV total ou parcial"
+    }
+  ],
+  "alcaTipos": [
+    {
+      "id": "alca_dalva",
+      "codigo": "DALVA_GORGURAO",
+      "nome": "Dalva Gorgurão"
+    },
+    {
+      "id": "alca_sintetica",
+      "codigo": "SINTETICA",
+      "nome": "Sintética"
+    }
+  ],
+  "acondicionamentos": [
+    {
+      "id": "acond_pacote",
+      "codigo": "PACOTE",
+      "nome": "Pacote"
+    },
+    {
+      "id": "acond_shrink",
+      "codigo": "SHRINK",
+      "nome": "Pacote Shrink"
+    },
+    {
+      "id": "acond_caixa",
+      "codigo": "CAIXA",
+      "nome": "Caixa de Papelão"
+    },
+    {
+      "id": "acond_rolo",
+      "codigo": "ROLO",
+      "nome": "Rolo"
+    },
+    {
+      "id": "acond_cartela",
+      "codigo": "CARTELA",
+      "nome": "Cartela"
+    }
+  ],
+  "modulos": [
+    {
+      "id": "mod_25",
+      "codigo": "25",
+      "nome": "25 unidades",
+      "quantidade": 25
+    },
+    {
+      "id": "mod_50",
+      "codigo": "50",
+      "nome": "50 unidades",
+      "quantidade": 50
+    },
+    {
+      "id": "mod_100",
+      "codigo": "100",
+      "nome": "100 unidades",
+      "quantidade": 100
+    },
+    {
+      "id": "mod_500",
+      "codigo": "500",
+      "nome": "500 unidades",
+      "quantidade": 500
+    },
+    {
+      "id": "mod_2000",
+      "codigo": "2000",
+      "nome": "2000 unidades",
+      "quantidade": 2000
+    },
+    {
+      "id": "mod_informar",
+      "codigo": "INFORMAR",
+      "nome": "Informar",
+      "quantidade": null
+    }
+  ],
+  "regras": {
+    "tiragemMinima": {
+      "SEDA": 30000,
+      "GUARDANAPO": 10000
+    },
+    "modelosSemEnobrecimento": ["modelo_guardanapo_padrao", "modelo_seda_padrao"],
+    "modelosSemImpressao": ["modelo_guardanapo_padrao", "modelo_seda_padrao"]
+  }
+}
+
+
+
+
+
+
+
