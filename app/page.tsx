@@ -10,6 +10,8 @@ import {
 } from "lucide-react"
 
 export default function Home() {
+  const basePath = process.env.NODE_ENV === "production" ? "/orcamentoengenhariaprintbag" : ""
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Background com gradiente animado */}
@@ -36,7 +38,7 @@ export default function Home() {
           {/* Logo/Brand */}
           <div className="mb-12 flex items-center gap-3">
             <Image 
-              src="/printbag-logo-svg.png" 
+              src={`${basePath}/printbag-logo-svg.png`} 
               alt="Printbag" 
               width={180} 
               height={50}
