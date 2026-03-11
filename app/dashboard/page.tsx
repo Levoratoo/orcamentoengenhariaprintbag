@@ -308,11 +308,11 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Empresas */}
+          {/* Marcas/Empresas */}
           <div className="rounded-xl bg-white/[0.03] border border-white/[0.06] p-6">
             <div className="flex items-center gap-2 mb-6">
               <Building2 className="h-5 w-5 text-purple-400" />
-              <h3 className="text-lg font-semibold text-white">Top Empresas</h3>
+              <h3 className="text-lg font-semibold text-white">Top Marcas/Empresas</h3>
             </div>
             <div className="h-[250px]">
               {dados.empresasMaisSolicitam.length > 0 ? (
@@ -389,7 +389,11 @@ export default function DashboardPage() {
                       outerRadius={70}
                       paddingAngle={3}
                       dataKey="quantidade"
-                      label={({ tipo, percent }) => `${tipo} (${(percent * 100).toFixed(0)}%)`}
+                      label={({ payload, percent }) => {
+                        const tipo = String(payload?.tipo ?? "Tipo")
+                        const percentual = ((percent ?? 0) * 100).toFixed(0)
+                        return `${tipo} (${percentual}%)`
+                      }}
                     >
                       {dados.tiposProduto.map((entry, index) => {
                         const cores = ["#ec4899", "#f472b6", "#fbbf24", "#34d399", "#60a5fa", "#a78bfa"]
@@ -626,7 +630,7 @@ export default function DashboardPage() {
                         borderRadius: "8px",
                         color: "#fff"
                       }}
-                      formatter={(value: number) => [`${value}%`, "Taxa de Sucesso"]}
+                      formatter={(value) => [`${value ?? 0}%`, "Taxa de Sucesso"]}
                     />
                     <Area 
                       type="monotone" 

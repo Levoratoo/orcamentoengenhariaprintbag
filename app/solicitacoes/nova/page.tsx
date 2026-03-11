@@ -1,14 +1,12 @@
-"use client"
+﻿"use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
+import dynamic from "next/dynamic"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Stepper } from "@/components/wizard/Stepper"
-import { EtapaDinamica } from "@/components/wizard/EtapaDinamica"
-import { EtapaRevisao } from "@/components/wizard/EtapaRevisao"
-import { EtapaEnobrecimentos } from "@/components/wizard/EtapaEnobrecimentos"
 import { SolicitacaoCompletaFormData, solicitacaoCompletaSchema } from "@/lib/validations/solicitacao"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
@@ -36,14 +34,50 @@ interface FormularioEtapa {
   perguntas: FormularioPergunta[]
 }
 
+function EtapaLoadingFallback() {
+  return (
+    <div className="space-y-4">
+      <h2 className="text-2xl font-semibold mb-4 text-white">Carregando etapa...</h2>
+      <p className="text-[#27a75c]/70">
+        Aguarde enquanto carregamos os campos desta etapa.
+      </p>
+    </div>
+  )
+}
+
+const EtapaDinamica = dynamic(
+  () => import("@/components/wizard/EtapaDinamica").then((mod) => mod.EtapaDinamica),
+  {
+    loading: () => <EtapaLoadingFallback />,
+  }
+)
+
+const EtapaRevisao = dynamic(
+  () => import("@/components/wizard/EtapaRevisao").then((mod) => mod.EtapaRevisao),
+  {
+    loading: () => <EtapaLoadingFallback />,
+  }
+)
+
+const EtapaEnobrecimentos = dynamic(
+  () => import("@/components/wizard/EtapaEnobrecimentos").then((mod) => mod.EtapaEnobrecimentos),
+  {
+    loading: () => <EtapaLoadingFallback />,
+  }
+)
+
 export default function NovaSolicitacaoPage() {
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1)
   const [highestStep, setHighestStep] = useState(1) // Etapa mais alta alcançada
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isAutoSaving, setIsAutoSaving] = useState(false)
+  const [savedSolicitacaoId, setSavedSolicitacaoId] = useState<string | null>(null)
+  const [autoSaveAttempted, setAutoSaveAttempted] = useState(false)
   const [etapas, setEtapas] = useState<FormularioEtapa[]>([])
   const [loading, setLoading] = useState(true)
   const [steps, setSteps] = useState<string[]>([])
+  const savePromiseRef = useRef<Promise<string> | null>(null)
 
   const form = useForm<SolicitacaoCompletaFormData>({
     resolver: zodResolver(solicitacaoCompletaSchema),
@@ -90,6 +124,7 @@ export default function NovaSolicitacaoPage() {
       produto: {
         produtoTipoId: "",
         produtoModeloId: "",
+        quantidade: "",
       },
       formato: {
         formatoPadraoId: "",
@@ -117,40 +152,35 @@ export default function NovaSolicitacaoPage() {
 
   const carregarEtapas = async () => {
     try {
-      console.log("Carregando etapas do formulário...")
       const response = await fetch("/api/engenharia/formulario/etapas")
-      console.log("Resposta recebida:", response.status, response.statusText)
       
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}))
-        console.error("Erro na resposta:", errorData)
         throw new Error(errorData.erro || `Erro ao carregar etapas: ${response.status} ${response.statusText}`)
       }
       
       const data = await response.json()
-      console.log("Dados recebidos:", data)
       
       // Verificar se data é um array
       if (!Array.isArray(data)) {
-        console.error("Resposta não é um array:", data)
         throw new Error("Resposta inválida da API")
       }
       
-      // Filtrar apenas etapas ativas e ordenar por ordem
+      // Filtrar apenas etapas ativas e ordenar por ordem.
+      // A etapa "revisao" vinda do banco é ignorada aqui, pois a revisão
+      // final é controlada no frontend como etapa virtual sempre no fim.
       const etapasAtivas = data
-        .filter((etapa: FormularioEtapa) => etapa.ativo)
+        .filter((etapa: FormularioEtapa) => etapa.ativo && etapa.codigo !== "revisao")
         .sort((a: FormularioEtapa, b: FormularioEtapa) => a.ordem - b.ordem)
       
-      console.log("Etapas ativas:", etapasAtivas)
       setEtapas(etapasAtivas)
       
       // Criar array de nomes das etapas para o stepper
       const nomesEtapas = etapasAtivas.map((etapa: FormularioEtapa) => etapa.nome)
       
-      // Adicionar etapa de revisão no final apenas se não existir
-      if (!nomesEtapas.includes("Revisão")) {
-        nomesEtapas.push("Revisão")
-      }
+      // Sempre incluir revisão por último para garantir que todas as etapas
+      // dinâmicas (inclusive acondicionamento) sejam preenchidas antes.
+      nomesEtapas.push("Revisão")
       
       setSteps(nomesEtapas)
     } catch (error: any) {
@@ -194,66 +224,51 @@ export default function NovaSolicitacaoPage() {
       return
     }
 
-    // Etapas opcionais que não precisam de validação obrigatória
-    const etapasOpcionais = ["acabamentos", "enobrecimentos", "alca_detalhes", "impressao", "revisao"]
-    
-    if (etapasOpcionais.includes(etapaAtual.codigo)) {
+    const etapasSemValidacao = ["revisao"]
+    if (etapasSemValidacao.includes(etapaAtual.codigo)) {
       if (currentStep < steps.length) {
         goToStep(currentStep + 1)
       }
       return
     }
 
-    // Validar campos obrigatórios da etapa atual
-    const camposParaValidar: (keyof SolicitacaoCompletaFormData)[] = []
-    
-    // Mapear perguntas obrigatórias para campos do schema
-    const perguntasObrigatorias = etapaAtual.perguntas.filter(p => p.ativo && p.obrigatorio && p.campoMapeado)
-    
-    perguntasObrigatorias.forEach(pergunta => {
+    // Sempre validar a etapa atual pelos campos mapeados ativos,
+    // independente do "obrigatório" da configuração visual.
+    const secoesParaValidar = new Set<keyof SolicitacaoCompletaFormData>()
+    const perguntasMapeadas = etapaAtual.perguntas.filter(p => p.ativo && p.campoMapeado)
+
+    perguntasMapeadas.forEach(pergunta => {
       if (pergunta.campoMapeado) {
         const partes = pergunta.campoMapeado.split(".")
-        if (partes.length >= 1) {
+        if (partes.length > 0) {
           const secao = partes[0] as keyof SolicitacaoCompletaFormData
-          if (!camposParaValidar.includes(secao)) {
-            camposParaValidar.push(secao)
-          }
+          secoesParaValidar.add(secao)
         }
       }
     })
 
-    // Se não há campos obrigatórios na etapa atual, avançar sem validação
-    if (perguntasObrigatorias.length === 0 || camposParaValidar.length === 0) {
-      if (currentStep < steps.length) {
-        goToStep(currentStep + 1)
+    // Fallback por código da etapa (caso alguma pergunta esteja sem mapeamento)
+    if (secoesParaValidar.size === 0) {
+      const secoesPorCodigo: Record<string, (keyof SolicitacaoCompletaFormData)[]> = {
+        dados_pedido: ["dadosGerais"],
+        condicoes_venda: ["condicoesVenda"],
+        entregas: ["entregas"],
+        produto: ["produto"],
+        tamanho: ["formato"],
+        material: ["substrato"],
+        alca_detalhes: ["alca"],
+        impressao: ["impressao"],
+        acabamentos: ["acabamentos"],
+        enobrecimentos: ["enobrecimentos"],
+        acondicionamento: ["acondicionamento"],
+        entrega_quantidade: ["acondicionamento"],
       }
-      return
+
+      const secoesFallback = secoesPorCodigo[etapaAtual.codigo] || []
+      secoesFallback.forEach((secao) => secoesParaValidar.add(secao))
     }
 
-    // Validação básica por etapa (fallback apenas se não mapeou campos)
-    if (camposParaValidar.length === 0) {
-      // Identificar a seção baseada no código da etapa
-      const codigoEtapa = etapaAtual.codigo
-      switch (codigoEtapa) {
-        case "dados_pedido":
-          camposParaValidar.push("dadosGerais")
-          break
-        case "produto":
-          camposParaValidar.push("produto")
-          break
-        case "tamanho":
-          camposParaValidar.push("formato")
-          break
-        case "material":
-          camposParaValidar.push("substrato")
-          break
-        case "entrega_quantidade":
-          camposParaValidar.push("acondicionamento")
-          break
-      }
-    }
-
-    // Se ainda não tem campos para validar, avançar
+    const camposParaValidar = Array.from(secoesParaValidar)
     if (camposParaValidar.length === 0) {
       if (currentStep < steps.length) {
         goToStep(currentStep + 1)
@@ -261,7 +276,7 @@ export default function NovaSolicitacaoPage() {
       return
     }
 
-    const isValid = await trigger(camposParaValidar)
+    const isValid = await trigger(camposParaValidar, { shouldFocus: true })
     if (isValid && currentStep < steps.length) {
       goToStep(currentStep + 1)
     }
@@ -273,25 +288,100 @@ export default function NovaSolicitacaoPage() {
     }
   }
 
+  const criarSolicitacao = useCallback(async (data: SolicitacaoCompletaFormData) => {
+    const response = await fetch("/api/solicitacoes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+
+    const responseData = await response.json().catch(() => ({}))
+
+    if (!response.ok) {
+      const mensagemErro = responseData.erro || "Erro ao criar solicitação"
+      const detalhes = responseData.detalhes ? `\n\nDetalhes: ${JSON.stringify(responseData.detalhes)}` : ""
+      const campos = responseData.campos ? `\n\nCampos com problema: ${responseData.campos.join(", ")}` : ""
+      throw new Error(`${mensagemErro}${detalhes}${campos}`)
+    }
+
+    if (!responseData?.id) {
+      throw new Error("Solicitação criada sem ID de retorno.")
+    }
+
+    return String(responseData.id)
+  }, [])
+
+  const persistirSolicitacao = useCallback(async (data: SolicitacaoCompletaFormData) => {
+    if (savedSolicitacaoId) {
+      return savedSolicitacaoId
+    }
+
+    if (savePromiseRef.current) {
+      return savePromiseRef.current
+    }
+
+    const savePromise = (async () => {
+      const id = await criarSolicitacao(data)
+      setSavedSolicitacaoId(id)
+      return id
+    })()
+
+    savePromiseRef.current = savePromise
+
+    try {
+      return await savePromise
+    } finally {
+      savePromiseRef.current = null
+    }
+  }, [criarSolicitacao, savedSolicitacaoId])
+
+  useEffect(() => {
+    if (steps.length === 0) return
+
+    if (currentStep === steps.length) return
+
+    if (autoSaveAttempted) {
+      setAutoSaveAttempted(false)
+    }
+  }, [autoSaveAttempted, currentStep, steps.length])
+
+  useEffect(() => {
+    if (loading) return
+    if (steps.length === 0) return
+    if (currentStep !== steps.length) return
+    if (savedSolicitacaoId) return
+    if (autoSaveAttempted) return
+    if (isSubmitting) return
+    if (isAutoSaving) return
+
+    setAutoSaveAttempted(true)
+    setIsAutoSaving(true)
+
+    persistirSolicitacao(form.getValues())
+      .catch((error) => {
+        console.error("Erro no auto-save da solicitação:", error)
+        alert(error?.message || "Não foi possível salvar automaticamente ao chegar na revisão.")
+      })
+      .finally(() => {
+        setIsAutoSaving(false)
+      })
+  }, [
+    autoSaveAttempted,
+    currentStep,
+    form,
+    isAutoSaving,
+    isSubmitting,
+    loading,
+    persistirSolicitacao,
+    savedSolicitacaoId,
+    steps.length,
+  ])
+
   const handleSubmit = async (data: SolicitacaoCompletaFormData) => {
     setIsSubmitting(true)
     try {
-      const response = await fetch("/api/solicitacoes", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      })
-
-      const responseData = await response.json().catch(() => ({}))
-
-      if (!response.ok) {
-        const mensagemErro = responseData.erro || "Erro ao criar solicitação"
-        const detalhes = responseData.detalhes ? `\n\nDetalhes: ${JSON.stringify(responseData.detalhes)}` : ""
-        const campos = responseData.campos ? `\n\nCampos com problema: ${responseData.campos.join(", ")}` : ""
-        throw new Error(`${mensagemErro}${detalhes}${campos}`)
-      }
-
-      router.push(`/solicitacoes/${responseData.id}`)
+      const id = await persistirSolicitacao(data)
+      router.push(`/solicitacoes/${id}`)
     } catch (error: any) {
       alert(error.message || "Erro ao criar solicitação. Tente novamente.")
     } finally {
@@ -302,7 +392,14 @@ export default function NovaSolicitacaoPage() {
   const renderStep = () => {
     // Última etapa é sempre revisão
     if (currentStep === steps.length) {
-      return <EtapaRevisao form={form} onSubmit={handleSubmit} isSubmitting={isSubmitting} />
+      return (
+        <EtapaRevisao
+          form={form}
+          onSubmit={handleSubmit}
+          isSubmitting={isSubmitting}
+          onBack={() => goToStep(Math.max(1, steps.length - 1))}
+        />
+      )
     }
 
     // Renderizar etapa dinâmica
@@ -403,3 +500,6 @@ export default function NovaSolicitacaoPage() {
     </div>
   )
 }
+
+
+

@@ -59,12 +59,14 @@ export default function SolicitacoesPage() {
     pagina: 1,
   })
   const [mostrarFiltros, setMostrarFiltros] = useState(false)
+  const [buscaDebounced, setBuscaDebounced] = useState("")
 
   const carregarSolicitacoes = async () => {
     setLoading(true)
     try {
+      const buscaAplicada = filtros.busca ? buscaDebounced : ""
       const params = new URLSearchParams()
-      if (filtros.busca) params.append("busca", filtros.busca)
+      if (buscaAplicada) params.append("busca", buscaAplicada)
       if (filtros.status) params.append("status", filtros.status)
       if (filtros.dataInicio) params.append("dataInicio", filtros.dataInicio)
       if (filtros.dataFim) params.append("dataFim", filtros.dataFim)
@@ -99,20 +101,25 @@ export default function SolicitacoesPage() {
   }
 
   useEffect(() => {
-    carregarSolicitacoes()
-  }, [filtros.pagina, filtros.ordenarPor, filtros.ordem, filtros.status, filtros.dataInicio, filtros.dataFim, filtros.tipoProduto])
+    if (!filtros.busca) {
+      setBuscaDebounced("")
+      return
+    }
 
-  // Debounce para busca
-  useEffect(() => {
     const timer = setTimeout(() => {
-      if (filtros.busca !== undefined) {
-        setFiltros(prev => ({ ...prev, pagina: 1 }))
-        carregarSolicitacoes()
-      }
+      setBuscaDebounced(filtros.busca)
     }, 500)
 
     return () => clearTimeout(timer)
   }, [filtros.busca])
+
+  useEffect(() => {
+    if (filtros.busca && filtros.busca !== buscaDebounced) {
+      return
+    }
+
+    carregarSolicitacoes()
+  }, [buscaDebounced, filtros.busca, filtros.pagina, filtros.ordenarPor, filtros.ordem, filtros.status, filtros.dataInicio, filtros.dataFim, filtros.tipoProduto])
 
   const limparFiltros = () => {
     setFiltros({
@@ -212,7 +219,7 @@ export default function SolicitacoesPage() {
               <Input
                 placeholder="Buscar por empresa, solicitante, e-mail..."
                 value={filtros.busca}
-                onChange={(e) => setFiltros(prev => ({ ...prev, busca: e.target.value }))}
+                onChange={(e) => setFiltros(prev => ({ ...prev, busca: e.target.value, pagina: 1 }))}
                 className="pl-10 bg-white/[0.03] border-white/[0.06] text-white"
               />
             </div>

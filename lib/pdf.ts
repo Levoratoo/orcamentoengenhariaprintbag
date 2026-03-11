@@ -319,11 +319,22 @@ export async function gerarPDF(data: SolicitacaoCompletaFormData): Promise<void>
   // ========== ENTREGAS ==========
   if (data.entregas && (data.entregas.cidadeUF || data.entregas.frete || data.entregas.numeroEntregas)) {
     y = drawSectionHeader(y, "ENTREGAS")
+
+    const quantidadeEntregasRaw =
+      data.entregas.quantidadeLocalUnico ??
+      data.entregas.quantidadeUnica ??
+      data.entregas.quantidadeMultiplasEntregas ??
+      data.produto.quantidade?.trim() ??
+      ""
+    const quantidadeEntregasTexto =
+      typeof quantidadeEntregasRaw === "number"
+        ? quantidadeEntregasRaw.toLocaleString("pt-BR")
+        : String(quantidadeEntregasRaw)
     
     y = drawFieldRow(y, [
       { label: "Local Unico", value: data.entregas.localUnico ? "Sim" : "Nao", width: 40 },
       { label: "Cidade/UF", value: data.entregas.cidadeUF || "", width: 75 },
-      { label: "Quantidade", value: data.entregas.quantidadeLocalUnico?.toString() || "", width: 75 }
+      { label: "Quantidade", value: quantidadeEntregasTexto, width: 75 }
     ])
 
     if (!data.entregas.localUnico && data.entregas.cidadesUFMultiplas) {
@@ -361,10 +372,10 @@ export async function gerarPDF(data: SolicitacaoCompletaFormData): Promise<void>
     { label: "Modelo", value: produtoModelo?.nome || "", width: 95 }
   ])
 
-  const quantidadeProduto = data.acondicionamento?.quantidade ?? null
-  if (quantidadeProduto) {
+  const quantidadeOrcamento = data.produto.quantidade?.trim()
+  if (quantidadeOrcamento) {
     y = drawFieldRow(y, [
-      { label: "Quantidade", value: `${quantidadeProduto.toLocaleString("pt-BR")} un`, width: 190 }
+      { label: "Quantidade (Orcamento)", value: quantidadeOrcamento, width: 190 }
     ])
   }
 
@@ -813,6 +824,4 @@ export async function gerarPDF(data: SolicitacaoCompletaFormData): Promise<void>
   // Salvar PDF
   doc.save(nomeArquivo)
 }
-
-
 

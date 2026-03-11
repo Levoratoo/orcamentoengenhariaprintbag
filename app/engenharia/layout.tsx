@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, type ReactNode } from "react"
 import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { LogOut } from "lucide-react"
@@ -9,37 +9,52 @@ import Link from "next/link"
 export default function EngenhariaLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   const pathname = usePathname()
   const router = useRouter()
   const [autenticado, setAutenticado] = useState<boolean | null>(null)
 
   useEffect(() => {
-    // Verificar autenticação via API
-    fetch("/api/auth/verificar")
+    if (pathname === "/engenharia/login") {
+      return
+    }
+
+    if (autenticado === true) {
+      return
+    }
+
+    let ativo = true
+
+    fetch("/api/auth/verificar", {
+      cache: "no-store",
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => {
+        if (!ativo) return
         setAutenticado(data.autenticado)
-        // Se não estiver autenticado e não estiver na página de login, redirecionar
         if (!data.autenticado && pathname !== "/engenharia/login") {
           router.push("/engenharia/login")
         }
       })
       .catch(() => {
+        if (!ativo) return
         setAutenticado(false)
         if (pathname !== "/engenharia/login") {
           router.push("/engenharia/login")
         }
       })
-  }, [pathname, router])
 
-  // Se estiver na página de login, renderizar sem a barra de navegação
+    return () => {
+      ativo = false
+    }
+  }, [autenticado, pathname, router])
+
   if (pathname === "/engenharia/login") {
     return <>{children}</>
   }
 
-  // Se ainda estiver verificando autenticação, mostrar loading
   if (autenticado === null) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0a1628] to-[#071018]">
@@ -48,20 +63,22 @@ export default function EngenhariaLayout({
     )
   }
 
-  // Se não estiver autenticado, não renderizar (já redirecionou)
   if (!autenticado) {
     return null
   }
 
   const handleLogout = async () => {
-    await fetch("/api/auth/logout", { method: "POST" })
+    await fetch("/api/auth/logout", {
+      method: "POST",
+      cache: "no-store",
+      credentials: "include",
+    })
     router.push("/engenharia/login")
     router.refresh()
   }
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-[#0a1628] to-[#071018]">
-      {/* Barra de navegação */}
       <div className="sticky top-0 z-50 bg-[#0a1628]/95 backdrop-blur-sm border-b border-[#27a75c]/20">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -90,4 +107,3 @@ export default function EngenhariaLayout({
     </div>
   )
 }
-

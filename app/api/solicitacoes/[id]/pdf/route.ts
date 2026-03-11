@@ -1,4 +1,4 @@
-// API para gerar e baixar o PDF de uma solicitação específica
+﻿// API para gerar e baixar o PDF de uma solicitaÃ§Ã£o especÃ­fica
 // Usando o mesmo layout do lib/pdf.ts
 
 import { NextRequest, NextResponse } from "next/server"
@@ -8,11 +8,10 @@ import jsPDF from "jspdf"
 // Cores do tema Printbag
 const VERDE_PRINCIPAL = [39, 167, 92] as [number, number, number]   // #27a75c
 const AZUL_SECUNDARIO = [0, 71, 122] as [number, number, number]    // #00477a
-const VERDE_CLARO = [39, 167, 92, 0.2] as [number, number, number]  // Verde suave para células
 const VERDE_LABEL = [220, 245, 230] as [number, number, number]     // Verde bem claro para labels
 const BRANCO = [255, 255, 255] as [number, number, number]
 
-// Função para desenhar retângulo com gradiente horizontal
+// FunÃ§Ã£o para desenhar retÃ¢ngulo com gradiente horizontal
 const drawGradientRect = (
   doc: jsPDF,
   x: number,
@@ -39,7 +38,7 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    // Buscar solicitação completa do banco
+    // Buscar solicitaÃ§Ã£o completa do banco
     const solicitacao = await prisma.solicitacao.findUnique({
       where: { id: params.id },
       include: {
@@ -66,7 +65,7 @@ export async function GET(
 
     if (!solicitacao) {
       return NextResponse.json(
-        { erro: "Solicitação não encontrada" },
+        { erro: "SolicitaÃ§Ã£o nÃ£o encontrada" },
         { status: 404 }
       )
     }
@@ -74,7 +73,7 @@ export async function GET(
     const item = solicitacao.itens[0]
     if (!item) {
       return NextResponse.json(
-        { erro: "Solicitação sem itens" },
+        { erro: "SolicitaÃ§Ã£o sem itens" },
         { status: 400 }
       )
     }
@@ -86,23 +85,23 @@ export async function GET(
     const pageWidth = doc.internal.pageSize.getWidth()
     const pageHeight = doc.internal.pageSize.getHeight()
     const contentWidth = pageWidth - 2 * margin
-    const footerHeight = 15 // Altura reservada para o rodapé
-    const minSpaceBeforeNewPage = footerHeight + 3 // Espaço mínimo antes de criar nova página
+    const footerHeight = 15 // Altura reservada para o rodapÃ©
+    const minSpaceBeforeNewPage = footerHeight + 3 // EspaÃ§o mÃ­nimo antes de criar nova pÃ¡gina
     let y = margin
 
-    // Função para verificar se precisa nova página (melhorada para evitar quebras)
+    // FunÃ§Ã£o para verificar se precisa nova pÃ¡gina (melhorada para evitar quebras)
     const checkNewPage = (neededHeight: number) => {
-      // Calcular altura disponível considerando margem inferior para rodapé
+      // Calcular altura disponÃ­vel considerando margem inferior para rodapÃ©
       const availableHeight = pageHeight - y - minSpaceBeforeNewPage
       
-      // Se o elemento não cabe na página atual e não estamos no topo
+      // Se o elemento nÃ£o cabe na pÃ¡gina atual e nÃ£o estamos no topo
       if (neededHeight > availableHeight && y > margin) {
         doc.addPage()
         y = margin
         return true
       }
       
-      // Se o elemento não cabe mesmo no topo de uma nova página, criar página mesmo assim
+      // Se o elemento nÃ£o cabe mesmo no topo de uma nova pÃ¡gina, criar pÃ¡gina mesmo assim
       if (neededHeight > pageHeight - margin - minSpaceBeforeNewPage && y === margin) {
         // Elemento muito grande, mas vamos tentar desenhar mesmo assim
         return false
@@ -111,7 +110,7 @@ export async function GET(
       return false
     }
 
-    // Função auxiliar para desenhar célula
+    // FunÃ§Ã£o auxiliar para desenhar cÃ©lula
     const drawCell = (
       x: number, 
       yPos: number, 
@@ -127,7 +126,7 @@ export async function GET(
       if (value === null || value === undefined) {
         displayValue = ""
       } else if (typeof value === "boolean") {
-        displayValue = value ? "Sim" : "Não"
+        displayValue = value ? "Sim" : "NÃ£o"
       } else if (typeof value === "number") {
         displayValue = value.toString()
       } else {
@@ -154,7 +153,7 @@ export async function GET(
       doc.setTextColor(0, 71, 122)
       doc.text(label, x + 2, yPos + 4)
       
-      // Texto do valor (truncar se necessário)
+      // Texto do valor (truncar se necessÃ¡rio)
       doc.setFontSize(8)
       doc.setFont("helvetica", "normal")
       doc.setTextColor(30, 30, 30)
@@ -165,10 +164,10 @@ export async function GET(
       doc.text(displayValue, x + 2, yPos + height / 2 + 4)
     }
 
-    // Função para desenhar seção com título (com gradiente)
+    // FunÃ§Ã£o para desenhar seÃ§Ã£o com tÃ­tulo (com gradiente)
     const drawSectionHeader = (yPos: number, title: string): number => {
       const headerHeight = 7
-      checkNewPage(headerHeight + 3) // Verificar espaço para cabeçalho + margem
+      checkNewPage(headerHeight + 3) // Verificar espaÃ§o para cabeÃ§alho + margem
       // Desenhar gradiente do verde para o azul
       drawGradientRect(doc, margin, y, contentWidth, headerHeight, VERDE_PRINCIPAL, AZUL_SECUNDARIO, 80)
       doc.setFontSize(9)
@@ -179,13 +178,13 @@ export async function GET(
       return y
     }
 
-    // Função para linha de campos (igual ao lib/pdf.ts)
+    // FunÃ§Ã£o para linha de campos (igual ao lib/pdf.ts)
     const drawFieldRow = (
       yPos: number, 
       fields: Array<{label: string, value: string | number | boolean | null | undefined, width: number}>
     ): number => {
       const height = 10
-      checkNewPage(height) // Verificar espaço antes de desenhar
+      checkNewPage(height) // Verificar espaÃ§o antes de desenhar
       let x = margin
       fields.forEach(field => {
         drawCell(x, y, field.width, height, field.label, field.value)
@@ -195,12 +194,12 @@ export async function GET(
       return y
     }
 
-    // Função para linha de observações
+    // FunÃ§Ã£o para linha de observaÃ§Ãµes
     const drawObsRow = (yPos: number, label: string, value: string): number => {
       if (!value) return y
       
       const height = 5
-      checkNewPage(height) // Verificar espaço antes de desenhar
+      checkNewPage(height) // Verificar espaÃ§o antes de desenhar
       const labelWidth = 50
       
       // Label com fundo verde suave
@@ -233,17 +232,17 @@ export async function GET(
       return y
     }
 
-    // ========== CABEÇALHO COM GRADIENTE ==========
+    // ========== CABEÃ‡ALHO COM GRADIENTE ==========
     const headerHeight = 25
     const headerSpacing = 3
     
-    // Verificar espaço antes de desenhar o cabeçalho
+    // Verificar espaÃ§o antes de desenhar o cabeÃ§alho
     checkNewPage(headerHeight + headerSpacing)
     
-    // Desenhar gradiente do verde para o azul no cabeçalho
+    // Desenhar gradiente do verde para o azul no cabeÃ§alho
     drawGradientRect(doc, margin, y, contentWidth, headerHeight, VERDE_PRINCIPAL, AZUL_SECUNDARIO, 150)
     
-    // Borda elegante ao redor do cabeçalho
+    // Borda elegante ao redor do cabeÃ§alho
     doc.setDrawColor(255, 255, 255)
     doc.setLineWidth(0.3)
     doc.rect(margin, y, contentWidth, headerHeight)
@@ -259,11 +258,11 @@ export async function GET(
     doc.setTextColor(255, 255, 255)
     doc.text("PRINTBAG", margin + 8, y + 15)
     
-    // Título do documento (centro)
+    // TÃ­tulo do documento (centro)
     doc.setFontSize(16)
     doc.setFont("helvetica", "bold")
     doc.setTextColor(255, 255, 255)
-    doc.text("SOLICITAÇÃO DE ORÇAMENTO", margin + 58, y + 15)
+    doc.text("SOLICITAÃ‡ÃƒO DE ORÃ‡AMENTO", margin + 58, y + 15)
     
     // Data (lado direito)
     const dataAtual = new Date().toLocaleDateString("pt-BR")
@@ -301,6 +300,13 @@ export async function GET(
       { label: "Tipo", value: item.produtoTipo?.nome || "", width: 95 },
       { label: "Modelo", value: item.produtoModelo?.nome || "", width: 95 }
     ])
+
+    const quantidadeOrcamento = solicitacao.quantidadeMultiplos?.trim() || item.quantidade?.toLocaleString("pt-BR") || ""
+    if (quantidadeOrcamento) {
+      y = drawFieldRow(y, [
+        { label: "Quantidade (Orcamento)", value: quantidadeOrcamento, width: 190 }
+      ])
+    }
 
     if (item.variacaoEnvelope) {
       y = drawObsRow(y, "Variacao", item.variacaoEnvelope)
@@ -379,7 +385,7 @@ export async function GET(
 
     y += 3
 
-    // ========== ALÇA E DETALHES ==========
+    // ========== ALÃ‡A E DETALHES ==========
     y = drawSectionHeader(y, "ALCA E DETALHES")
     
     y = drawFieldRow(y, [
@@ -392,7 +398,7 @@ export async function GET(
 
     y += 3
 
-    // ========== IMPRESSÃO ==========
+    // ========== IMPRESSÃƒO ==========
     y = drawSectionHeader(y, "IMPRESSAO")
     
     // Processar camadas
@@ -486,11 +492,11 @@ export async function GET(
 
     y += 3
 
-    // ========== OBSERVAÇÕES PARA ENGENHARIA ==========
+    // ========== OBSERVAÃ‡Ã•ES PARA ENGENHARIA ==========
     if (item.desenvolvimentoObservacoes) {
       checkNewPage(25)
       
-      y = drawSectionHeader(y, "OBSERVAÇÕES PARA ENGENHARIA")
+      y = drawSectionHeader(y, "OBSERVAÃ‡Ã•ES PARA ENGENHARIA")
       
       // Coluna da Etapa (fundo verde suave)
       doc.setFillColor(...VERDE_LABEL)
@@ -500,7 +506,7 @@ export async function GET(
       doc.setFillColor(220, 235, 250)
       doc.rect(margin + 40, y, 40, 10, "F")
       
-      // Coluna da Descrição (fundo branco)
+      // Coluna da DescriÃ§Ã£o (fundo branco)
       doc.setFillColor(...BRANCO)
       doc.rect(margin + 80, y, contentWidth - 80, 10, "F")
       
@@ -525,7 +531,7 @@ export async function GET(
       doc.setFont("helvetica", "normal")
       doc.setTextColor(30, 30, 30)
       
-      // Truncar se necessário
+      // Truncar se necessÃ¡rio
       let descricao = item.desenvolvimentoObservacoes
       const maxWidth = contentWidth - 85
       while (doc.getTextWidth(descricao) > maxWidth && descricao.length > 3) {
@@ -536,22 +542,22 @@ export async function GET(
       y += 10
     }
 
-    // ========== RODAPÉ ==========
+    // ========== RODAPÃ‰ ==========
     const totalPages = doc.getNumberOfPages()
     for (let i = 1; i <= totalPages; i++) {
       doc.setPage(i)
       
-      // Linha decorativa no rodapé
+      // Linha decorativa no rodapÃ©
       doc.setDrawColor(39, 167, 92)
       doc.setLineWidth(0.3)
       doc.line(margin, pageHeight - footerHeight, pageWidth - margin, pageHeight - footerHeight)
       
-      // Texto do rodapé
+      // Texto do rodapÃ©
       doc.setFontSize(7)
       doc.setFont("helvetica", "italic")
       doc.setTextColor(0, 71, 122)
       doc.text(
-        `Gerado em ${new Date().toLocaleString("pt-BR")} - Página ${i} de ${totalPages}`,
+        `Gerado em ${new Date().toLocaleString("pt-BR")} - PÃ¡gina ${i} de ${totalPages}`,
         margin,
         pageHeight - 5
       )
@@ -563,8 +569,10 @@ export async function GET(
 
     // Retornar PDF como buffer
     const pdfBuffer = Buffer.from(doc.output("arraybuffer"))
-    
-    const nomeArquivo = `Solicitacao_${solicitacao.empresa.replace(/[^a-zA-Z0-9]/g, "_")}_${solicitacao.id.substring(0, 8)}.pdf`
+
+    const empresaArquivo = (solicitacao.empresa ?? "empresa")
+      .replace(/[^a-zA-Z0-9]/g, "_")
+    const nomeArquivo = `Solicitacao_${empresaArquivo}_${solicitacao.id.substring(0, 8)}.pdf`
 
     return new NextResponse(pdfBuffer, {
       status: 200,
@@ -581,3 +589,4 @@ export async function GET(
     )
   }
 }
+

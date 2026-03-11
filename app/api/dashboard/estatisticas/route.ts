@@ -186,25 +186,28 @@ export async function GET() {
     )
 
     // ========================================
-    // 7. EMPRESAS QUE MAIS SOLICITAM
+    // 7. EMPRESAS/MARCAS QUE MAIS SOLICITAM
     // ========================================
-    const empresasMaisSolicitam = await prisma.solicitacao.groupBy({
-      by: ["empresa"],
-      _count: {
-        id: true
-      },
-      orderBy: {
-        _count: {
-          id: "desc"
-        }
-      },
-      take: 5
+    // Fluxo novo salva "marca" e pode deixar "empresa" vazio.
+    // Consolidamos por marca -> empresa -> vendedor para não perder dados.
+    const solicitacoesEmpresas = await prisma.solicitacao.findMany({
+      select: {
+        marca: true,
+        empresa: true,
+        vendedor: true
+      }
     })
 
-    const empresasArray = empresasMaisSolicitam.map((e) => ({
-      empresa: e.empresa,
-      quantidade: e._count.id
-    }))
+    const empresasContagem = new Map<string, number>()
+    solicitacoesEmpresas.forEach((s) => {
+      const nomeBase = s.marca?.trim() || s.empresa?.trim() || s.vendedor?.trim() || "Nao informado"
+      empresasContagem.set(nomeBase, (empresasContagem.get(nomeBase) || 0) + 1)
+    })
+
+    const empresasArray = Array.from(empresasContagem.entries())
+      .map(([empresa, quantidade]) => ({ empresa, quantidade }))
+      .sort((a, b) => b.quantidade - a.quantidade)
+      .slice(0, 5)
 
     // ========================================
     // 8. DISTRIBUIÇÃO POR TIPO DE PRODUTO

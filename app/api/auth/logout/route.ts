@@ -1,12 +1,30 @@
 import { NextResponse } from "next/server"
-import { cookies } from "next/headers"
 
-export async function POST() {
+export async function POST(request: Request) {
   try {
-    const cookieStore = await cookies()
-    cookieStore.delete("engenharia_auth")
+    const protocolo = request.headers.get("x-forwarded-proto") || new URL(request.url).protocol.replace(":", "")
+    const isHttps = protocolo.toLowerCase() === "https"
 
-    return NextResponse.json({ sucesso: true })
+    const response = NextResponse.json(
+      { sucesso: true },
+      {
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+          Pragma: "no-cache",
+          Expires: "0",
+        },
+      }
+    )
+
+    response.cookies.set("engenharia_auth", "", {
+      httpOnly: true,
+      secure: isHttps,
+      sameSite: "lax",
+      maxAge: 0,
+      path: "/",
+    })
+
+    return response
   } catch (error: any) {
     console.error("Erro ao fazer logout:", error)
     return NextResponse.json(
@@ -15,6 +33,3 @@ export async function POST() {
     )
   }
 }
-
-
-

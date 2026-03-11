@@ -617,8 +617,10 @@ export async function POST(request: NextRequest) {
         pedidoMinimoCIF: validatedData.entregas?.pedidoMinimoCIF || null,
         cidadesUFMultiplas: validatedData.entregas?.cidadesUFMultiplas || null,
         anexarListaLojas: validatedData.entregas?.anexarListaLojas ?? false,
-        quantidadeMultiplos: validatedData.entregas?.quantidadeMultiplos || null,
-        numeroEntregas: validatedData.entregas?.numeroEntregas || null,
+        quantidadeMultiplos: validatedData.produto.quantidade || validatedData.entregas?.quantidadeMultiplos || null,
+        numeroEntregas: validatedData.entregas?.numeroEntregas
+          ? String(validatedData.entregas.numeroEntregas)
+          : null,
         frequenciaUnica: validatedData.entregas?.frequenciaUnica ?? true,
         quantidadeUnica: validatedData.entregas?.quantidadeUnica || null,
         frequencia: validatedData.entregas?.frequencia || null,
@@ -630,7 +632,7 @@ export async function POST(request: NextRequest) {
         
         statusWebhook: "pendente",
         itens: {
-          create: itemData,
+          create: itemData as any,
         },
       },
       include: {
@@ -718,9 +720,5 @@ export async function POST(request: NextRequest) {
     )
   }
 }
-
-
-
-
 
 

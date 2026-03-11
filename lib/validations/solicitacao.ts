@@ -25,6 +25,18 @@ const parseListaNumeros = (val: unknown): number[] | undefined => {
   return undefined
 }
 
+const parseNumeroPositivoOpcional = (val: unknown): number | undefined | unknown => {
+  if (val === null || val === undefined || val === "") return undefined
+  if (typeof val === "number") return Number.isFinite(val) ? val : val
+  if (typeof val === "string") {
+    const limpo = val.trim()
+    if (!limpo) return undefined
+    const numero = Number(limpo.replace(",", "."))
+    return Number.isFinite(numero) ? numero : val
+  }
+  return val
+}
+
 // 1 - DADOS DO PEDIDO
 export const dadosGeraisSchema = z.object({
   vendedor: z.string().min(1, "Vendedor é obrigatório"),
@@ -120,7 +132,10 @@ export const condicoesVendaSchema = z.object({
 // 3 – ENTREGAS
 export const entregasSchema = z.object({
   // Nº de Entregas (obrigatório apenas para PRG, será validado no schema principal)
-  numeroEntregas: z.coerce.number().int().positive().optional(),
+  numeroEntregas: z.preprocess(
+    (val) => parseNumeroPositivoOpcional(val),
+    z.number().int().positive("Nº de Entregas deve ser maior que zero").optional()
+  ),
   
   // Frequência (depende do Tipo de Contato e Nº de Entregas)
   frequencia: z.string().optional(),
@@ -143,15 +158,27 @@ export const entregasSchema = z.object({
   quantidade: z.string().optional(),
   
   // Campos legados (mantidos para compatibilidade mas ocultos)
-  quantidadeLocalUnico: z.number().int().positive().optional(),
+  quantidadeLocalUnico: z.preprocess(
+    (val) => parseNumeroPositivoOpcional(val),
+    z.number().int().positive("Quantidade deve ser maior que zero").optional()
+  ),
   cidadesUFMultiplas: z.string().optional(),
   anexarListaLojas: z.boolean().default(false),
   quantidadeMultiplos: z.string().optional(),
   frequenciaUnica: z.boolean().default(true),
-  quantidadeUnica: z.number().int().positive().optional(),
-  quantidadeMultiplasEntregas: z.number().int().positive().optional(),
+  quantidadeUnica: z.preprocess(
+    (val) => parseNumeroPositivoOpcional(val),
+    z.number().int().positive("Quantidade deve ser maior que zero").optional()
+  ),
+  quantidadeMultiplasEntregas: z.preprocess(
+    (val) => parseNumeroPositivoOpcional(val),
+    z.number().int().positive("Quantidade deve ser maior que zero").optional()
+  ),
   freteQuantidades: z.preprocess((val) => parseListaNumeros(val), z.array(z.number().int().positive()).optional()),
-  freteQuantidade: z.number().int().positive().optional(),
+  freteQuantidade: z.preprocess(
+    (val) => parseNumeroPositivoOpcional(val),
+    z.number().int().positive("Quantidade do frete deve ser maior que zero").optional()
+  ),
 })
 
 export const produtoSchema = z.object({

@@ -1,20 +1,20 @@
-"use client"
+﻿"use client"
 
 import { UseFormReturn } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { SolicitacaoCompletaFormData } from "@/lib/validations/solicitacao"
 import { getCatalogo, getModeloPorId } from "@/lib/catalogo"
-import { gerarPDF } from "@/lib/pdf"
 import { Download } from "lucide-react"
 
 interface EtapaRevisaoProps {
   form: UseFormReturn<SolicitacaoCompletaFormData>
   onSubmit: (data: SolicitacaoCompletaFormData) => Promise<void>
   isSubmitting: boolean
+  onBack: () => void
 }
 
-export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps) {
+export function EtapaRevisao({ form, onSubmit, isSubmitting, onBack }: EtapaRevisaoProps) {
   const data = form.watch()
   const catalogo = getCatalogo()
 
@@ -34,20 +34,56 @@ export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps
       ? String(data.entregas.freteQuantidade)
       : undefined
 
-  const handleSubmit = form.handleSubmit(onSubmit)
+  const getPrimeiroErro = (value: unknown): string | null => {
+    if (!value || typeof value !== "object") {
+      return null
+    }
+
+    const erro = value as Record<string, unknown>
+    if (typeof erro.message === "string" && erro.message.trim() !== "") {
+      return erro.message
+    }
+
+    for (const nested of Object.values(erro)) {
+      const nestedMessage = getPrimeiroErro(nested)
+      if (nestedMessage) {
+        return nestedMessage
+      }
+    }
+
+    return null
+  }
+
+  const handleSubmit = form.handleSubmit(
+    onSubmit,
+    (errors) => {
+      console.error("Validação bloqueou confirmação:", errors)
+      const primeiroErro = getPrimeiroErro(errors)
+      if (primeiroErro) {
+        alert(`Revise os campos obrigatórios antes de confirmar.\n\n${primeiroErro}`)
+      } else {
+        alert("Revise os campos obrigatórios antes de confirmar.")
+      }
+    }
+  )
 
   const handleGerarPDF = async () => {
+    const { gerarPDF } = await import("@/lib/pdf")
     await gerarPDF(data)
   }
+
+  const sectionCardClass = "bg-gradient-to-br from-white/[0.05] to-white/[0.02] border-white/[0.08] shadow-[0_12px_32px_rgba(0,0,0,0.2)]"
+  const sectionHeaderClass = "bg-white/[0.02] py-3.5 border-b border-white/[0.08]"
+  const sectionTitleClass = "text-base font-semibold tracking-tight text-white"
 
   // Helper para renderizar campo se tiver valor
   const Campo = ({ label, valor }: { label: string; valor?: string | number | boolean | null }) => {
     if (valor === undefined || valor === null || valor === "" || valor === false) return null
     const valorStr = typeof valor === "boolean" ? "Sim" : String(valor)
     return (
-      <div className="flex py-1.5 border-b border-white/[0.06] last:border-0">
-        <span className="font-medium text-[#27a75c] w-[140px] shrink-0">{label}:</span>
-        <span className="text-white ml-3">{valorStr}</span>
+      <div className="grid grid-cols-[170px_1fr] items-start gap-3 py-2.5 border-b border-white/[0.06] last:border-0">
+        <span className="text-[11px] uppercase tracking-wider text-[#27a75c]/80 font-semibold">{label}</span>
+        <span className="text-sm text-white leading-relaxed break-words">{valorStr}</span>
       </div>
     )
   }
@@ -131,18 +167,21 @@ export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps
 
   return (
     <div className="space-y-6">
-      <div className="border-b border-white/[0.06] pb-4">
-        <h2 className="text-2xl font-bold text-white">Revisão Final</h2>
-        <p className="text-[#27a75c]/70 mt-1">
-          Revise todas as informações antes de confirmar e enviar a solicitação.
+      <div className="border-b border-white/[0.08] pb-5">
+        <span className="inline-flex items-center rounded-full border border-[#27a75c]/30 bg-[#27a75c]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#27a75c]">
+          Resumo da Solicitação
+        </span>
+        <h2 className="mt-3 text-2xl font-bold text-white">Revisão Final</h2>
+        <p className="text-[#27a75c]/80 mt-1.5">
+          Confira os dados abaixo antes de confirmar o envio.
         </p>
       </div>
 
       <div className="grid gap-4">
         {/* DADOS DO PEDIDO */}
-        <Card className="bg-white/[0.03] border-white/[0.06]">
-          <CardHeader className="bg-white/[0.03] py-3 border-b border-white/[0.06]">
-            <CardTitle className="text-lg text-white">📋 Dados do Pedido</CardTitle>
+        <Card className={sectionCardClass}>
+          <CardHeader className={sectionHeaderClass}>
+            <CardTitle className={sectionTitleClass}>Dados do Pedido</CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
             <Campo label="Empresa" valor={data.dadosGerais.empresa} />
@@ -159,9 +198,9 @@ export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps
 
         {/* CONDIÇÕES DE VENDA */}
         {data.condicoesVenda && (
-          <Card className="bg-white/[0.03] border-white/[0.06]">
-            <CardHeader className="bg-white/[0.03] py-3 border-b border-white/[0.06]">
-              <CardTitle className="text-lg text-white">💰 Condições de Venda</CardTitle>
+          <Card className={sectionCardClass}>
+            <CardHeader className={sectionHeaderClass}>
+              <CardTitle className={sectionTitleClass}>Condições de Venda</CardTitle>
             </CardHeader>
             <CardContent className="pt-4">
               <Campo label="Tipo de Contrato" valor={data.condicoesVenda.tipoContrato} />
@@ -176,9 +215,9 @@ export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps
 
         {/* ENTREGAS */}
         {data.entregas && (
-          <Card className="bg-white/[0.03] border-white/[0.06]">
-            <CardHeader className="bg-white/[0.03] py-3 border-b border-white/[0.06]">
-              <CardTitle className="text-lg text-white">🚚 Entregas</CardTitle>
+          <Card className={sectionCardClass}>
+            <CardHeader className={sectionHeaderClass}>
+              <CardTitle className={sectionTitleClass}>Entregas</CardTitle>
             </CardHeader>
             <CardContent className="pt-4">
               <Campo label="Local Único" valor={data.entregas.localUnico ? "Sim" : "Não"} />
@@ -197,22 +236,22 @@ export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps
         )}
 
         {/* PRODUTO */}
-        <Card className="bg-white/[0.03] border-white/[0.06]">
-          <CardHeader className="bg-white/[0.03] py-3 border-b border-white/[0.06]">
-            <CardTitle className="text-lg text-white">📦 Produto</CardTitle>
+        <Card className={sectionCardClass}>
+          <CardHeader className={sectionHeaderClass}>
+            <CardTitle className={sectionTitleClass}>Produto</CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
             <Campo label="Tipo" valor={produtoTipo?.nome} />
             <Campo label="Modelo" valor={produtoModelo?.nome} />
-            <Campo label="Quantidade" valor={data.acondicionamento.quantidade ? `${data.acondicionamento.quantidade.toLocaleString("pt-BR")} un` : undefined} />
+            <Campo label="Quantidade (Orçamento)" valor={data.produto.quantidade} />
             <Campo label="Variação" valor={data.produto.variacaoEnvelope} />
           </CardContent>
         </Card>
 
         {/* TAMANHO / FORMATO */}
-        <Card className="bg-white/[0.03] border-white/[0.06]">
-          <CardHeader className="bg-white/[0.03] py-3 border-b border-white/[0.06]">
-            <CardTitle className="text-lg text-white">📐 Tamanho</CardTitle>
+        <Card className={sectionCardClass}>
+          <CardHeader className={sectionHeaderClass}>
+            <CardTitle className={sectionTitleClass}>Tamanho</CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
             {formato ? (
@@ -289,9 +328,9 @@ export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps
         </Card>
 
         {/* MATERIAL / SUBSTRATO */}
-        <Card className="bg-white/[0.03] border-white/[0.06]">
-          <CardHeader className="bg-white/[0.03] py-3 border-b border-white/[0.06]">
-            <CardTitle className="text-lg text-white">📄 Material</CardTitle>
+        <Card className={sectionCardClass}>
+          <CardHeader className={sectionHeaderClass}>
+            <CardTitle className={sectionTitleClass}>Material</CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
             <Campo 
@@ -316,9 +355,9 @@ export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps
         </Card>
 
         {/* ALÇA E DETALHES */}
-        <Card className="bg-white/[0.03] border-white/[0.06]">
-          <CardHeader className="bg-white/[0.03] py-3 border-b border-white/[0.06]">
-            <CardTitle className="text-lg text-white">🎒 Alça e Detalhes</CardTitle>
+        <Card className={sectionCardClass}>
+          <CardHeader className={sectionHeaderClass}>
+            <CardTitle className={sectionTitleClass}>Alça e Detalhes</CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
             <Campo 
@@ -366,9 +405,9 @@ export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps
         </Card>
 
         {/* IMPRESSÃO */}
-        <Card className="bg-white/[0.03] border-white/[0.06]">
-          <CardHeader className="bg-white/[0.03] py-3 border-b border-white/[0.06]">
-            <CardTitle className="text-lg text-white">🖨️ Impressão</CardTitle>
+        <Card className={sectionCardClass}>
+          <CardHeader className={sectionHeaderClass}>
+            <CardTitle className={sectionTitleClass}>Impressão</CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
             <Campo 
@@ -434,9 +473,9 @@ export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps
         </Card>
 
         {/* ACABAMENTOS */}
-        <Card className="bg-white/[0.03] border-white/[0.06]">
-          <CardHeader className="bg-white/[0.03] py-3 border-b border-white/[0.06]">
-            <CardTitle className="text-lg text-white">✨ Acabamentos</CardTitle>
+        <Card className={sectionCardClass}>
+          <CardHeader className={sectionHeaderClass}>
+            <CardTitle className={sectionTitleClass}>Acabamentos</CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
             <Campo label="Reforço de Fundo" valor={data.acabamentos.reforcoFundo} />
@@ -459,9 +498,9 @@ export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps
         </Card>
 
         {/* ENOBRECIMENTOS */}
-        <Card className="bg-white/[0.03] border-white/[0.06]">
-          <CardHeader className="bg-white/[0.03] py-3 border-b border-white/[0.06]">
-            <CardTitle className="text-lg text-white">💎 Enobrecimentos</CardTitle>
+        <Card className={sectionCardClass}>
+          <CardHeader className={sectionHeaderClass}>
+            <CardTitle className={sectionTitleClass}>Enobrecimentos</CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
             {data.enobrecimentos && data.enobrecimentos.length > 0 ? (
@@ -469,7 +508,7 @@ export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps
                 {data.enobrecimentos.map((enob, index) => {
                   const tipo = catalogo.enobrecimentoTipos.find(t => t.id === enob.tipoId)
                   return (
-                    <div key={index} className="border-l-4 border-[#27a75c] pl-3 py-2 bg-[#27a75c]/10 rounded-r">
+                    <div key={index} className="rounded-xl border border-[#27a75c]/25 bg-gradient-to-r from-[#27a75c]/12 to-[#00477a]/10 p-3.5">
                       <div className="font-semibold text-[#27a75c]">{tipo?.nome || enob.tipoId}</div>
                       {enob.dados && Object.keys(enob.dados).length > 0 && (
                         <div className="text-sm text-gray-300 mt-1">
@@ -492,9 +531,9 @@ export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps
         </Card>
 
         {/* ENTREGA E QUANTIDADE */}
-        <Card className="bg-white/[0.03] border-white/[0.06]">
-          <CardHeader className="bg-white/[0.03] py-3 border-b border-white/[0.06]">
-            <CardTitle className="text-lg text-white">📬 Entrega e Quantidade</CardTitle>
+        <Card className={sectionCardClass}>
+          <CardHeader className={sectionHeaderClass}>
+            <CardTitle className={sectionTitleClass}>Entrega e Quantidade</CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
             <Campo 
@@ -523,19 +562,19 @@ export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps
 
         {/* OBSERVAÇÕES PARA ENGENHARIA - Lista de todos os "Outro (Desenvolvimento)" */}
         {temObservacoesDesenvolvimento && (
-          <Card className="bg-amber-500/10 border-amber-500/30">
-            <CardHeader className="bg-amber-500/20 py-3 border-b border-amber-500/30">
-              <CardTitle className="text-lg text-amber-400">⚠️ Observações para Engenharia (Itens de Desenvolvimento)</CardTitle>
+          <Card className="bg-gradient-to-br from-[#27a75c]/10 to-[#00477a]/10 border-[#27a75c]/30 shadow-[0_12px_32px_rgba(0,0,0,0.2)]">
+            <CardHeader className="bg-gradient-to-r from-[#27a75c]/15 to-[#00477a]/15 py-3.5 border-b border-white/[0.08]">
+              <CardTitle className={sectionTitleClass}>Observações para Engenharia</CardTitle>
             </CardHeader>
             <CardContent className="pt-4">
-              <div className="space-y-2">
+              <div className="space-y-3">
                 {observacoesDesenvolvimento.map((obs, index) => (
-                  <div key={index} className="bg-white/[0.05] p-3 rounded border border-amber-500/20">
+                  <div key={index} className="rounded-xl border border-white/[0.08] bg-white/[0.04] p-3.5">
                     <div className="flex items-start gap-2 flex-wrap">
-                      <span className="bg-amber-500 text-white text-xs px-2 py-1 rounded font-medium whitespace-nowrap">
+                      <span className="bg-gradient-to-r from-[#27a75c] to-[#00477a] text-white text-[11px] px-2 py-1 rounded-md font-semibold uppercase tracking-wide whitespace-nowrap">
                         {obs.etapa}
                       </span>
-                      <span className="font-semibold text-amber-400">{obs.campo}:</span>
+                      <span className="font-semibold text-[#27a75c]">{obs.campo}:</span>
                       <span className="text-gray-200">{obs.descricao}</span>
                     </div>
                   </div>
@@ -547,20 +586,20 @@ export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps
       </div>
 
       {/* BOTÕES DE AÇÃO */}
-      <div className="flex justify-between pt-6 border-t border-white/[0.06]">
+      <div className="flex flex-col gap-3 pt-6 border-t border-white/[0.08] sm:flex-row sm:items-center sm:justify-between">
         <Button
           variant="outline"
-          onClick={() => form.setFocus("dadosGerais.empresa")}
-          className="border-white/[0.1] bg-transparent text-gray-300 hover:bg-white/[0.05] hover:text-white"
+          onClick={onBack}
+          className="border-white/[0.14] bg-white/[0.03] text-gray-200 hover:bg-white/[0.08] hover:text-white"
         >
           Voltar para Edição
         </Button>
-        <div className="flex gap-3">
+        <div className="flex flex-col gap-3 sm:flex-row">
           <Button
             variant="outline"
             onClick={handleGerarPDF}
             disabled={isSubmitting}
-            className="border-white/[0.1] bg-transparent text-gray-300 hover:bg-white/[0.05] hover:text-white"
+            className="border-white/[0.14] bg-white/[0.03] text-gray-200 hover:bg-white/[0.08] hover:text-white"
           >
             <Download className="mr-2 h-4 w-4" />
             Salvar PDF
@@ -571,10 +610,11 @@ export function EtapaRevisao({ form, onSubmit, isSubmitting }: EtapaRevisaoProps
             size="lg"
             className="bg-gradient-to-r from-[#27a75c] to-[#00477a] hover:from-[#229a52] hover:to-[#003d6a] text-white border-0"
           >
-            {isSubmitting ? "Enviando..." : "Confirmar e Enviar para o PipeDrive"}
+            {isSubmitting ? "Enviando..." : "Confirmar e Enviar"}
           </Button>
         </div>
       </div>
     </div>
   )
 }
+

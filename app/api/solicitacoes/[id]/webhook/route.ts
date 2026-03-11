@@ -96,6 +96,7 @@ export async function POST(
       produto: {
         produtoTipoId: item.produtoTipoId,
         produtoModeloId: item.produtoModeloId,
+        quantidade: solicitacao.quantidadeMultiplos || item.quantidade?.toString() || "",
         variacaoEnvelope: item.variacaoEnvelope || "",
       },
       formato: {
@@ -150,7 +151,9 @@ export async function POST(
       } : undefined,
       enobrecimentos: item.enobrecimentos.map(enob => ({
         tipoId: enob.enobrecimentoTipoId,
-        dados: enob.dados || {},
+        dados: enob.dados && typeof enob.dados === "object" && !Array.isArray(enob.dados)
+          ? enob.dados
+          : {},
         observacoes: enob.observacoes || "",
       })),
       acondicionamento: {
@@ -162,7 +165,10 @@ export async function POST(
     }
 
     // Enviar webhook
-    const resultado = await enviarWebhook(solicitacao.id, data)
+    const resultado = await enviarWebhook(
+      solicitacao.id,
+      data as unknown as Parameters<typeof enviarWebhook>[1]
+    )
 
     // Atualizar status do webhook no banco
     await prisma.solicitacao.update({

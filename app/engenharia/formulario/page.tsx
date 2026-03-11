@@ -284,7 +284,10 @@ export default function FormularioPage() {
                                     </Badge>
                                   )}
                                   {!pergunta.ativo && (
-                                    <Badge variant="outline" className="text-xs">
+                                    <Badge
+                                      variant="outline"
+                                      className="text-xs border-muted-foreground/40 bg-muted/20 text-muted-foreground"
+                                    >
                                       Desativado
                                     </Badge>
                                   )}
@@ -358,4 +361,3 @@ export default function FormularioPage() {
     </div>
   )
 }
-

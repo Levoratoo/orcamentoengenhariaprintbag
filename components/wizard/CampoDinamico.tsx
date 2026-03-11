@@ -185,13 +185,15 @@ export function CampoDinamico({ pergunta, form, valorProdutoTipoId }: CampoDinam
 
   useEffect(() => {
     if (tipoContrato === "JIT") {
-      setValue("entregas.numeroEntregas", "Nao ha", { shouldValidate: false })
-      setValue("entregas.frequencia", "Nao ha", { shouldValidate: false })
+      setValue("entregas.numeroEntregas", undefined as any, { shouldValidate: false })
+      setValue("entregas.frequencia", "", { shouldValidate: false })
     } else if (tipoContrato === "PRG") {
-      if (watch("entregas.numeroEntregas") === "Nao ha") {
-        setValue("entregas.numeroEntregas", "", { shouldValidate: false })
+      const numeroEntregasAtual = watch("entregas.numeroEntregas") as any
+      if (typeof numeroEntregasAtual === "string" && numeroEntregasAtual.toLowerCase() === "nao ha") {
+        setValue("entregas.numeroEntregas", undefined as any, { shouldValidate: false })
       }
-      if (watch("entregas.frequencia") === "Nao ha") {
+      const frequenciaAtual = watch("entregas.frequencia") as any
+      if (typeof frequenciaAtual === "string" && frequenciaAtual.toLowerCase() === "nao ha") {
         setValue("entregas.frequencia", "", { shouldValidate: false })
       }
     }
@@ -645,8 +647,16 @@ export function CampoDinamico({ pergunta, form, valorProdutoTipoId }: CampoDinam
           type="number"
           step="1"
           min={1}
-          value={valorAtual || ""}
-          onChange={(e) => atualizarValor(e.target.value)}
+          value={valorAtual ?? ""}
+          onChange={(e) => {
+            const raw = e.target.value
+            if (raw === "") {
+              atualizarValor(undefined)
+              return
+            }
+            const numero = parseInt(raw, 10)
+            atualizarValor(Number.isNaN(numero) ? undefined : numero)
+          }}
           placeholder={pergunta.ajuda || "Informe o numero de entregas"}
           required={pergunta.obrigatorio}
         />
@@ -1067,6 +1077,4 @@ export function CampoDinamico({ pergunta, form, valorProdutoTipoId }: CampoDinam
     </div>
   )
 }
-
-
 

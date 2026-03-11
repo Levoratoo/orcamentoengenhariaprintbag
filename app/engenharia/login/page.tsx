@@ -23,6 +23,8 @@ export default function LoginPage() {
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
+        cache: "no-store",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -30,14 +32,23 @@ export default function LoginPage() {
       })
 
       const data = await response.json()
-
       if (!response.ok) {
         setErro(data.erro || "Erro ao fazer login")
         setLoading(false)
         return
       }
 
-      // Redirecionar para a área de engenharia
+      const check = await fetch("/api/auth/verificar", {
+        cache: "no-store",
+        credentials: "include",
+      })
+      const checkData = await check.json()
+      if (!checkData.autenticado) {
+        setErro("Login nao foi persistido. Tente novamente.")
+        setLoading(false)
+        return
+      }
+
       router.push("/engenharia/formulario")
       router.refresh()
     } catch (error) {
@@ -51,9 +62,9 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center p-8">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl text-center">Área de Engenharia</CardTitle>
+          <CardTitle className="text-2xl text-center">Area de Engenharia</CardTitle>
           <CardDescription className="text-center">
-            Faça login para acessar o painel de configuração
+            Faca login para acessar o painel de configuracao
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -64,7 +75,7 @@ export default function LoginPage() {
                 <span>{erro}</span>
               </div>
             )}
-            
+
             <div className="space-y-2">
               <Label htmlFor="login">Login</Label>
               <Input
@@ -93,8 +104,8 @@ export default function LoginPage() {
               />
             </div>
 
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               className="w-full bg-[#27a75c] hover:bg-[#229a52] text-white"
               disabled={loading}
             >
@@ -106,4 +117,3 @@ export default function LoginPage() {
     </div>
   )
 }
-
