@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { 
   List, 
@@ -10,8 +9,6 @@ import {
 } from "lucide-react"
 
 export default function Home() {
-  const basePath = process.env.NODE_ENV === "production" ? "/orcamentoengenhariaprintbag" : ""
-
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Background com gradiente animado */}
@@ -36,15 +33,7 @@ export default function Home() {
         {/* Hero Section */}
         <div className="relative max-w-6xl mx-auto px-6 pt-16 pb-12">
           {/* Logo/Brand */}
-          <div className="mb-12 flex items-center gap-3">
-            <Image 
-              src={`${basePath}/printbag-logo-svg.png`} 
-              alt="Printbag" 
-              width={180} 
-              height={50}
-              className="h-10 w-auto"
-            />
-            <div className="h-8 w-px bg-gradient-to-b from-transparent via-[#27a75c]/30 to-transparent" />
+          <div className="mb-12 flex items-center">
             <span className="text-xs font-medium text-white/70 uppercase tracking-widest">Sistema</span>
           </div>
 
