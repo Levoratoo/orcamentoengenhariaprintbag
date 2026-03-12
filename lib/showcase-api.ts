@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  SHOWCASE_STATE_VERSION,
   SHOWCASE_STATIC_SOLICITACAO_IDS,
   ShowcaseState,
   getInitialShowcaseState,
@@ -50,6 +51,15 @@ function readState(): ShowcaseState {
       writeState(seed)
       return seed
     }
+    if (parsed.version !== SHOWCASE_STATE_VERSION) {
+      const seed = getInitialShowcaseState()
+      const migrated: ShowcaseState = {
+        ...seed,
+        autenticado: typeof parsed.autenticado === "boolean" ? parsed.autenticado : seed.autenticado,
+      }
+      writeState(migrated)
+      return migrated
+    }
     return parsed
   } catch {
     const seed = getInitialShowcaseState()
@@ -72,85 +82,255 @@ function parseBody(raw: string): Record<string, any> {
   }
 }
 
+function startOfDay(date: Date): Date {
+  const next = new Date(date)
+  next.setHours(0, 0, 0, 0)
+  return next
+}
+
+function addDays(date: Date, days: number): Date {
+  const next = new Date(date)
+  next.setDate(next.getDate() + days)
+  return next
+}
+
+function getDayKey(date: Date): string {
+  const dia = String(date.getDate()).padStart(2, "0")
+  const mes = String(date.getMonth() + 1).padStart(2, "0")
+  return `${dia}/${mes}`
+}
+
+function parseIsoDate(value?: string | null): Date | null {
+  if (!value) return null
+  const parsed = new Date(value)
+  return Number.isNaN(parsed.getTime()) ? null : parsed
+}
+
+function topCountEntries(map: Map<string, number>, limit: number): Array<[string, number]> {
+  return Array.from(map.entries())
+    .filter(([nome]) => nome.trim().length > 0)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+}
+
 function dashboardResponse(state: ShowcaseState) {
-  const total = state.solicitacoes.length
-  const sucesso = state.solicitacoes.filter((s) => s.statusWebhook === "sucesso").length
-  const erro = state.solicitacoes.filter((s) => s.statusWebhook === "erro").length
-  const pendente = total - sucesso - erro
+  const hoje = startOfDay(new Date())
+  const inicioAtual = addDays(hoje, -29)
+  const inicioUltimos7 = addDays(hoje, -6)
+  const fimAtual = addDays(hoje, 1)
+  const inicioAnterior = addDays(inicioAtual, -30)
+  const fimAnterior = inicioAtual
+
+  const diasAtuais = Array.from({ length: 30 }, (_, index) => addDays(inicioAtual, index))
+  const diasAnteriores = Array.from({ length: 30 }, (_, index) => addDays(inicioAnterior, index))
+
+  const porDiaAtual = new Map<string, number>(diasAtuais.map((dia) => [getDayKey(dia), 0]))
+  const porDiaAnterior = new Map<string, number>(diasAnteriores.map((dia) => [getDayKey(dia), 0]))
+  const taxaSucessoPorDia = new Map<string, { total: number; sucesso: number; erro: number }>(
+    diasAtuais.map((dia) => [getDayKey(dia), { total: 0, sucesso: 0, erro: 0 }])
+  )
+
+  const porHora = Array.from({ length: 24 }, () => 0)
+
+  const status = { sucesso: 0, erro: 0, pendente: 0 }
+  const produtosMap = new Map<string, number>()
+  const substratosMap = new Map<string, number>()
+  const empresasMap = new Map<string, number>()
+  const tiposMap = new Map<string, number>()
+  const modosMap = new Map<string, number>()
+  const enobrecimentosMap = new Map<string, number>()
+  const acondicionamentosMap = new Map<string, number>()
+  const faixasQuantidade = {
+    "0-100": 0,
+    "101-500": 0,
+    "501-1000": 0,
+    "1001-5000": 0,
+    "5000+": 0,
+  }
+
+  let ultimos30Dias = 0
+  let ultimos7Dias = 0
+  let periodoAnterior = 0
+  let somaTempoRespostaMs = 0
+  let totalTempoResposta = 0
+
+  for (const solicitacao of state.solicitacoes) {
+    status[solicitacao.statusWebhook]++
+
+    const criadoEm = parseIsoDate(solicitacao.createdAt)
+    if (!criadoEm) continue
+
+    const nomeEmpresa =
+      solicitacao.marca?.trim() ||
+      solicitacao.empresa?.trim() ||
+      solicitacao.vendedor?.trim() ||
+      "Nao informado"
+    empresasMap.set(nomeEmpresa, (empresasMap.get(nomeEmpresa) || 0) + 1)
+
+    if (criadoEm >= inicioAtual && criadoEm < fimAtual) {
+      ultimos30Dias++
+      const dia = getDayKey(criadoEm)
+      porDiaAtual.set(dia, (porDiaAtual.get(dia) || 0) + 1)
+      porHora[criadoEm.getHours()]++
+
+      const taxaDia = taxaSucessoPorDia.get(dia)
+      if (taxaDia) {
+        taxaDia.total += 1
+        if (solicitacao.statusWebhook === "sucesso") taxaDia.sucesso += 1
+        if (solicitacao.statusWebhook === "erro") taxaDia.erro += 1
+      }
+    }
+
+    if (criadoEm >= inicioUltimos7 && criadoEm < fimAtual) {
+      ultimos7Dias++
+    }
+
+    if (criadoEm >= inicioAnterior && criadoEm < fimAnterior) {
+      periodoAnterior++
+      const diaAnterior = getDayKey(criadoEm)
+      porDiaAnterior.set(diaAnterior, (porDiaAnterior.get(diaAnterior) || 0) + 1)
+    }
+
+    if (solicitacao.statusWebhook === "sucesso") {
+      const webhookEnviadoEm = parseIsoDate(solicitacao.webhookEnviadoEm)
+      if (webhookEnviadoEm && webhookEnviadoEm >= criadoEm) {
+        somaTempoRespostaMs += webhookEnviadoEm.getTime() - criadoEm.getTime()
+        totalTempoResposta++
+      }
+    }
+
+    for (const item of solicitacao.itens) {
+      const tipoNome = item.produtoTipo?.nome || "?"
+      const modeloNome = item.produtoModelo?.nome || "?"
+      const produtoChave = `${tipoNome} - ${modeloNome}`
+      produtosMap.set(produtoChave, (produtosMap.get(produtoChave) || 0) + 1)
+
+      if (item.substrato?.nome) {
+        const nomeSubstrato = item.substrato.nome
+        substratosMap.set(nomeSubstrato, (substratosMap.get(nomeSubstrato) || 0) + 1)
+      }
+
+      if (item.produtoTipo?.nome) {
+        const nomeTipo = item.produtoTipo.nome
+        tiposMap.set(nomeTipo, (tiposMap.get(nomeTipo) || 0) + 1)
+      }
+
+      if (item.impressaoModo?.nome) {
+        const nomeModo = item.impressaoModo.nome
+        modosMap.set(nomeModo, (modosMap.get(nomeModo) || 0) + 1)
+      }
+
+      if (item.acondicionamento?.nome) {
+        const nomeAcondicionamento = item.acondicionamento.nome
+        acondicionamentosMap.set(nomeAcondicionamento, (acondicionamentosMap.get(nomeAcondicionamento) || 0) + 1)
+      }
+
+      for (const enob of item.enobrecimentos || []) {
+        const nomeEnobrecimento = enob.enobrecimentoTipo?.nome
+        if (!nomeEnobrecimento) continue
+        enobrecimentosMap.set(nomeEnobrecimento, (enobrecimentosMap.get(nomeEnobrecimento) || 0) + 1)
+      }
+
+      const quantidade = typeof item.quantidade === "number" ? item.quantidade : null
+      if (quantidade !== null) {
+        if (quantidade <= 100) faixasQuantidade["0-100"]++
+        else if (quantidade <= 500) faixasQuantidade["101-500"]++
+        else if (quantidade <= 1000) faixasQuantidade["501-1000"]++
+        else if (quantidade <= 5000) faixasQuantidade["1001-5000"]++
+        else faixasQuantidade["5000+"]++
+      }
+    }
+  }
+
+  const solicitacoesPorDia = diasAtuais.map((dia) => {
+    const chave = getDayKey(dia)
+    return { dia: chave, quantidade: porDiaAtual.get(chave) || 0 }
+  })
+
+  const comparacaoPeriodos = diasAtuais.map((diaAtual, index) => {
+    const chaveAtual = getDayKey(diaAtual)
+    const chaveAnterior = getDayKey(diasAnteriores[index])
+    return {
+      dia: chaveAtual,
+      atual: porDiaAtual.get(chaveAtual) || 0,
+      anterior: porDiaAnterior.get(chaveAnterior) || 0,
+    }
+  })
+
+  const taxaSucessoArray = diasAtuais.map((dia) => {
+    const chave = getDayKey(dia)
+    const dados = taxaSucessoPorDia.get(chave) || { total: 0, sucesso: 0, erro: 0 }
+    return {
+      dia: chave,
+      taxa: dados.total > 0 ? Math.round((dados.sucesso / dados.total) * 100) : 0,
+      total: dados.total,
+      sucesso: dados.sucesso,
+    }
+  })
+
+  const metricasCombinadas = diasAtuais.map((dia) => {
+    const chave = getDayKey(dia)
+    const dados = taxaSucessoPorDia.get(chave) || { total: 0, sucesso: 0, erro: 0 }
+    return {
+      dia: chave,
+      solicitacoes: dados.total,
+      sucesso: dados.sucesso,
+      erro: dados.erro,
+    }
+  })
+
+  const tempoMedioResposta =
+    totalTempoResposta > 0 ? Math.round((somaTempoRespostaMs / totalTempoResposta) / 1000) : 0
 
   return {
     resumo: {
-      total,
-      ultimos30Dias: total,
-      ultimos7Dias: Math.min(total, 2),
-      tempoMedioResposta: 4.2,
-      periodoAnterior: Math.max(0, total - 1),
+      total: state.solicitacoes.length,
+      ultimos30Dias,
+      ultimos7Dias,
+      tempoMedioResposta,
+      periodoAnterior,
     },
-    status: { sucesso, erro, pendente },
-    solicitacoesPorDia: [
-      { dia: "01/03", quantidade: 1 },
-      { dia: "03/03", quantidade: 1 },
-      { dia: "05/03", quantidade: 1 },
-      { dia: "08/03", quantidade: 2 },
-    ],
-    produtosMaisSolicitados: [
-      { produto: "Sacola Alça Fita", quantidade: 3 },
-      { produto: "Envelope Comercial", quantidade: 1 },
-    ],
-    substratosMaisUsados: [
-      { substrato: "Papel Kraft", quantidade: 2 },
-      { substrato: "Cartão Triplex", quantidade: 1 },
-    ],
-    empresasMaisSolicitam: [
-      { empresa: "Printbag", quantidade: 2 },
-      { empresa: "Fashion Group", quantidade: 1 },
-    ],
-    tiposProduto: [
-      { tipo: "Sacola", quantidade: 3 },
-      { tipo: "Envelope", quantidade: 1 },
-    ],
-    modosImpressao: [
-      { modo: "Offset", quantidade: 3 },
-      { modo: "Digital", quantidade: 1 },
-    ],
-    enobrecimentos: [
-      { enobrecimento: "Hot Stamping", quantidade: 1 },
-      { enobrecimento: "Laminação Fosca", quantidade: 1 },
-    ],
-    acondicionamentos: [
-      { acondicionamento: "Fardo", quantidade: 3 },
-      { acondicionamento: "Caixa", quantidade: 1 },
-    ],
-    solicitacoesPorHora: [
-      { hora: "09:00", quantidade: 1 },
-      { hora: "12:00", quantidade: 1 },
-      { hora: "15:00", quantidade: 1 },
-      { hora: "18:00", quantidade: 1 },
-    ],
-    distribuicaoQuantidades: [
-      { faixa: "1-1.999", quantidade: 1 },
-      { faixa: "2.000-4.999", quantidade: 2 },
-      { faixa: "5.000-9.999", quantidade: 1 },
-      { faixa: "10.000+", quantidade: 0 },
-    ],
-    comparacaoPeriodos: [
-      { dia: "01/03", atual: 1, anterior: 0 },
-      { dia: "03/03", atual: 1, anterior: 1 },
-      { dia: "05/03", atual: 1, anterior: 0 },
-      { dia: "08/03", atual: 2, anterior: 1 },
-    ],
-    taxaSucessoPorDia: [
-      { dia: "01/03", taxa: 100, total: 1, sucesso: 1 },
-      { dia: "03/03", taxa: 0, total: 1, sucesso: 0 },
-      { dia: "05/03", taxa: 100, total: 1, sucesso: 1 },
-      { dia: "08/03", taxa: 50, total: 2, sucesso: 1 },
-    ],
-    metricasCombinadas: [
-      { dia: "01/03", solicitacoes: 1, sucesso: 1, erro: 0 },
-      { dia: "03/03", solicitacoes: 1, sucesso: 0, erro: 1 },
-      { dia: "05/03", solicitacoes: 1, sucesso: 1, erro: 0 },
-      { dia: "08/03", solicitacoes: 2, sucesso: 1, erro: 0 },
-    ],
+    status,
+    solicitacoesPorDia,
+    produtosMaisSolicitados: topCountEntries(produtosMap, 10).map(([produto, quantidade]) => ({
+      produto,
+      quantidade,
+    })),
+    substratosMaisUsados: topCountEntries(substratosMap, 5).map(([substrato, quantidade]) => ({
+      substrato,
+      quantidade,
+    })),
+    empresasMaisSolicitam: topCountEntries(empresasMap, 5).map(([empresa, quantidade]) => ({
+      empresa,
+      quantidade,
+    })),
+    tiposProduto: topCountEntries(tiposMap, 6).map(([tipo, quantidade]) => ({
+      tipo,
+      quantidade,
+    })),
+    modosImpressao: topCountEntries(modosMap, 8).map(([modo, quantidade]) => ({
+      modo,
+      quantidade,
+    })),
+    enobrecimentos: topCountEntries(enobrecimentosMap, 8).map(([enobrecimento, quantidade]) => ({
+      enobrecimento,
+      quantidade,
+    })),
+    acondicionamentos: topCountEntries(acondicionamentosMap, 6).map(([acondicionamento, quantidade]) => ({
+      acondicionamento,
+      quantidade,
+    })),
+    solicitacoesPorHora: porHora.map((quantidade, hora) => ({
+      hora: `${String(hora).padStart(2, "0")}h`,
+      quantidade,
+    })),
+    distribuicaoQuantidades: Object.entries(faixasQuantidade).map(([faixa, quantidade]) => ({
+      faixa,
+      quantidade,
+    })),
+    comparacaoPeriodos,
+    taxaSucessoPorDia: taxaSucessoArray,
+    metricasCombinadas,
   }
 }
 

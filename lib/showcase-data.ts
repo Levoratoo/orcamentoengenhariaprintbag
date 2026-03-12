@@ -132,6 +132,7 @@ export interface ShowcaseEtapa {
 }
 
 export interface ShowcaseState {
+  version: number
   autenticado: boolean
   solicitacaoSequence: number
   perguntaSequence: number
@@ -565,173 +566,293 @@ export const SHOWCASE_STATIC_PERGUNTA_IDS = Array.from({ length: 300 }, (_, inde
   return `perg-${n}`
 })
 
+export const SHOWCASE_STATE_VERSION = 2
+
+const SHOWCASE_TOTAL_SOLICITACOES = 18
+
+const SHOWCASE_CLIENTES = [
+  {
+    vendedor: "Pedro Levorato",
+    marca: "Action Schutz",
+    contato: "Sabrina Costa",
+    empresa: "Printbag",
+    unidade: "Sao Paulo",
+    emailSolicitante: "sabrina@printbag.com.br",
+    telefoneSolicitante: "(11) 99999-1111",
+  },
+  {
+    vendedor: "Lucas Santos",
+    marca: "Projeto Fashion",
+    contato: "Mariana Alves",
+    empresa: "Fashion Group",
+    unidade: "Minas Gerais",
+    emailSolicitante: "mariana@fashiongroup.com",
+    telefoneSolicitante: "(31) 97777-3333",
+  },
+  {
+    vendedor: "Camila Rocha",
+    marca: "Cliente Demo",
+    contato: "Camila Rocha",
+    empresa: "Cliente Demo LTDA",
+    unidade: "Rio de Janeiro",
+    emailSolicitante: "camila@clientedemo.com.br",
+    telefoneSolicitante: "(21) 98888-2222",
+  },
+  {
+    vendedor: "Rafaela Mendes",
+    marca: "Urban Move",
+    contato: "Bruno Matos",
+    empresa: "Urban Move SA",
+    unidade: "Parana",
+    emailSolicitante: "bruno@urbanmove.com.br",
+    telefoneSolicitante: "(41) 97777-4545",
+  },
+  {
+    vendedor: "Thiago Cunha",
+    marca: "Studio Casa",
+    contato: "Helena Prado",
+    empresa: "Studio Casa Decor",
+    unidade: "Santa Catarina",
+    emailSolicitante: "helena@studiocasa.com.br",
+    telefoneSolicitante: "(48) 96666-8787",
+  },
+  {
+    vendedor: "Juliana Torres",
+    marca: "Bianca Shoes",
+    contato: "Rita Campos",
+    empresa: "Bianca Shoes",
+    unidade: "Bahia",
+    emailSolicitante: "rita@biancashoes.com",
+    telefoneSolicitante: "(71) 98888-9090",
+  },
+]
+
+const SHOWCASE_CIDADES = [
+  "Sao Paulo/SP",
+  "Rio de Janeiro/RJ",
+  "Belo Horizonte/MG",
+  "Curitiba/PR",
+  "Florianopolis/SC",
+  "Salvador/BA",
+  "Porto Alegre/RS",
+  "Campinas/SP",
+  "Goiania/GO",
+]
+
+const SHOWCASE_ITENS_BASE: ShowcaseSolicitacaoItem[] = [
+  {
+    produtoTipo: { id: "sacola", nome: "Sacola", codigo: "SAC" },
+    produtoModelo: { id: "sacola_fita", nome: "Sacola Alca Fita", codigo: "SAC-FITA" },
+    formatoPadrao: { id: "formato-001", nome: "35x45x12", largura: 35, altura: 45, lateral: 12 },
+    substrato: { id: "kraft", nome: "Papel Kraft" },
+    substratoGramagem: "180",
+    alcaTipo: { id: "fita", nome: "Fita de Gorgurao" },
+    alcaLargura: "20",
+    alcaCor: "Preta",
+    alcaAplicacao: "Embutida",
+    reforcoFundo: true,
+    reforcoFundoModelo: "colado_fundo",
+    bocaPalhaco: false,
+    furoFita: false,
+    impressaoModo: { id: "offset", nome: "Offset" },
+    impressaoCombinacao: { id: "4x0", nome: "4x0" },
+    percentualImpressaoExterna: 100,
+    acondicionamento: { id: "fardo", nome: "Fardo" },
+    modulo: { id: "modulo-1", nome: "Modulo Padrao" },
+    quantidade: 5000,
+    enobrecimentos: [
+      {
+        enobrecimentoTipo: { id: "hot", nome: "Hot Stamping" },
+        observacoes: "Aplicar dourado na frente.",
+      },
+    ],
+  },
+  {
+    produtoTipo: { id: "envelope", nome: "Envelope", codigo: "ENV" },
+    produtoModelo: { id: "envelope_comercial", nome: "Envelope Comercial", codigo: "ENV-COM" },
+    formatoPadrao: { id: "formato-010", nome: "23x11", largura: 23, altura: 11, lateral: 0 },
+    substrato: { id: "couche", nome: "Papel Couche" },
+    substratoGramagem: "150",
+    reforcoFundo: false,
+    bocaPalhaco: false,
+    furoFita: false,
+    impressaoModo: { id: "digital", nome: "Digital" },
+    impressaoCombinacao: { id: "4x4", nome: "4x4" },
+    percentualImpressaoExterna: 100,
+    acondicionamento: { id: "caixa", nome: "Caixa" },
+    modulo: { id: "modulo-1", nome: "Modulo Padrao" },
+    quantidade: 1400,
+    enobrecimentos: [],
+  },
+  {
+    produtoTipo: { id: "sacola", nome: "Sacola", codigo: "SAC" },
+    produtoModelo: { id: "sacola_vertical", nome: "Sacola Vertical", codigo: "SAC-V" },
+    formatoPadrao: { id: "formato-030", nome: "28x35x10", largura: 28, altura: 35, lateral: 10 },
+    substrato: { id: "triplex", nome: "Cartao Triplex" },
+    substratoGramagem: "250",
+    alcaTipo: { id: "algodao", nome: "Cordao de Algodao" },
+    alcaCor: "Cru",
+    alcaAplicacao: "Ilhos",
+    reforcoFundo: true,
+    reforcoFundoModelo: "encaixado_fundo",
+    bocaPalhaco: true,
+    furoFita: true,
+    furoFitaModelo: "opcao_02",
+    impressaoModo: { id: "offset", nome: "Offset" },
+    impressaoCombinacao: { id: "4x1", nome: "4x1" },
+    percentualImpressaoExterna: 100,
+    acondicionamento: { id: "fardo", nome: "Fardo" },
+    modulo: { id: "modulo-2", nome: "Modulo Reforcado" },
+    quantidade: 3800,
+    enobrecimentos: [
+      {
+        enobrecimentoTipo: { id: "laminacao", nome: "Laminacao Fosca" },
+        observacoes: "Somente face externa.",
+      },
+    ],
+  },
+  {
+    produtoTipo: { id: "caixa", nome: "Caixa", codigo: "CX" },
+    produtoModelo: { id: "caixa_luxo", nome: "Caixa Luxo", codigo: "CX-LUXO" },
+    formatoPadrao: { id: "formato-041", nome: "20x18x8", largura: 20, altura: 18, lateral: 8 },
+    substrato: { id: "duplex", nome: "Cartao Duplex" },
+    substratoGramagem: "300",
+    reforcoFundo: true,
+    reforcoFundoModelo: "trava_automatica",
+    bocaPalhaco: false,
+    furoFita: false,
+    impressaoModo: { id: "offset", nome: "Offset" },
+    impressaoCombinacao: { id: "4x4", nome: "4x4" },
+    percentualImpressaoExterna: 100,
+    acondicionamento: { id: "caixa", nome: "Caixa" },
+    modulo: { id: "modulo-3", nome: "Modulo Premium" },
+    quantidade: 2200,
+    enobrecimentos: [
+      {
+        enobrecimentoTipo: { id: "verniz", nome: "Verniz UV" },
+        observacoes: "Aplicacao localizada no logo.",
+      },
+    ],
+  },
+  {
+    produtoTipo: { id: "etiqueta", nome: "Etiqueta", codigo: "ETQ" },
+    produtoModelo: { id: "etiqueta_fio", nome: "Etiqueta com Fio", codigo: "ETQ-FIO" },
+    formatoPadrao: { id: "formato-052", nome: "8x5", largura: 8, altura: 5, lateral: 0 },
+    substrato: { id: "cartao_supremo", nome: "Cartao Supremo" },
+    substratoGramagem: "300",
+    reforcoFundo: false,
+    bocaPalhaco: false,
+    furoFita: true,
+    furoFitaModelo: "furo_central",
+    impressaoModo: { id: "digital", nome: "Digital" },
+    impressaoCombinacao: { id: "4x4", nome: "4x4" },
+    percentualImpressaoExterna: 100,
+    acondicionamento: { id: "caixa", nome: "Caixa" },
+    modulo: { id: "modulo-1", nome: "Modulo Padrao" },
+    quantidade: 9000,
+    enobrecimentos: [
+      {
+        enobrecimentoTipo: { id: "relevo", nome: "Relevo" },
+        observacoes: "Relevo seco no logotipo.",
+      },
+    ],
+  },
+]
+
+function cloneValue<T>(value: T): T {
+  return JSON.parse(JSON.stringify(value)) as T
+}
+
+function dataIsoDiasAtras(diasAtras: number, hora: number, minuto: number): string {
+  const data = new Date()
+  data.setHours(hora, minuto, 0, 0)
+  data.setDate(data.getDate() - diasAtras)
+  return data.toISOString()
+}
+
+function getStatusPorIndice(index: number): ShowcaseSolicitacao["statusWebhook"] {
+  if (index % 7 === 0) return "erro"
+  if (index % 5 === 0) return "pendente"
+  return "sucesso"
+}
+
+function getSolicitacaoSeed(index: number, id: string): ShowcaseSolicitacao {
+  const cliente = SHOWCASE_CLIENTES[index % SHOWCASE_CLIENTES.length]
+  const itemBase = cloneValue(SHOWCASE_ITENS_BASE[index % SHOWCASE_ITENS_BASE.length])
+  const contratoPRG = index % 2 === 0
+  const localUnico = index % 3 !== 0
+  const diasAtras = index < 12 ? index * 2 : 31 + (index - 12) * 2
+  const createdAt = dataIsoDiasAtras(diasAtras, 8 + (index % 10), (index * 11) % 60)
+  const statusWebhook = getStatusPorIndice(index)
+
+  const quantidadeBase = itemBase.quantidade || 1200
+  const variacaoQuantidade = (index % 4) * 350
+  const quantidadePrincipal = quantidadeBase + variacaoQuantidade
+  const quantidadeSecundaria = quantidadePrincipal + 1400
+
+  itemBase.quantidade = quantidadePrincipal
+
+  const webhookComMinutos = new Date(createdAt)
+  webhookComMinutos.setMinutes(webhookComMinutos.getMinutes() + (index % 6) + 2)
+
+  return {
+    id,
+    vendedor: cliente.vendedor,
+    marca: cliente.marca,
+    contato: cliente.contato,
+    codigoMetrics: String(100000 + index * 97),
+    empresa: cliente.empresa,
+    unidade: cliente.unidade,
+    nomeSolicitante: cliente.contato,
+    emailSolicitante: cliente.emailSolicitante,
+    telefoneSolicitante: cliente.telefoneSolicitante,
+    observacoesGerais: `Pedido demonstrativo ${index + 1} para validar painel e listagem.`,
+    tipoContrato: contratoPRG ? "PRG" : "JIT",
+    imposto: contratoPRG ? "ICMS - Revenda" : "ISS - Consumo Proprio",
+    condicaoPagamento: contratoPRG ? "30 dd" : "15 dd",
+    royalties: contratoPRG ? "2.0" : "",
+    bvAgencia: contratoPRG ? "1.0" : "",
+    localUnico,
+    cidadeUF: localUnico
+      ? SHOWCASE_CIDADES[index % SHOWCASE_CIDADES.length]
+      : `${SHOWCASE_CIDADES[index % SHOWCASE_CIDADES.length]}; ${SHOWCASE_CIDADES[(index + 3) % SHOWCASE_CIDADES.length]}`,
+    pedidoMinimoCIF: localUnico ? null : String(Math.max(1000, quantidadePrincipal - 400)),
+    quantidadeMultiplos: contratoPRG ? `${quantidadePrincipal}, ${quantidadeSecundaria}` : String(quantidadePrincipal),
+    numeroEntregas: contratoPRG ? String((index % 3) + 2) : null,
+    frequencia: contratoPRG ? (index % 4 === 0 ? "Quinzenal" : "Mensal") : null,
+    frete: localUnico
+      ? "FOB - Contratacao Transporte por CLIENTE"
+      : "CIF - Entrega por conta da PRINTBAG",
+    freteQuantidade: localUnico ? quantidadePrincipal : null,
+    freteQuantidades: localUnico ? null : [quantidadePrincipal, quantidadeSecundaria],
+    statusWebhook,
+    responseWebhook:
+      statusWebhook === "sucesso"
+        ? "Payload recebido com sucesso"
+        : statusWebhook === "erro"
+          ? "Timeout no endpoint remoto"
+          : null,
+    webhookEnviadoEm: statusWebhook === "pendente" ? null : webhookComMinutos.toISOString(),
+    createdAt,
+    itens: [itemBase],
+  }
+}
+
 export function getSeedSolicitacoes(): ShowcaseSolicitacao[] {
-  return [
-    {
-      id: "demo-001",
-      vendedor: "Pedro Levorato",
-      marca: "Action Schutz",
-      contato: "Sabrina Costa",
-      codigoMetrics: "102938",
-      empresa: "Printbag",
-      unidade: "São Paulo",
-      nomeSolicitante: "Sabrina Costa",
-      emailSolicitante: "sabrina@printbag.com.br",
-      telefoneSolicitante: "(11) 99999-1111",
-      observacoesGerais: "Projeto vitrine para recrutadores.",
-      tipoContrato: "PRG",
-      imposto: "ICMS - Revenda",
-      condicaoPagamento: "30 dd",
-      royalties: "2.5",
-      bvAgencia: "1.0",
-      localUnico: false,
-      cidadeUF: "São Paulo/SP",
-      pedidoMinimoCIF: "3000",
-      quantidadeMultiplos: "3000, 5000, 8000",
-      numeroEntregas: "3",
-      frequencia: "Mensal",
-      frete: "CIF - Entrega por conta da PRINTBAG",
-      freteQuantidades: [3000, 5000, 8000],
-      statusWebhook: "sucesso",
-      responseWebhook: "Payload recebido com sucesso",
-      webhookEnviadoEm: "2026-03-01T12:45:00.000Z",
-      createdAt: "2026-02-27T14:30:00.000Z",
-      itens: [
-        {
-          produtoTipo: { id: "sacola", nome: "Sacola", codigo: "SAC" },
-          produtoModelo: { id: "sacola_fita", nome: "Sacola Alça Fita", codigo: "SAC-FITA" },
-          formatoPadrao: { id: "formato-001", nome: "35x45x12", largura: 35, altura: 45, lateral: 12 },
-          substrato: { id: "kraft", nome: "Papel Kraft" },
-          substratoGramagem: "180",
-          alcaTipo: { id: "fita", nome: "Fita de Gorgurão" },
-          alcaLargura: "20",
-          alcaCor: "Preta",
-          alcaAplicacao: "Embutida",
-          reforcoFundo: true,
-          reforcoFundoModelo: "colado_fundo",
-          bocaPalhaco: false,
-          furoFita: false,
-          impressaoModo: { id: "offset", nome: "Offset" },
-          impressaoCombinacao: { id: "4x0", nome: "4x0" },
-          percentualImpressaoExterna: 100,
-          acondicionamento: { id: "fardo", nome: "Fardo" },
-          modulo: { id: "modulo-1", nome: "Módulo Padrão" },
-          quantidade: 5000,
-          enobrecimentos: [
-            {
-              enobrecimentoTipo: { id: "hot", nome: "Hot Stamping" },
-              observacoes: "Aplicar dourado somente na frente.",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: "demo-002",
-      vendedor: "Equipe Comercial",
-      marca: "Cliente Demo",
-      contato: "Camila Rocha",
-      codigoMetrics: "778899",
-      empresa: "Cliente Demo LTDA",
-      unidade: "Rio de Janeiro",
-      nomeSolicitante: "Camila Rocha",
-      emailSolicitante: "camila@clientedemo.com.br",
-      telefoneSolicitante: "(21) 98888-2222",
-      observacoesGerais: "Aguardando aprovação de arte final.",
-      tipoContrato: "JIT",
-      imposto: "ISS - Consumo Próprio",
-      condicaoPagamento: "15 dd",
-      localUnico: true,
-      cidadeUF: "Rio de Janeiro/RJ",
-      quantidadeMultiplos: "1200",
-      frete: "FOB - Contratação Transporte por CLIENTE",
-      statusWebhook: "pendente",
-      createdAt: "2026-03-03T09:10:00.000Z",
-      itens: [
-        {
-          produtoTipo: { id: "envelope", nome: "Envelope", codigo: "ENV" },
-          produtoModelo: { id: "envelope_comercial", nome: "Envelope Comercial", codigo: "ENV-COM" },
-          formatoPadrao: { id: "formato-010", nome: "23x11", largura: 23, altura: 11, lateral: 0 },
-          substrato: { id: "couche", nome: "Papel Couché" },
-          substratoGramagem: "150",
-          reforcoFundo: false,
-          bocaPalhaco: false,
-          furoFita: false,
-          impressaoModo: { id: "digital", nome: "Digital" },
-          impressaoCombinacao: { id: "4x4", nome: "4x4" },
-          percentualImpressaoExterna: 100,
-          acondicionamento: { id: "caixa", nome: "Caixa" },
-          modulo: { id: "modulo-1", nome: "Módulo Padrão" },
-          quantidade: 1200,
-          enobrecimentos: [],
-        },
-      ],
-    },
-    {
-      id: "demo-003",
-      vendedor: "Lucas Santos",
-      marca: "Projeto Fashion",
-      contato: "Mariana Alves",
-      codigoMetrics: "445566",
-      empresa: "Fashion Group",
-      unidade: "Minas Gerais",
-      nomeSolicitante: "Mariana Alves",
-      emailSolicitante: "mariana@fashiongroup.com",
-      telefoneSolicitante: "(31) 97777-3333",
-      observacoesGerais: "Ajustar tonalidade da alça para pantone institucional.",
-      tipoContrato: "PRG",
-      imposto: "ICMS - Consumo Próprio",
-      condicaoPagamento: "45 dd",
-      localUnico: false,
-      cidadeUF: "Belo Horizonte/MG",
-      pedidoMinimoCIF: "2000",
-      quantidadeMultiplos: "2000, 4000",
-      numeroEntregas: "2",
-      frequencia: "Quinzenal",
-      frete: "CIF - Entrega por conta da PRINTBAG",
-      statusWebhook: "erro",
-      responseWebhook: "Timeout no endpoint remoto",
-      webhookEnviadoEm: "2026-03-05T16:20:00.000Z",
-      createdAt: "2026-03-05T15:40:00.000Z",
-      itens: [
-        {
-          produtoTipo: { id: "sacola", nome: "Sacola", codigo: "SAC" },
-          produtoModelo: { id: "sacola_vertical", nome: "Sacola Vertical", codigo: "SAC-V" },
-          formatoPadrao: { id: "formato-030", nome: "28x35x10", largura: 28, altura: 35, lateral: 10 },
-          substrato: { id: "triplex", nome: "Cartão Triplex" },
-          substratoGramagem: "250",
-          alcaTipo: { id: "algodao", nome: "Cordão de Algodão" },
-          alcaCor: "Cru",
-          alcaAplicacao: "Ilhós",
-          reforcoFundo: true,
-          reforcoFundoModelo: "encaixado_fundo",
-          bocaPalhaco: true,
-          furoFita: true,
-          furoFitaModelo: "opcao_02",
-          impressaoModo: { id: "offset", nome: "Offset" },
-          impressaoCombinacao: { id: "4x1", nome: "4x1" },
-          percentualImpressaoExterna: 100,
-          acondicionamento: { id: "fardo", nome: "Fardo" },
-          modulo: { id: "modulo-2", nome: "Módulo Reforçado" },
-          quantidade: 4000,
-          enobrecimentos: [
-            {
-              enobrecimentoTipo: { id: "laminacao", nome: "Laminação Fosca" },
-              observacoes: "Somente face externa.",
-            },
-          ],
-        },
-      ],
-    },
-  ]
+  return SHOWCASE_STATIC_SOLICITACAO_IDS
+    .slice(0, SHOWCASE_TOTAL_SOLICITACOES)
+    .map((id, index) => getSolicitacaoSeed(index, id))
 }
 
 export function getInitialShowcaseState(): ShowcaseState {
+  const solicitacoes = getSeedSolicitacoes()
+
   return {
+    version: SHOWCASE_STATE_VERSION,
     autenticado: true,
-    solicitacaoSequence: 4,
+    solicitacaoSequence: Math.min(solicitacoes.length + 1, SHOWCASE_STATIC_SOLICITACAO_IDS.length),
     perguntaSequence: 29,
-    solicitacoes: getSeedSolicitacoes(),
+    solicitacoes,
     etapas: getSeedEtapas(),
   }
 }
